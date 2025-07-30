@@ -26,16 +26,17 @@ const Navbar = () => {
 
     return (
         <>
-            <header className="bg-white shadow-sm relative z-50">
+            {/* Fixed Navbar */}
+            <header className="fixed top-0 left-0 w-full bg-white shadow-sm z-50">
                 {/* Tagline */}
-                <div className="container mx-auto px-4 md:px-8 py-2">
+                <div className="container mx-auto px-4 md:px-8 lg:px-14 4xl:px-32 py-2">
                     <div className="lg:text-right text-center text-xs uppercase tracking-widest text-gray-600">
                         Get your go beyond hustle. Build boldly. Lead internationally Book!
                     </div>
                 </div>
 
                 {/* Desktop nav + mobile toggle */}
-                <div className="container mx-auto flex items-center justify-between px-4 md:px-6 py-4">
+                <div className="container mx-auto flex items-center justify-between px-4 md:px-6 lg:px-14 4xl:px-32 py-4">
                     {/* Logo */}
                     <Link to="/" className="font-handwriting text-xl md:text-2xl">
                         Dr. Boahemaa Ntim
@@ -147,7 +148,7 @@ const Navbar = () => {
                     }`}
             >
                 <div className="p-6">
-                    <Link to="/" className="font-handwriting text-xl md:text-2xl mb-8">
+                    <Link to="/" className="font-handwriting text-xl md:text-2xl mb-8 block">
                         Dr. Boahemaa Ntim
                     </Link>
                     <nav>
