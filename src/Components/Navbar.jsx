@@ -1,13 +1,19 @@
 /* eslint-disable no-irregular-whitespace */
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { BsSoundwave } from "react-icons/bs"
 import { HiMenu, HiX } from "react-icons/hi"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 const Navbar = () => {
+    const location = useLocation()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const [activeLink, setActiveLink] = useState("/")
+    const [activeLink, setActiveLink] = useState(location.pathname)
+
+    // Update activeLink when route changes
+    useEffect(() => {
+        setActiveLink(location.pathname)
+    }, [location.pathname])
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
@@ -39,7 +45,7 @@ const Navbar = () => {
                 <div className="container mx-auto flex items-center justify-between px-4 md:px-6 lg:px-14 4xl:px-32 py-4">
                     {/* Logo */}
                     <Link to="/" className="font-handwriting text-xl md:text-2xl">
-                        Dr. Boahemaa Ntim
+                        Dr. Boahemaa Ntim
                     </Link>
 
                     {/* Desktop Navigation */}
@@ -99,7 +105,7 @@ const Navbar = () => {
                                     onClick={() => handleLinkClick("/webinars")}
                                     className={linkClass("/webinars")}
                                 >
-                                    Webinars & Courses
+                                    Webinars & Courses
                                 </Link>
                             </li>
                             <li>
@@ -114,7 +120,6 @@ const Navbar = () => {
                             <li>
                                 <Link
                                     to="/contact"
-                                    onClick={() => handleLinkClick("/contact")}
                                     className="bg-[#D95B24] text-white px-4 py-2 hover:bg-orange-600 transition-colors"
                                 >
                                     Contact Us
@@ -149,7 +154,7 @@ const Navbar = () => {
             >
                 <div className="p-6">
                     <Link to="/" className="font-handwriting text-xl md:text-2xl mb-8 block">
-                        Dr. Boahemaa Ntim
+                        Dr. Boahemaa Ntim
                     </Link>
                     <nav>
                         <ul className="space-y-6">
@@ -223,7 +228,7 @@ const Navbar = () => {
                                         : "text-gray-800 hover:text-[#D95B24] border-b-2 border-transparent hover:border-[#D95B24]"
                                         } py-2 px-2 rounded-lg transition-colors`}
                                 >
-                                    Webinars & Courses
+                                    Webinars & Courses
                                 </Link>
                             </li>
                             <li>

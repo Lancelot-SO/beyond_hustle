@@ -85,13 +85,16 @@ const MainSection = () => {
                 </div>
 
                 {/* Secondary image: centered on mobile, right-aligned on desktop */}
-                <motion.div className='flex justify-center md:justify-end mt-6' variants={itemVariants}>
+                <motion.div className='flex justify-center md:justify-end mt-6' variants={itemVariants} whileHover={{ scale: 1.05 }}
+                >
                     <img src={img1} alt='img1' loading='lazy' className='w-full md:w-auto' />
                 </motion.div>
             </div>
 
             {/* Portrait column */}
-            <motion.div className='w-full lg:w-[524px] h-auto flex items-center justify-start lg:justify-center pt-10 lg:pt-52 pl-4 lg:pl-0 ' variants={itemVariants}>
+            <motion.div className='w-full lg:w-[524px] h-auto flex items-center justify-start lg:justify-center pt-10 lg:pt-52 pl-4 lg:pl-0 ' variants={itemVariants} whileHover={{ scale: 0.9 }}
+
+            >
                 <div>
                     <img src={img2} alt='img2' loading='lazy' className='w-full md:w-auto' />
                 </div>

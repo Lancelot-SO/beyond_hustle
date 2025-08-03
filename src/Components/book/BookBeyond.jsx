@@ -26,6 +26,8 @@ export default function BookBeyond() {
                     src={main2}
                     alt="Portrait of woman in red lace dress"
                     className="w-full h-auto object-cover"
+                    loading='lazy'
+
                 />
             </div>
 

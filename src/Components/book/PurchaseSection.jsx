@@ -24,7 +24,8 @@ export default function PurchaseSection() {
                         <img
                             src={amazonLogo}
                             alt="Amazon"
-                            className="h-8 md:h-10 object-contain"
+                            className="h-8 md:h-10 object-contain" loading='lazy'
+
                         />
                     </Link>
 
@@ -36,7 +37,8 @@ export default function PurchaseSection() {
                         <img
                             src={bamLogo}
                             alt="Books‑A‑Million"
-                            className="h-8 md:h-10 object-contain"
+                            className="h-8 md:h-10 object-contain" loading='lazy'
+
                         />
                     </Link>
 
@@ -48,7 +50,8 @@ export default function PurchaseSection() {
                         <img
                             src={bnLogo}
                             alt="Barnes & Noble"
-                            className="h-8 md:h-10 object-contain"
+                            className="h-8 md:h-10 object-contain" loading='lazy'
+
                         />
                     </Link>
 
@@ -60,7 +63,8 @@ export default function PurchaseSection() {
                         <img
                             src={indieLogo}
                             alt="IndieBound"
-                            className="h-8 md:h-10 object-contain"
+                            className="h-8 md:h-10 object-contain" loading='lazy'
+
                         />
                     </Link>
                     <Link
@@ -71,7 +75,8 @@ export default function PurchaseSection() {
                         <img
                             src={indieLogo}
                             alt="IndieBound"
-                            className="h-8 md:h-10 object-contain"
+                            className="h-8 md:h-10 object-contain" loading='lazy'
+
                         />
                     </Link>
                     <Link
@@ -82,7 +87,8 @@ export default function PurchaseSection() {
                         <img
                             src={indieLogo}
                             alt="IndieBound"
-                            className="h-8 md:h-10 object-contain"
+                            className="h-8 md:h-10 object-contain" loading='lazy'
+
                         />
                     </Link>
                 </div>

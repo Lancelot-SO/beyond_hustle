@@ -6,6 +6,12 @@ import { motion } from 'framer-motion'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import gallerybg from "../assets/gallery/gallerybg.png"
+import gallery1 from "../assets/gallery/gallery1.png"
+import gallery2 from "../assets/gallery/gallery2.png"
+import gallery3 from "../assets/gallery/gallery3.png"
+import gallery4 from "../assets/gallery/gallery4.png"
+import gallery5 from "../assets/gallery/gallery5.png"
+
 import { Link } from 'react-router-dom'
 import BottomSection from '../Components/herosection/BottomSection'
 
@@ -13,11 +19,11 @@ const MotionLink = motion(Link)
 
 
 const items = [
-    { title: 'Book Launch', image: gallerybg, link: '/books' },
-    { title: 'Speaking & Event', image: gallerybg, link: '/gallery' },
-    { title: 'Webinar', image: gallerybg, link: '/gallery' },
-    { title: 'Podcast', image: gallerybg, link: '/gallery' },
-    { title: 'Image', image: gallerybg, link: '/gallery', span: 2 },
+    { title: 'Book Launch', image: gallery1, link: '/launch' },
+    { title: 'Speaking & Event', image: gallery2, link: '/events' },
+    { title: 'Webinar', image: gallery3, link: '/webinars' },
+    { title: 'Podcast', image: gallery4, link: '/podcastphotos' },
+    { title: 'Excerpts from Beyond The Hustle', image: gallery5, link: '/excerpts', span: 2 },
 ]
 
 const containerVariants = {
@@ -36,6 +42,10 @@ const itemVariants = {
 
 
 export default function Gallery() {
+    // Scroll to top when component mounts
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }, []);
     useEffect(() => {
         AOS.init({
             duration: 800,
@@ -58,9 +68,9 @@ export default function Gallery() {
                     <div
                         className="
                           absolute
-                          top-[50%] md:top-16 lg:top-24
+                          top-[50%] md:top-16 lg:top-48
                           left-4 lg:left-14 4xl:left-32
-                          w-[340px] md:w-[500px] lg:w-[415px]
+                          w-[340px] md:w-[500px] lg:w-[615px]
                           h-auto md:h-auto lg:h-[216px]
                         "
                     >
@@ -95,7 +105,7 @@ export default function Gallery() {
 
                     {/* Animated grid of links */}
                     <motion.div
-                        className="grid grid-cols-2 md:grid-cols-3 gap-4"
+                        className="grid grid-cols-1 md:grid-cols-3 gap-4"
                         variants={containerVariants}
                         initial="hidden"
                         animate="show"
@@ -104,7 +114,7 @@ export default function Gallery() {
                             <MotionLink
                                 key={idx}
                                 to={item.link}
-                                className={`relative overflow-hidden ${item.span === 2 ? 'md:col-span-2' : ''} h-64`}
+                                className={`relative overflow-hidden ${item.span === 2 ? 'md:col-span-2' : ''} h-[479px]`}
                                 variants={itemVariants}
                                 whileHover={{ scale: 1.03 }}
                             >

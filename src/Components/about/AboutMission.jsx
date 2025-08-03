@@ -26,6 +26,8 @@ export default function AboutMission() {
                     src={mission}
                     alt="Our mission illustration"
                     className="w-full h-full object-cover"
+                    loading='lazy'
+
                 />
             </div>
 

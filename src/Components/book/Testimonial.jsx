@@ -55,7 +55,7 @@ export default function Testimonial() {
         ),
     }
     return (
-        <section className="py-16 flex flex-col items-center justify-center bg-[#F4E8D3]">
+        <section className="py-16 flex flex-col items-center justify-center bg-[#f8f6f6]">
             {/* override active dot fill */}
             <style>
                 {`
@@ -85,6 +85,7 @@ export default function Testimonial() {
                                 <img
                                     src={testimonial.image}
                                     alt={testimonial.name}
+                                    loading='lazy'
                                     className="w-24 h-24 md:w-40 md:h-40 rounded-full object-cover"
                                 />
                                 <p className="mt-4 text-center text-[#4B4B4B] font-openSans text-base md:text-[24px]">
@@ -93,7 +94,7 @@ export default function Testimonial() {
                                 <h3 className="mt-4 text-[#4B4B4B] font-openSans text-lg md:text-[20px]">
                                     {testimonial.name}
                                 </h3>
-                                <p className="text-gray-500">{testimonial.title}</p>
+                                <p className="text-gray-500 text-[14px]">{testimonial.title}</p>
                             </div>
                         </div>
                     ))}

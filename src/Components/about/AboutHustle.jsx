@@ -87,6 +87,8 @@ const AboutHustle = () => {
                         src={hustle}
                         alt="Portrait of woman in red lace dress"
                         className="w-full h-auto object-cover"
+                        loading='lazy'
+
                     />
                 </div>
             </section>

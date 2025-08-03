@@ -9,6 +9,14 @@ import Footer from './Components/Footer'
 import Contact from './Pages/Contact'
 import Book from './Pages/Book'
 import Gallery from './Pages/Gallery'
+import Events from './Pages/Events'
+import Webinar from './Pages/Webinar'
+import Podcast from './Pages/Podcast'
+import BookLunch from './Components/book/BookLunch'
+import PodcastHeader from './Components/podcast/PodcastHeader'
+import Excerpt from './Components/excerpts/Excerpt'
+import { BlogPage } from './Components/blog/BlogPage'
+import { BlogDetails } from './Components/blog/BlogDetails'
 
 function App() {
 
@@ -22,6 +30,14 @@ function App() {
           <Route path='/contact' element={<Contact />} />
           <Route path='/books' element={<Book />} />
           <Route path='/gallery' element={<Gallery />} />
+          <Route path='/events' element={<Events />} />
+          <Route path='/webinars' element={<Webinar />} />
+          <Route path='/podcast' element={<Podcast />} />
+          <Route path='/launch' element={<BookLunch />} />
+          <Route path='/podcastphotos' element={<PodcastHeader />} />
+          <Route path='/excerpts' element={<Excerpt />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<BlogDetails />} />
         </Routes>
         <Footer />
       </BrowserRouter>

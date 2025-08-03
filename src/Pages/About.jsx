@@ -1,6 +1,6 @@
 /* eslint-disable no-irregular-whitespace */
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useEffect } from 'react'
 import AboutHeader from '../Components/about/AboutHeader';
 import TopSection from '../Components/about/TopSection';
 import AboutSection from '../Components/about/AboutSection';
@@ -14,6 +14,10 @@ import BottomSection from '../Components/herosection/BottomSection';
 
 
 const About = () => {
+    // Scroll to top when component mounts
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }, []);
     return (
         <div>
             <div className="">

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useEffect } from 'react'
 import TopSection from '../Components/book/TopSection'
 import BookSection from '../Components/book/BookSection'
 import PurchaseSection from '../Components/book/PurchaseSection'
@@ -11,6 +11,10 @@ import ImageGrid from '../Components/herosection/ImageGrid'
 import BottomSection from '../Components/herosection/BottomSection'
 
 const Book = () => {
+    // Scroll to top when component mounts
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }, []);
     return (
         <div>
             <TopSection />

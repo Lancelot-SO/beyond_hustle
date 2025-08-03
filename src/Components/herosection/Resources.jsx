@@ -3,6 +3,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import shine from "../../assets/hero/shine.png"
+import resource1 from "../../assets/hero/resource1.png"
+import resource2 from "../../assets/hero/resource2.png"
+import resource3 from "../../assets/hero/resource3.png"
+import { Link } from 'react-router-dom';
+
 
 export default function Resources() {
     const cardVariants = {
@@ -38,6 +43,7 @@ export default function Resources() {
                         initial="hidden"
                         animate="visible"
                         transition={{ duration: 0.6, delay: 0.1 }}
+                        whileHover={{ scale: 1.05 }}
                     >
                         <div className="bg-white p-6 h-[800px] flex flex-col items-center text-center shadow-lg">
                             <div className="pb-4">
@@ -49,7 +55,7 @@ export default function Resources() {
                                     and use her voice to make her mark in the world."
                                 </p>
                                 <img
-                                    src="/images/speaking-overview.png"
+                                    src={resource1}
                                     alt="Professional headshot of a woman smiling"
                                     width={300}
                                     height={300}
@@ -63,9 +69,9 @@ export default function Resources() {
                                     <br />
                                     <span className="text-sm text-[#D95B24]">Author, Big Magic & Eat Pray Love</span>
                                 </p>
-                                <button className="bg-[#D95B24] hover:bg-[#D95B24]/90 text-white px-6 py-3 rounded-md text-base font-medium">
+                                <Link to="/events" className="bg-[#D95B24] hover:bg-[#D95B24]/90 text-white px-6 py-3 rounded-md text-base font-medium">
                                     View More
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </motion.div>
@@ -76,6 +82,8 @@ export default function Resources() {
                         initial="hidden"
                         animate="visible"
                         transition={{ duration: 0.6, delay: 0.3 }}
+                        whileHover={{ scale: 1.05 }}
+
                     >
                         <div className="bg-white p-6 h-[800px] flex flex-col items-center text-center shadow-lg">
                             <div className="pb-4">
@@ -94,11 +102,11 @@ export default function Resources() {
                                     <br />
                                     <span className="text-sm text-[#D95B24]">Author, Big Magic & Eat Pray Love</span>
                                 </p>
-                                <button className="bg-[#D95B24] hover:bg-[#D95B24]/90 text-white px-6 py-3 rounded-md text-base font-medium">
+                                <Link to='/webinars' className="bg-[#D95B24] hover:bg-[#D95B24]/90 text-white px-6 py-3 rounded-md text-base font-medium">
                                     View More
-                                </button>
+                                </Link>
                                 <img
-                                    src="/images/webinar-courses.png"
+                                    src={resource2}
                                     alt="Open book titled Playing Big on a wooden surface"
                                     width={300}
                                     height={200}
@@ -114,6 +122,8 @@ export default function Resources() {
                         initial="hidden"
                         animate="visible"
                         transition={{ duration: 0.6, delay: 0.5 }}
+                        whileHover={{ scale: 1.05 }}
+
                     >
                         <div className="bg-white p-6 h-[800px] flex flex-col items-center text-center shadow-lg">
                             <div className="pb-4">
@@ -125,7 +135,7 @@ export default function Resources() {
                                     the life you want.
                                 </p>
                                 <img
-                                    src="/images/blogs-resources.png"
+                                    src={resource3}
                                     alt="Tablet and notebook on a desk with glasses and a plant"
                                     width={300}
                                     height={200}
@@ -139,9 +149,9 @@ export default function Resources() {
                                     <li>Playing Big Facilitators Training</li>
                                     <li>The Coaching Way</li>
                                 </ul>
-                                <button className="bg-[#D95B24] hover:bg-[#D95B24]/90 text-white px-6 py-3 rounded-md text-base font-medium">
+                                <Link to="/blog" className="bg-[#D95B24] hover:bg-[#D95B24]/90 text-white px-6 py-3 rounded-md text-base font-medium">
                                     View More
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     </motion.div>

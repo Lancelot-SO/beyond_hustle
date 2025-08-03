@@ -22,6 +22,8 @@ const Hero = () => {
                         src={aboutbg}
                         alt="Hero Image"
                         className="w-full h-[300px] lg:h-full object-cover"
+                        loading='lazy'
+
                     />
 
                     {/* headline container */}

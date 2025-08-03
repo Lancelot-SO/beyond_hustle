@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useEffect } from 'react'
 import Hero from '../Components/Hero'
 import MainSection from '../Components/herosection/MainSection'
 import PurpleSection from '../Components/herosection/PurpleSection'
@@ -9,6 +9,10 @@ import ImageGrid from '../Components/herosection/ImageGrid'
 import BottomSection from '../Components/herosection/BottomSection'
 
 const Home = () => {
+    // Scroll to top when component mounts
+    useEffect(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }, []);
     return (
         <div>
             <Hero />
