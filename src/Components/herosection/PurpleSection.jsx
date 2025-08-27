@@ -13,6 +13,7 @@ import spiral from "../../assets/hero/spiral.png"
 import shine from "../../assets/hero/shine.png"
 
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 export default function PurpleSection() {
     const containerVariants = {
@@ -31,12 +32,6 @@ export default function PurpleSection() {
     return (
         <div className="min-h-screen 4xl:h-auto  bg-[#1C2237] relative px-4 md:px-0 overflow-hidden">
             {/* Background pattern */}
-            <div className="absolute top-[1%] left-0 hidden md:block">
-                <img src={curle} alt="Decorative flourish" loading="lazy" className="object-cover" />
-            </div>
-            <div className="absolute top-0 right-0 hidden md:block">
-                <img src={spiral} alt="Decorative flourish" loading="lazy" className="object-cover" />
-            </div>
             <div className="absolute lg:bottom-48 4xl:bottom-[50%] right-44 hidden md:block">
                 <img src={shine} alt="Decorative flourish" loading="lazy" className="object-cover" />
             </div>
@@ -95,12 +90,14 @@ export default function PurpleSection() {
 
                     {/* Call to action buttons */}
                     <motion.div className="flex flex-col sm:flex-row gap-4 justify-center mb-12" variants={itemVariants}>
-                        <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 text-lg font-semibold">
+                        <Link to="https://www.amazon.com/BEYOND-HUSTLE-Mistakes-Business-Start-Up-ebook/dp/B0FN6FV38S/ref=sr_1_1?crid=17O9B5S2EO9H9&dib=eyJ2IjoiMSJ9.bmBUNP_J4QvZ799lAicr2w.G3me5YUZUfk9sZuC2JugnO5D7EQiNZChfUzOb5YMTp8&dib_tag=se&keywords=boahemaa+ntim&qid=1756184338&sprefix=boahemaa+ntim%2Caps%2C302&sr=8-1"
+                            target='_blank' rel='noopener noreferrer'
+                            className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 text-lg font-semibold">
                             Order Your Copy
-                        </button>
-                        <button className="border-2 border-[#F4E8D3] text-white hover:bg-white hover:text-slate-800 px-8 py-3 text-lg font-semibold bg-transparent">
-                            View Other Books
-                        </button>
+                        </Link>
+                        <Link to="/paystack" className="border-2 border-[#F4E8D3] text-white hover:bg-white hover:text-slate-800 px-8 py-3 text-lg font-semibold bg-transparent">
+                            Get Workbook
+                        </Link>
                     </motion.div>
 
                     {/* Publisher logos */}

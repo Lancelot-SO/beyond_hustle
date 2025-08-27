@@ -6,6 +6,7 @@ import Gal3 from "../../assets/hero/gal3.png"
 import Gal4 from "../../assets/hero/gal4.png"
 import Gal5 from "../../assets/hero/gal5.png"
 import Gal6 from "../../assets/hero/gal6.png"
+import { Link } from 'react-router-dom';
 
 
 
@@ -84,7 +85,7 @@ export default function ImageGrid() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 px-4 lg:px-14 mx-auto">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 my-12 px-4 lg:px-14 4xl:px-32 mx-auto">
                     {images.map((image, index) => (
                         <div
                             key={index}
@@ -101,9 +102,9 @@ export default function ImageGrid() {
                     ))}
                 </div>
 
-                <button className="mt-12 px-8 py-3 text-lg bg-[#D95B24] hover:bg-orange-700 text-white shadow-lg">
+                <Link to="/gallery" className="mt-12 px-8 py-3 text-lg bg-[#D95B24] hover:bg-orange-700 text-white shadow-lg">
                     View More
-                </button>
+                </Link>
 
                 {/* Modal Overlay */}
                 {isOpen && (

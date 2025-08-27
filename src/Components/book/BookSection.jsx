@@ -28,9 +28,6 @@ export default function BookSection() {
             <div className="absolute top-[1%] left-0 hidden md:block">
                 <img src={curle} alt="Decorative flourish" loading="lazy" className="object-cover" />
             </div>
-            <div className="absolute top-0 right-0 hidden md:block">
-                <img src={spiral} alt="Decorative flourish" loading="lazy" className="object-cover" />
-            </div>
             <div className="absolute lg:bottom-48 4xl:bottom-[50%] right-44 hidden md:block">
                 <img src={shine} alt="Decorative flourish" loading="lazy" className="object-cover" />
             </div>

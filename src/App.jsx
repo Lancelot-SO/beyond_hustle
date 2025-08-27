@@ -17,6 +17,7 @@ import PodcastHeader from './Components/podcast/PodcastHeader'
 import Excerpt from './Components/excerpts/Excerpt'
 import { BlogPage } from './Components/blog/BlogPage'
 import { BlogDetails } from './Components/blog/BlogDetails'
+import PaystackForm from './Components/PaystackForm'
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
           <Route path='/excerpts' element={<Excerpt />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:id" element={<BlogDetails />} />
+          <Route path="/paystack" element={<PaystackForm />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -15,7 +15,7 @@ export default function PurchaseSection() {
                     <span className="text-[#F3732D]">Purchase</span> Your Copy Here:
                 </h2>
 
-                <div className="bg-[#B0785A] flex flex-wrap justify-around items-center gap-6 py-4 rounded">
+                <div className="bg-[#1C2230] flex flex-wrap justify-around items-center gap-6 py-4 rounded">
                     <Link
                         to="https://amazon.com"
                         target="_blank"

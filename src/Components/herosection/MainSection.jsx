@@ -41,11 +41,6 @@ const MainSection = () => {
             <div className='absolute top-0 md:top-5 right-0  md:block'>
                 <img src={vector} alt='vector' loading='lazy' />
             </div>
-
-            <div className='absolute bottom-16 lg:left-[22.5%] left-1/4 hidden md:block'>
-                <img src={vector2} alt='vector2' loading='lazy' />
-            </div>
-
             <div className='absolute lg:top-[185px] top-[830px] left-0 lg:left-[63.5%] hidden md:block'>
                 <img src={sparkle} alt='sparkle' loading='lazy' />
             </div>

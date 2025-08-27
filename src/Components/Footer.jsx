@@ -2,6 +2,7 @@
 // Footer.jsx
 import React, { useState, useEffect, useRef } from 'react'
 import { Instagram, Twitter, Music, Linkedin, ChevronUp, Star } from 'lucide-react'
+import { FaTiktok } from 'react-icons/fa'
 
 export default function Footer() {
     const [showScrollToTop, setShowScrollToTop] = useState(false)
@@ -37,7 +38,7 @@ export default function Footer() {
                     {/* Right section: Social Icons */}
                     <div className="flex gap-8 mt-2 md:mt-0 justify-center md:justify-end">
                         <a
-                            href="#"
+                            href="https://www.instagram.com/bthustlegh"
                             target="_blank"
                             rel="noopener noreferrer"
                             ref={instagramRef}
@@ -46,7 +47,7 @@ export default function Footer() {
                             <Instagram className="h-6 w-6 hover:text-vibrant-orange transition-colors hover:text-[#D95B24]" />
                         </a>
                         <a
-                            href="#"
+                            href="https://x.com/bthustlegh"
                             target="_blank"
                             rel="noopener noreferrer"
                             ref={twitterRef}
@@ -55,16 +56,16 @@ export default function Footer() {
                             <Twitter className="h-6 w-6 hover:text-vibrant-orange transition-colors hover:text-[#D95B24]" />
                         </a>
                         <a
-                            href="#"
+                            href="https://www.tiktok.com/@bthustlegh"
                             target="_blank"
                             rel="noopener noreferrer"
                             ref={tiktokRef}
                             aria-label="TikTok"
                         >
-                            <Music className="h-6 w-6 hover:text-vibrant-orange transition-colors hover:text-[#D95B24]" />
+                            <FaTiktok className="h-6 w-6 hover:text-vibrant-orange transition-colors hover:text-[#D95B24]" />
                         </a>
                         <a
-                            href="#"
+                            href="https://www.linkedin.com/company/beyond-the-hustle-gh/"
                             target="_blank"
                             rel="noopener noreferrer"
                             ref={linkedinRef}

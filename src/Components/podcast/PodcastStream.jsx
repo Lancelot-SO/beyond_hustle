@@ -5,10 +5,10 @@ import streambg from "../../assets/podcast/streambg.png"
 import stream1 from "../../assets/podcast/stream1.png"
 import stream2 from "../../assets/podcast/stream2.png"
 import stream3 from "../../assets/podcast/stream3.png"
-import stream4 from "../../assets/podcast/stream4.png"
 import lines from "../../assets/book/lines2.png"
 
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom'
 
 
 const container = {
@@ -54,36 +54,40 @@ const PodcastStream = () => {
 
                     </div>
 
-                    <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
-                        <motion.img
-                            src={stream1}
-                            alt="Featured in logos"
-                            loading="lazy"
-                            className="object-cover hover:opacity-100 transition-opacity duration-300"
-                            variants={itemVariants}
-                        />
-                        <motion.img
-                            src={stream2}
-                            alt="Featured in logos"
-                            loading="lazy"
-                            className="object-cover hover:opacity-100 transition-opacity duration-300"
-                            variants={itemVariants}
-                        />
-                        <motion.img
-                            src={stream3}
-                            alt="Featured in logos"
-                            loading="lazy"
-                            className="object-cover hover:opacity-100 transition-opacity duration-300"
-                            variants={itemVariants}
-                        />
-                        <motion.img
-                            src={stream4}
-                            alt="Featured in logos"
-                            loading="lazy"
-                            className="object-cover hover:opacity-100 transition-opacity duration-300"
-                            variants={itemVariants}
-                        />
+                    <div className="flex items-center justify-center">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 place-items-center">
+                            <Link
+                                to="https://open.spotify.com/show/2cpDkr2fWys1kTJtjhCLst?si=nof6mz0lS1-3nLgimdNmWA"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <motion.img
+                                    src={stream1}
+                                    alt="Spotify"
+                                    loading="lazy"
+                                    className="object-cover hover:opacity-100 transition-opacity duration-300 w-28 md:w-32"
+                                    variants={itemVariants}
+                                />
+                            </Link>
+
+                            <motion.img
+                                src={stream2}
+                                alt="Apple Podcasts"
+                                loading="lazy"
+                                className="object-cover hover:opacity-100 transition-opacity duration-300 w-28 md:w-32"
+                                variants={itemVariants}
+                            />
+
+                            <motion.img
+                                src={stream3}
+                                alt="Google Podcasts"
+                                loading="lazy"
+                                className="object-cover hover:opacity-100 transition-opacity duration-300 w-28 md:w-32"
+                                variants={itemVariants}
+                            />
+                        </div>
                     </div>
+
 
                 </motion.div>
             </section>

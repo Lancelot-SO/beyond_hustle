@@ -1,22 +1,49 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useRef } from 'react'
+import emailjs from '@emailjs/browser';
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import mailbg from "../assets/contact/mailbg.png"
 
 export default function MailContact() {
+    const form = useRef()
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        // Populate the hidden field based on the checkbox
+        const newsletterChecked = form.current.newsletter.checked
+        form.current.newsletterAgreement.value = newsletterChecked
+            ? "I agree to weekly newsletter"
+            : ""
+
+        emailjs
+            .sendForm(
+                'service_50j5zce',
+                'template_us60peo',
+                form.current,
+                'od2vIhbdFel9_otjO'
+            )
+            .then(
+                (result) => {
+                    toast.success('Thanks! Your message has been sent.')
+                    form.current.reset()
+                },
+                (error) => {
+                    toast.error('Oops — something went wrong. Please try again.')
+                }
+            )
+    }
+
     return (
         <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-            {/* Background image */}
             <img
                 src={mailbg}
                 alt="Conference background"
                 className="absolute inset-0 w-full h-full object-cover"
-                loading='lazy'
-
+                loading="lazy"
             />
 
-
-
-            {/* Form container */}
             <div className="relative z-10 w-full max-w-3xl p-6 md:p-8 lg:p-10 text-center">
                 <h1 className="text-4xl md:text-5xl font-bold font-playfair text-[#F4E8D3] mb-4">
                     Book A Session With Us
@@ -33,32 +60,39 @@ export default function MailContact() {
                     , or use the contact form below.
                 </p>
 
-                <form className="bg-transparent p-6 md:p-8 space-y-6">
+                <form
+                    ref={form}
+                    onSubmit={handleSubmit}
+                    className="bg-transparent p-6 md:p-8 space-y-6"
+                >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <input
                             type="text"
                             name="firstName"
                             placeholder="First Name"
                             className="h-12 text-base w-full px-4 border"
+                            required
                         />
                         <input
                             type="text"
                             name="lastName"
                             placeholder="Last Name"
                             className="h-12 text-base w-full px-4 border"
+                            required
                         />
                         <input
                             type="email"
                             name="email"
                             placeholder="Email"
                             className="h-12 text-base w-full px-4 border"
+                            required
                         />
                         <input
                             type="tel"
-                            name="phone"
+                            name="telephone"
                             placeholder="Phone Number"
-                            required
                             className="h-12 text-base w-full px-4 border"
+                            required
                         />
                     </div>
 
@@ -78,19 +112,25 @@ export default function MailContact() {
                         />
                         <label
                             htmlFor="newsletter"
-                            className="text-sm font-medium text-gray-700 cursor-pointer"
+                            className="text-sm font-medium text-white cursor-pointer"
                         >
-                            Agree To Receive Our <span className="text-[#D95B24]">Weekly Newsletters</span> From Us
+                            Agree To Receive Our{' '}
+                            <span className="text-[#D95B24]">Weekly Newsletters</span> From Us
                         </label>
                     </div>
+
+                    {/* hidden field for the agreement message */}
+                    <input type="hidden" name="newsletterAgreement" />
 
                     <button
                         type="submit"
                         className="w-full py-3 text-lg font-semibold bg-[#D95B24] text-white rounded hover:bg-[#D95B24]/90"
                     >
-                        Lets Connect
+                        Let’s Connect
                     </button>
                 </form>
+
+                <ToastContainer position="bottom-right" />
             </div>
         </div>
     )

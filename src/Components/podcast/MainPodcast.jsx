@@ -18,9 +18,9 @@ const episodes = [
         id: 1,
         imageSrc: pod1,
         alt: '52 Real Life Lessons book',
-        title: 'Ep. 12 — “Designing For Impact In West Africa” Feat. Kwame Opoku',
+        title: 'Masterclass 1 — “Start with the problem, not the product|Beyond The Hustle GH Ep5',
         spotifyEmbedUrl:
-            'https://open.spotify.com/embed/track/2LP8KwtvzUx1onvXKQCoKR?utm_source=generator',
+            'https://open.spotify.com/embed/track/episode/2IBLQhFBpeSZ6Z8i94MB7A?utm_source=generator',
     },
     {
         id: 2,
