@@ -32,7 +32,7 @@ const Hero = () => {
               absolute
               top-12 md:top-16 lg:top-24
               left-4 lg:left-14 4xl:left-32
-              w-[340px] md:w-[500px] lg:w-[615px]
+              w-[340px] md:w-[500px] lg:w-[775px]
               h-auto md:h-auto lg:h-[216px]
             "
                     >
@@ -46,9 +46,8 @@ const Hero = () => {
                 font-normal tracking-[-5%]
               "
                         >
-                            Go <span className="text-[#F4E8D3]">Beyond</span> the Hustle.<br />
-                            <span className="text-[#F4E8D3]">Build Boldly.</span> Lead<br />
-                            Intentionally.
+                            Let’s create a more sane and compassionate world throughwomen’s leadership.
+
                         </h1>
                     </div>
 

@@ -6,7 +6,7 @@ import TopSection from '../Components/about/TopSection';
 import AboutSection from '../Components/about/AboutSection';
 import NextSection from '../Components/about/NextSection';
 import AboutHustle from '../Components/about/AboutHustle';
-import AboutMission from '../Components/about/AboutMission';
+// import AboutMission from '../Components/about/AboutMission';
 import AboutBio from '../Components/about/AboutBio';
 import ImageGrid from '../Components/herosection/ImageGrid';
 import BottomSection from '../Components/herosection/BottomSection';
@@ -28,7 +28,7 @@ const About = () => {
                 {/* will create a new component for this section if changed*/}
                 <AboutSection />
                 <AboutHustle />
-                <AboutMission />
+                {/* <AboutMission /> */}
                 <AboutBio />
                 <ImageGrid />
                 <BottomSection />

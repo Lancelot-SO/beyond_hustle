@@ -16,7 +16,7 @@ const PaystackForm = () => {
     const [email, setEmail] = useState("");
     const [mobile, setMobile] = useState("");
     const [address, setAddress] = useState("");
-    const [amount] = useState("0.50"); // display value
+    const [amount] = useState("85"); // display value
     const [loading, setLoading] = useState(false);
 
     // --- Helpers: Extract File ID and Token ---
@@ -115,7 +115,7 @@ const PaystackForm = () => {
         const paystack = new PaystackPop();
         paystack.newTransaction({
             key: "pk_live_aad13529938aed530bd3b49a813cd2b16a4b9cc7",
-            amount: 50, // pesewas (0.50 GHS)
+            amount: parseInt(amount) * 100,
             email,
             phone: mobile,
             firstName: first_name,

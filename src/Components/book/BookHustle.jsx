@@ -58,10 +58,11 @@ const BookHustle = () => {
                         className="mt-8 flex flex-wrap gap-6"
                         variants={containerVariants}
                     >
-                        {['Barnes & Noble', 'Barnes & Noble', 'Barnes & Noble', 'Barnes & Noble'].map((retailer, i) => (
+                        {['Click to purchase'].map((retailer, i) => (
                             <motion.a
                                 key={i}
-                                href="#"
+                                href="https://www.amazon.com/BEYOND-HUSTLE-Mistakes-Business-Start-Up-ebook/dp/B0FN6FV38S/ref=sr_1_1?crid=17O9B5S2EO9H9&dib=eyJ2IjoiMSJ9.bmBUNP_J4QvZ799lAicr2w.G3me5YUZUfk9sZuC2JugnO5D7EQiNZChfUzOb5YMTp8&dib_tag=se&keywords=boahemaa+ntim&qid=1756184338&sprefix=boahemaa+ntim%2Caps%2C302&sr=8-1"
+                                target='_blank' rel='noopener noreferrer'
                                 className="text-[#D95B24] underline font-semibold"
                                 variants={itemVariants}
                             >

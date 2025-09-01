@@ -26,7 +26,7 @@ const AboutHustle = () => {
         <div>
             <section className="flex flex-col md:flex-row">
                 <motion.div
-                    className="flex-1 px-6 lg:px-14 py-12 lg:w-[676px]"
+                    className="flex-1 flex flex-col items-start justify-center px-6 lg:px-14 py-12 lg:w-[676px]"
                     variants={containerVariants}
                     initial="hidden"
                     animate="show"
@@ -44,33 +44,22 @@ const AboutHustle = () => {
                         className="mt-6 text-base leading-[34px] text-[#4B4B4B] tracking-[-5%]"
                         variants={itemVariants}
                     >
-                        I had an unusual childhood. I was seven years old before I learned that not all
-                        children analyzed their dreams each morning at the breakfast table with mom and
-                        dad, diagramming the archetypes on a yellow pad, next to the bowl of oatmeal.
-                        When I came home with a typical childhood complaint like “Johnny teased me at
-                        recess,” I was usually met with, “What do you think is going on at home for Johnny
-                        that would cause him to tease other kids?”
+                        Discover the book that’s helping African entrepreneurs cut the noise, gain clarity and build businesses that actually work.
                     </motion.p>
 
                     <motion.p
                         className="mt-4 text-base leading-[34px] text-[#4B4B4B] tracking-[-5%]"
                         variants={itemVariants}
                     >
-                        My parents weren’t psychotherapists, religious fanatics, or even hippies. They
-                        were regular people who believed that understanding oneself and others was an
-                        essential part of living a happy life. From an early age, I was encouraged to
-                        learn about psychology and spirituality and apply tools from both arenas to my
-                        daily life. Our house was full of books on those subjects and I grew up reading
-                        them.
+                        Synopsis, cover, sample pages (downloadable PDF) and selected reader testimonials.
+                        “Workbook” Section:
                     </motion.p>
 
                     <motion.p
                         className="mt-4 text-base leading-[34px] text-[#4B4B4B] tracking-[-5%]"
                         variants={itemVariants}
                     >
-                        I have never tired of asking the question: how can our inner lives shift our
-                        outer lives? Emotional awareness, creativity, spiritual practice: these are the
-                        enduring center of my daily life.
+                        Get a taste of the guided exercises with sample workbook pages — designed to help you apply the lessons to your own journey.
                     </motion.p>
 
                     <motion.button

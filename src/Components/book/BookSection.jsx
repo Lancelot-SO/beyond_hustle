@@ -81,15 +81,7 @@ export default function BookSection() {
                             />
                         </motion.div>
 
-                        <motion.p
-                            className="text-white text-base lg:text-[16px] font-openSans font-semibold leading-relaxed lg:leading-[32px]"
-                            variants={itemVariants}
-                        >
-                            In Beyond the Hustle, Dr. Boahenaa Ntim challenges the glorified culture of constant grind and burnout, offering
-                            a refreshing blueprint for leading with clarity, purpose, and impact. Packed with real-world insights and practical
-                            tools, this book empowers young African entrepreneurs, students, and professionals to embrace leadership that is both
-                            intentional and sustainable.
-                        </motion.p>
+
                     </div>
                 </motion.div>
             </div>

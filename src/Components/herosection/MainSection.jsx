@@ -63,11 +63,7 @@ const MainSection = () => {
                         className="w-full lg:w-[840px] h-auto lg:h-[170px] text-[#4B4B4B] text-[14px] md:text-[15px] leading-[22px] md:leading-[34px] tracking-[-5%] font-openSans font-normal"
                         variants={itemVariants}
                     >
-                        Dr. Boahemaa Ntim is an author, speaker, and purpose-driven entrepreneur committed to empowering Africa's next
-                        generation of leaders. With a bold vision rooted in clarity, integrity, and intentional growth, she helps
-                        individuals and institutions break free from burnout culture and embrace leadership that is meaningful,
-                        impactful, and sustainable. Whether through her bestselling book, powerful keynote talks, or transformative
-                        coaching programs, Dr. Boahemaa brings insight, inspiration, and strategy to every space she enters.
+                        Dr. Boahemaa Ntim is an author, speaker, and purpose-driven entrepreneur committed to empowering Africa’s next generation of leaders. With a bold vision rooted in clarity, integrity, and intentional growth, she helps individuals and institutions break free from burnout culture and embrace leadership that is meaningful, impactful, and sustainable. Whether through her bestselling book, powerful keynote talks, or transformative coaching programs, Dr. Boahemaa brings insight, inspiration, and strategy to every space she enters.
                     </motion.p>
 
                     {/* Read More Button */}

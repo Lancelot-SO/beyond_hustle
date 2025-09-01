@@ -39,35 +39,14 @@ const AboutSection = () => {
                         className="font-playfair text-[32px] md:text-[48px] leading-[24px] md:leading-[58px] tracking-[-5%] font-bold text-[#F4E8D3]"
                         variants={item}
                     >
-                        Dreams <span className="text-[#F5EAD7] font-playfair">&</span> Oatmeal
+                        Mission  <span className="text-[#F5EAD7] font-playfair">Statement</span>
                     </motion.h2>
 
                     <motion.p
                         className="mt-2 md:mt-8 text-[16px] font-openSans leading-[34px] tracking-[-5%] text-[#EDEDED]"
                         variants={item}
                     >
-                        I had an unusual childhood. I was seven years old before I learned that not all children analyzed their dreams each
-                        morning at the breakfast table with mom and dad, diagramming the archetypes on a yellow pad, next to the bowl of
-                        oatmeal. When I came home with a typical childhood complaint like “Johnny teased me at recess,” I was usually met
-                        with, “What do you think is going on at home for Johnny that would cause him to tease other kids?”
-                    </motion.p>
-
-                    <motion.p
-                        className="mt-2 md:mt-6 text-[16px] font-openSans leading-[34px] tracking-[-5%] text-[#EDEDED]"
-                        variants={item}
-                    >
-                        My parents weren’t psychotherapists, religious fanatics, or even hippies. They were regular people who believed that
-                        understanding oneself and others was an essential part of living a happy life. From an early age, I was encouraged to
-                        learn about psychology and spirituality and apply tools from both arenas to my daily life. Our house was full of
-                        books on those subjects and I grew up reading them.
-                    </motion.p>
-
-                    <motion.p
-                        className="mt-2 md:mt-6 text-[16px] font-openSans leading-[34px] tracking-[-5%] text-[#EDEDED]"
-                        variants={item}
-                    >
-                        I have never tired of asking the question: how can our inner lives shift our outer lives? Emotional awareness,
-                        creativity, spiritual practice: these are the enduring center of my daily life.
+                        To equip African founders with the knowledge, mindset and tools to build businesses that last.
                     </motion.p>
                 </motion.div>
             </section>

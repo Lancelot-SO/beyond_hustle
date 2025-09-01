@@ -78,10 +78,10 @@ const Contact = () => {
                         <div className="w-24 h-1 bg-[#D95B24] mx-auto" />
                     </div>
                     <p className="text-muted-foreground text-[14px] md:text-[16px] font-openSans">
-                        Or email us at{' '}
-                        <a href="mailto:Dr.boahemaa&team@gmail.com" className="text-[#D95B24] italic hover:underline">
-                            Dr.boahemaa&team@gmail.com
-                        </a>
+                        General inquiries, media requests or partnership opportunities: <br />You can reach out to our team via email at{' '}
+                        <a href="Boahemaadankyi@yahoo.com" className="text-[#D95B24] italic hover:underline">
+                            Boahemaadankyi@yahoo.com
+                        </a> or use the contact form below.{' '}
                     </p>
 
                     <form ref={form} onSubmit={handleSubmit} className="mt-8 space-y-6 px-2">

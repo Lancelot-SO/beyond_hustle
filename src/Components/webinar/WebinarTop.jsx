@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import main from "../../assets/about/main.png"
@@ -26,21 +27,21 @@ const itemVariants = {
 };
 
 
-const topics = [
-    "Designing for Impact: UX in Emerging Markets",
-    "Product Thinking for Startups",
-    "The Role of Design in Digital Innovation",
-    "Bridging Product and Business Strategy",
-    "Women in Tech & Leadership",
-    "Tailored for individuals and professionals",
-]
+// const topics = [
+//     "Designing for Impact: UX in Emerging Markets",
+//     "Product Thinking for Startups",
+//     "The Role of Design in Digital Innovation",
+//     "Bridging Product and Business Strategy",
+//     "Women in Tech & Leadership",
+//     "Tailored for individuals and professionals",
+// ]
 
 const WebinarTop = () => {
     return (
         <div>
             <section className="flex flex-col md:flex-row">
                 <motion.div
-                    className="flex-1 px-4 lg:px-14 py-12 lg:w-[676px]"
+                    className="flex-1 flex flex-col items-start justify-center px-4 lg:px-14 py-12 lg:w-[676px]"
                     variants={containerVariants}
                     initial="hidden"
                     animate="show"
@@ -57,28 +58,14 @@ const WebinarTop = () => {
                         variants={containerVariants}
                     >
                         <motion.p variants={itemVariants}>
-                            I had an unusual childhood. I was seven years old before I learned that not all
-                            children analyzed their dreams each morning at the breakfast table with mom and
-                            dad, diagramming the archetypes on a yellow pad, next to the bowl of oatmeal.
-                            When I came home with a typical childhood complaint like “Johnny teased me at
-                            recess,” I was usually met with, “What do you think is going on at home for Johnny
-                            that would cause him to tease other kids?”
+                            Expand your knowledge and stay ahead with our carefully curated webinars and courses. Whether you're looking to deepen your financial understanding, sharpen your professional skills, or explore new opportunities, our programs are designed to empower you with practical insights, expert guidance, and real-world applications.
                         </motion.p>
 
                         <motion.p variants={itemVariants} className="mt-4">
-                            My parents weren’t psychotherapists, religious fanatics, or even hippies. They
-                            were regular people who believed that understanding oneself and others was an
-                            essential part of living a happy life. From an early age, I was encouraged to
-                            learn about psychology and spirituality and apply tools from both arenas to my
-                            daily life. Our house was full of books on those subjects and I grew up reading
-                            them.
+                            Each session is led by experienced professionals and tailored to meet the needs of individuals at every stage of their learning journey. From foundational topics to advanced strategies, we provide the tools and support you need to thrive. Join a vibrant community of learners and take the next step toward lasting growth, confidence, and financial stability.
                         </motion.p>
 
-                        <motion.p variants={itemVariants} className="mt-4">
-                            I have never tired of asking the question: how can our inner lives shift our
-                            outer lives? Emotional awareness, creativity, spiritual practice: these are the
-                            enduring center of my daily life.
-                        </motion.p>
+
                     </motion.div>
                 </motion.div>
 
@@ -98,7 +85,7 @@ const WebinarTop = () => {
             </section>
 
 
-            <section className="py-12 md:py-20 relative">
+            {/* <section className="py-12 md:py-20 relative">
                 <div className="container mx-auto px-4">
                     <h2 className="text-center text-3xl md:text-4xl font-bold mb-12">
                         <span className="text-[#1C2237]">Why </span>{" "}
@@ -125,7 +112,7 @@ const WebinarTop = () => {
                     className="absolute bottom-0 right-0 w-[356px] h-[334px] object-cover"
                     loading='lazy'
                 />
-            </section>
+            </section> */}
 
 
 

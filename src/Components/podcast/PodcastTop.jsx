@@ -49,12 +49,13 @@ const PodcastTop = () => {
                         className="mt-6 text-base leading-[34px] text-[#4B4B4B] tracking-[-5%]"
                         variants={itemVariants}
                     >
-                        I had an unusual childhood. I was seven years old before I learned that not all
-                        children analyzed their dreams each morning at the breakfast table with mom and
-                        dad, diagramming the archetypes on a yellow pad, next to the bowl of oatmeal.
-                        When I came home with a typical childhood complaint like “Johnny teased me at
-                        recess,” I was usually met with, “What do you think is going on at home for Johnny
-                        that would cause him to tease other kids?”
+                        Real founders. Real failures. Real fuel for your journey.
+                    </motion.p>
+                    <motion.p
+                        className="mt-1 text-base leading-[34px] text-[#4B4B4B] tracking-[-5%]"
+                        variants={itemVariants}
+                    >
+                        Every episode features unfiltered conversations on the realities of building in Africa — and the mindset required to stay in the game.
                     </motion.p>
 
                 </motion.div>

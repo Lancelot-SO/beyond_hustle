@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import { motion } from 'framer-motion';
@@ -45,9 +46,7 @@ const WebinarDown = () => {
                     >
 
                         <motion.p variants={itemVariants} className="mt-4">
-                            I have never tired of asking the question: how can our inner lives shift our
-                            outer lives? Emotional awareness, creativity, spiritual practice: these are the
-                            enduring center of my daily life.
+                            Choosing the right course or webinar can be overwhelming — but you don’t have to figure it out alone. Whether you're new to financial learning or looking to deepen your expertise, our team is here to help you find the program that best aligns with your goals and interests. Feel free to reach out for personalized guidance or more information.
                         </motion.p>
 
                         <Link to="#" className='w-[154px] h-[48px] flex items-center justify-center text-white bg-[#D95B24] hover:bg-[#d3693f] shadow-lg mt-2'>Read More</Link>

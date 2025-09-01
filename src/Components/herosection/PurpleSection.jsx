@@ -4,9 +4,9 @@ import React from 'react';
 import lines from "../../assets/hero/lines.png"
 import gatsby from "../../assets/hero/gatsby.png"
 import spon1 from "../../assets/hero/spon1.png"
-import spon2 from "../../assets/hero/spon2.png"
-import spon3 from "../../assets/hero/spon3.png"
-import spon4 from "../../assets/hero/spon4.png"
+// import spon2 from "../../assets/hero/spon2.png"
+// import spon3 from "../../assets/hero/spon3.png"
+// import spon4 from "../../assets/hero/spon4.png"
 
 import curle from "../../assets/hero/curle.png"
 import spiral from "../../assets/hero/spiral.png"
@@ -62,10 +62,8 @@ export default function PurpleSection() {
                     {/* Description */}
                     <motion.div className="text-center px-0 md:px-4 lg:px-0 mb-12 w-full lg:w-[904px] mx-auto h-auto" variants={itemVariants}>
                         <p className="text-white text-base lg:text-[16px] font-openSans font-semibold leading-relaxed lg:leading-[32px]">
-                            In Beyond the Hustle, Dr. Boahenaa Ntim challenges the glorified culture of constant grind and burnout,
-                            offering a refreshing blueprint for leading with clarity, purpose, and impact. Packed with real-world
-                            insights and practical tools, this book empowers young African entrepreneurs, students, and professionals
-                            to embrace leadership that is both intentional and sustainable.
+                            In Beyond the Hustle, Dr. Boahemaa Ntim challenges the glorified culture of constant grind and burnout, offering a refreshing blueprint for leading with clarity, purpose, and impact. Packed with real-world insights and practical tools, this book empowers young African entrepreneurs, students, and professionals to embrace leadership that is both intentional and sustainable.Inspiring keynotes and tailored masterclasses for
+                            institutions and corporate teams.
                         </p>
                     </motion.div>
 
@@ -102,10 +100,15 @@ export default function PurpleSection() {
 
                     {/* Publisher logos */}
                     <motion.div className="flex justify-center items-center gap-8 mb-8 flex-wrap overflow-hidden" variants={itemVariants}>
-                        <img src={spon1} alt="Amazon" className="object-cover filter brightness-0 invert transition-transform duration-500 ease-in-out hover:scale-105" loading="lazy" />
-                        <img src={spon2} alt="BAM!" className="object-cover filter brightness-0 invert transition-transform duration-500 ease-in-out hover:scale-105" loading="lazy" />
+                        <Link to="https://www.amazon.com/BEYOND-HUSTLE-Mistakes-Business-Start-Up-ebook/dp/B0FN6FV38S/ref=sr_1_1?crid=17O9B5S2EO9H9&dib=eyJ2IjoiMSJ9.bmBUNP_J4QvZ799lAicr2w.G3me5YUZUfk9sZuC2JugnO5D7EQiNZChfUzOb5YMTp8&dib_tag=se&keywords=boahemaa+ntim&qid=1756184338&sprefix=boahemaa+ntim%2Caps%2C302&sr=8-1"
+                            target='_blank' rel='noopener noreferrer'
+                        >
+                            <img src={spon1} alt="Amazon" className="object-cover filter brightness-0 invert transition-transform duration-500 ease-in-out hover:scale-105" loading="lazy" />
+
+                        </Link>
+                        {/* <img src={spon2} alt="BAM!" className="object-cover filter brightness-0 invert transition-transform duration-500 ease-in-out hover:scale-105" loading="lazy" />
                         <img src={spon3} alt="Barnes & Noble" className="object-cover filter brightness-0 invert transition-transform duration-500 ease-in-out hover:scale-105" loading="lazy" />
-                        <img src={spon4} alt="IndieBound" className="object-cover filter brightness-0 invert transition-transform duration-500 ease-in-out hover:scale-105" loading="lazy" />
+                        <img src={spon4} alt="IndieBound" className="object-cover filter brightness-0 invert transition-transform duration-500 ease-in-out hover:scale-105" loading="lazy" /> */}
                     </motion.div>
                 </motion.div>
             </div>

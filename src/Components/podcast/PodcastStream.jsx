@@ -70,21 +70,33 @@ const PodcastStream = () => {
                                 />
                             </Link>
 
-                            <motion.img
-                                src={stream2}
-                                alt="Apple Podcasts"
-                                loading="lazy"
-                                className="object-cover hover:opacity-100 transition-opacity duration-300 w-28 md:w-32"
-                                variants={itemVariants}
-                            />
+                            <Link to="https://bthustlegh.substack.com/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <motion.img
+                                    src={stream2}
+                                    alt="Apple Podcasts"
+                                    loading="lazy"
+                                    className="object-cover hover:opacity-100 transition-opacity duration-300 w-28 md:w-32"
+                                    variants={itemVariants}
+                                />
+                            </Link>
 
-                            <motion.img
-                                src={stream3}
-                                alt="Google Podcasts"
-                                loading="lazy"
-                                className="object-cover hover:opacity-100 transition-opacity duration-300 w-28 md:w-32"
-                                variants={itemVariants}
-                            />
+
+                            <Link
+                                to="https://www.youtube.com/@bthustlegh"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <motion.img
+                                    src={stream3}
+                                    alt="Google Podcasts"
+                                    loading="lazy"
+                                    className="object-cover hover:opacity-100 transition-opacity duration-300 w-28 md:w-32"
+                                    variants={itemVariants}
+                                />
+                            </Link>
                         </div>
                     </div>
 

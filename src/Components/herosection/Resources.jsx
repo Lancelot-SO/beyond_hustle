@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
@@ -45,14 +46,13 @@ export default function Resources() {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         whileHover={{ scale: 1.05 }}
                     >
-                        <div className="bg-white p-6 h-[800px] flex flex-col items-center text-center shadow-lg">
+                        <div className="bg-white p-6 h-[700px] flex flex-col items-center text-center shadow-lg">
                             <div className="pb-4">
-                                <h3 className="text-[#D95B24] text-[32px] font-playfair font-medium tracking-[-2%]">Speaking Overview</h3>
+                                <h3 className="text-[#D95B24] text-[32px] font-playfair font-medium tracking-[-2%]">Speaking & Coaching</h3>
                             </div>
                             <div className="flex flex-col items-center space-y-6 flex-grow">
                                 <p className="text-[#4B4B4B] text-left text-base leading-relaxed">
-                                    The catalyst for transformation that Forbes calls "A must read for any woman who wants to find
-                                    and use her voice to make her mark in the world."
+                                    Inspiring keynotes and tailored masterclasses for institutions and corporate teams.
                                 </p>
                                 <img
                                     src={resource1}
@@ -62,7 +62,7 @@ export default function Resources() {
                                     className="rounded-lg object-cover w-full max-w-[300px] h-auto"
                                 />
                                 <p className="text-[#4B4B4B] text-left text-base italic leading-relaxed">
-                                    "At last. At last this very important book has been written, encouraging women to take up all the
+                                    "At last this very important book has been written, encouraging women to take up all the
                                     creative space they deserve in the world."
                                     <br />
                                     <span className="font-semibold">- Elizabeth Gilbert</span>
@@ -85,17 +85,16 @@ export default function Resources() {
                         whileHover={{ scale: 1.05 }}
 
                     >
-                        <div className="bg-white p-6 h-[800px] flex flex-col items-center text-center shadow-lg">
+                        <div className="bg-white p-6 h-[700px] flex flex-col items-center text-center shadow-lg">
                             <div className="pb-4">
-                                <h3 className="text-[#D95B24] text-[32px] font-playfair font-medium tracking-[-2%]">Webinar & Courses</h3>
+                                <h3 className="text-[#D95B24] text-[32px] font-playfair font-medium tracking-[-2%]">Ideas Bootcamps</h3>
                             </div>
                             <div className="flex flex-col items-center space-y-6 flex-grow">
                                 <p className="text-[#4B4B4B] text-left text-base leading-relaxed">
-                                    Explore the readings that get to the heart of what it means to play big, do work that you love, and
-                                    listen to your Inner Mentor. What Big Idea will you explore first?
+                                    A stimulating environment to generate business ideas, finetune ideas and seek support to scale a start-up
                                 </p>
                                 <p className="text-[#4B4B4B] text-left text-base italic leading-relaxed">
-                                    "At last. At last this very important book has been written, encouraging women to take up all the
+                                    "At last this very important book has been written, encouraging women to take up all the
                                     creative space they deserve in the world."
                                     <br />
                                     <span className="font-semibold">- Elizabeth Gilbert</span>
@@ -125,14 +124,13 @@ export default function Resources() {
                         whileHover={{ scale: 1.05 }}
 
                     >
-                        <div className="bg-white p-6 h-[800px] flex flex-col items-center text-center shadow-lg">
+                        <div className="bg-white p-6 h-[700px] flex flex-col items-center text-center shadow-lg">
                             <div className="pb-4">
-                                <h3 className="text-[#D95B24] text-[32px] font-playfair font-medium tracking-[-2%]">Blogs & Resources</h3>
+                                <h3 className="text-[#D95B24] text-[32px] font-playfair font-medium tracking-[-2%]">The Hustle fund</h3>
                             </div>
                             <div className="flex flex-col items-center space-y-6 flex-grow">
                                 <p className="text-[#4B4B4B] text-left text-base leading-relaxed">
-                                    Join Tara and a community of passionate women to understand how to play big each day and start leading
-                                    the life you want.
+                                    An angel investment fund to provide seed capital for young entrepreneurs to develop their business prototypes and prepare their businesses for investment
                                 </p>
                                 <img
                                     src={resource3}
