@@ -36,7 +36,7 @@ const Webinar = () => {
                         className="
                                   absolute
                                   top-[50%] md:top-16 lg:top-48
-                                  left-4 lg:left-14 4xl:left-32
+                                  left-4 lg:left-14 4xl:left-32 tablet:top-20
                                   w-[340px] md:w-[500px] lg:w-[615px]
                                   h-auto md:h-auto lg:h-[216px]
                                 "
@@ -47,7 +47,7 @@ const Webinar = () => {
                             className="
                                     font-playfair text-white
                                     text-[32px] md:text-[48px] lg:text-[64px]
-                                    leading-[24px] md:leading-[36px] lg:leading-[72px]
+                                    leading-[28px] md:leading-[36px] lg:leading-[72px]
                                     font-normal tracking-[-5%]
                                   "
                         >

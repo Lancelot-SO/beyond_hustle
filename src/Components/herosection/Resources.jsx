@@ -46,7 +46,7 @@ export default function Resources() {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         whileHover={{ scale: 1.05 }}
                     >
-                        <div className="bg-white p-6 h-[700px] flex flex-col items-center text-center shadow-lg">
+                        <div className="bg-white p-6 h-[700px] tablet:h-[780px] flex flex-col items-center text-center shadow-lg">
                             <div className="pb-4">
                                 <h3 className="text-[#D95B24] text-[32px] font-playfair font-medium tracking-[-2%]">Speaking & Coaching</h3>
                             </div>
@@ -85,7 +85,7 @@ export default function Resources() {
                         whileHover={{ scale: 1.05 }}
 
                     >
-                        <div className="bg-white p-6 h-[700px] flex flex-col items-center text-center shadow-lg">
+                        <div className="bg-white p-6 h-[700px] tablet:h-[780px] flex flex-col items-center text-center shadow-lg">
                             <div className="pb-4">
                                 <h3 className="text-[#D95B24] text-[32px] font-playfair font-medium tracking-[-2%]">Ideas Bootcamps</h3>
                             </div>
@@ -124,7 +124,7 @@ export default function Resources() {
                         whileHover={{ scale: 1.05 }}
 
                     >
-                        <div className="bg-white p-6 h-[700px] flex flex-col items-center text-center shadow-lg">
+                        <div className="bg-white p-6 md:h-[700px] h-[720px] tablet:h-[780px] flex flex-col items-center text-center shadow-lg">
                             <div className="pb-4">
                                 <h3 className="text-[#D95B24] text-[32px] font-playfair font-medium tracking-[-2%]">The Hustle fund</h3>
                             </div>

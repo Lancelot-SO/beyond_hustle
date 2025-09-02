@@ -84,17 +84,68 @@ export function BlogDetails() {
             <div className="container mx-auto px-4 md:px-6 max-w-3xl pt-10">
                 {/* Main content */}
                 <div className="mb-12">
-
-                    <div className="prose prose-lg mx-auto font-playfair text-gray-800 leading-relaxed">
-
+                    <div className="prose prose-lg text-[16px] flex flex-col gap-4 text-center mx-auto font-playfair text-gray-800 leading-relaxed">
                         <p>
-                            This is where the unique text content for blog post ID <span className="font-bold">{id}</span> will be displayed.
+                            This is big. I want you to step to the edge with me and let go, really let go, of the expert thing.
                         </p>
                         <p>
-                            You would typically fetch this content from a database or an API based on the URL parameter.
+                            I’ve traveled far and wide talking to brilliant women, and again and again I saw us staying away from sharing our voice.
+                            We are convinced we aren’t “expert” enough on the topics that we long to speak or write or teach about.
                         </p>
                         <p>
-                            This allows each blog post to have its own distinct write-up without being hardcoded.
+                            Maybe you want to write or teach about surviving trauma, but you didn’t study trauma survival.
+                            You only lived it. Or you want to speak about parenting special needs children,
+                            but those other people are the experts. You only did it once.
+                            Maybe you’d like to teach about reinventing yourself after divorce,
+                            but you have no formal training in “reinvention” — you just did it yourself
+                            and have been helping some friends do the same.
+                            So you are not talking, not teaching, not speaking. We’ve got to change that.
+                        </p>
+                        <p>
+                            Of course, I have tremendous respect for expertise. I think we are blessed — absolutely blessed —
+                            to live in an era when information is produced and distributed with greater volume and accessibility than ever before.
+                            We are blessed to have diverse, specialized educational programs that allow us to develop expertise on pretty much any topic you can name.
+                            As a society, we need our experts. They are incredibly important.
+                        </p>
+                        <p>
+                            And yet. Somehow, many women convince themselves of the internalized idea
+                            that because they aren’t an expert (in journalism – diet, climate change, child abuse, art, local politics, etc.)
+                            they can’t really speak up. They don’t have much to offer.
+                            They shouldn’t be the one to write the op-ed, launch the campaign, start the business.
+                        </p>
+                        <p>
+                            As a child, you may have been shamed for not knowing enough, told you didn’t know enough to speak up.
+                            I’ll never forget the time, when I was a child, I was talking to a grown-up about how war was insane
+                            and one day we could evolve beyond it. “Well dear, that’s very nice, but war will always be with us.
+                            It’s the way the world works.” What was really being told in that moment?
+                            “Let the status quo win; we all agree out here in the world; displace what you know to be true in your heart.”
+                            Ah, got it. Message received.
+                        </p>
+                        <p>
+                            I want to ask you to change this in yourself, to drag any form of the “well, I’m not an expert” thing rumbling around in your head,
+                            out of the well. Why?
+                        </p>
+                        <p>
+                            I’ve come to believe that, within the context of this culture, it is a rite of passage,
+                            an implicit duty to plunge into empowerment, to speak out on the topics where we don’t have formal expertise.
+                            It is a reclaiming of voice, of citizenship, of conscience.
+                        </p>
+                        <p>
+                            It’s a particularly important rite of passage for women because, whatever the topic,
+                            the body of knowledge that makes up “formal expertise” tends to be shaped by a male perspective —
+                            either because the field is still dominantly male,
+                            or because the foundations and backdrops of knowledge fields were developed before women had access to speak in them.
+                        </p>
+                        <p>
+                            So the things that move your heart. Speak about those things.
+                            Write about those things. Speak about the things you’ve experienced and what you’ve learned.
+                            Speak about the wisdom as a result of those experiences.
+                            Speak about your vision for how some part of our world could be different.
+                        </p>
+                        <p>
+                            I’ll be writing more about this “expert” topic, because I believe it’s part of what sits at the center of the knot —
+                            the knot we feel in our throats, in our chests, when we lean towards speaking up.
+                            But then we must unravel it.
                         </p>
                         <p className="mt-8 text-right">
                             I love all of you.<br />

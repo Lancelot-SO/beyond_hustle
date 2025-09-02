@@ -41,12 +41,12 @@ const MainSection = () => {
             <div className='absolute top-0 md:top-5 right-0  md:block'>
                 <img src={vector} alt='vector' loading='lazy' />
             </div>
-            <div className='absolute lg:top-[185px] top-[830px] left-0 lg:left-[63.5%] hidden md:block'>
+            <div className='absolute lg:top-[185px] top-[830px] tablet:top-[400px] tablet:left-[50%] left-0 lg:left-[63.5%] hidden md:block'>
                 <img src={sparkle} alt='sparkle' loading='lazy' />
             </div>
 
             {/* Text + image column */}
-            <div className='w-full lg:w-[990px] h-auto lg:h-[1050px] flex flex-col pl-4 lg:pl-14 4xl:pl-32 pt-10 md:pt-[70px]'>
+            <div className='w-full lg:w-[990px] tablet:h-[1200px] h-auto lg:h-[1050px] flex flex-col pl-4 lg:pl-14 4xl:pl-32 pt-10 md:pt-[70px]'>
                 <div className="space-y-6 w-full lg:w-[967px] h-auto lg:h-[424px]">
                     {/* Heading */}
                     <motion.h1
@@ -76,14 +76,17 @@ const MainSection = () => {
                 </div>
 
                 {/* Secondary image: centered on mobile, right-aligned on desktop */}
-                <motion.div className='flex justify-center md:justify-end mt-6' variants={itemVariants} whileHover={{ scale: 1.05 }}
+                <motion.div className='flex justify-center md:justify-end tablet:justify-start mt-6 tablet:gap-8 gap-0 md:gap-0' variants={itemVariants} whileHover={{ scale: 1.05 }}
                 >
                     <img src={img1} alt='img1' loading='lazy' className='w-full md:w-auto' />
+                    <div className='tablet:block hidden md:hidden'>
+                        <img src={img2} alt='img2' loading='lazy' className='w-full md:w-auto' />
+                    </div>
                 </motion.div>
             </div>
 
             {/* Portrait column */}
-            <motion.div className='w-full lg:w-[524px] h-auto flex items-center justify-start lg:justify-center pt-10 lg:pt-52 pl-4 lg:pl-0 ' variants={itemVariants} whileHover={{ scale: 0.9 }}
+            <motion.div className='tablet:hidden w-full lg:w-[524px] h-auto flex items-center justify-start lg:justify-center pt-10 lg:pt-52 pl-4 lg:pl-0 ' variants={itemVariants} whileHover={{ scale: 0.9 }}
 
             >
                 <div>

@@ -58,7 +58,7 @@ const WebinarDown = () => {
                     <img
                         src={webinardown}
                         alt="Portrait of woman in red lace dress"
-                        className="w-full h-auto object-cover"
+                        className="w-full h-full object-cover"
                         loading='lazy'
 
                     />

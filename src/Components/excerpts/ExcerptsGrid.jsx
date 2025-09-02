@@ -211,7 +211,8 @@ export default function ExcerptsGrid() {
                         {/* Previous image */}
                         <button
                             onClick={showPrev}
-                            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white hover:bg-[#D95B24] hover:text-white p-2 rounded"
+                            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white hover:bg-[#D95B24] hover:text-white p-2
+                            tablet:p-4 rounded-full"
                         >
                             ‹
                         </button>
@@ -219,12 +220,13 @@ export default function ExcerptsGrid() {
                         <img
                             src={visibleImages[currentIndex].src}
                             alt={visibleImages[currentIndex].alt}
-                            className="w-full h-auto object-contain"
+                            className="w-full h-auto tablet:h-[600px] object-contain"
                         />
                         {/* Next image */}
                         <button
                             onClick={showNext}
-                            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white hover:bg-[#D95B24] hover:text-white p-2 rounded"
+                            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white hover:bg-[#D95B24] hover:text-white p-2
+                            tablet:p-4 rounded-full"
                         >
                             ›
                         </button>

@@ -47,7 +47,7 @@ export default function BottomSection() {
                             Get tips, updates,<br className='hidden md:block' /> & <br />exclusive content
                         </h1>
                         <p className="absolute md:top-28 top-24 left-4 md:left-20 text-[16px] md:text-[24px] font-playfair tracking-[2%]">
-                            Join And Get A Free Guide To Purpose-Driven Leadership.
+                            Join And Get A Free Guide To<br className='hidden md:hidden tablet:block' /> Purpose-Driven Leadership.
                         </p>
                     </div>
                     <p className="text-base text-secondary-text max-w-md mx-auto md:mx-0">

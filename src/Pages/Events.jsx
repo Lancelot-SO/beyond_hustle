@@ -38,7 +38,7 @@ const Events = () => {
                     <div
                         className="
                                       absolute
-                                      top-[50%] md:top-16 lg:top-48
+                                      top-[50%] md:top-16 lg:top-48 tablet:top-20
                                       left-4 lg:left-14 4xl:left-32
                                       w-[340px] md:w-[500px] lg:w-[675px]
                                       h-auto md:h-auto lg:h-[216px]

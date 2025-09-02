@@ -29,7 +29,7 @@ const Hero = () => {
                     <div
                         className="
               absolute
-              top-12 md:top-16 lg:top-24
+              top-12 md:top-16 lg:top-24 tablet:top-12 tablet:left-10
               left-4 lg:left-14 4xl:left-32
               w-[340px] md:w-[500px] lg:w-[615px]
               h-auto md:h-auto lg:h-[216px]
@@ -59,7 +59,7 @@ const Hero = () => {
               absolute
               bottom-4 md:bottom-6 lg:bottom-10
               right-4 lg:right-14 4xl:right-32
-              w-full lg:w-[607px]
+              w-full lg:w-[607px] tablet:w-[450px]
               px-4 lg:px-0
               text-right
               h-auto md:h-auto lg:h-[112px]

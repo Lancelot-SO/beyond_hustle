@@ -35,22 +35,22 @@ const Navbar = () => {
             {/* Fixed Navbar */}
             <header className="fixed top-0 left-0 w-full bg-white shadow-sm z-50">
                 {/* Tagline */}
-                <div className="container mx-auto px-4 lg:px-14 4xl:px-32 py-2">
-                    <div className="lg:text-right text-center text-xs uppercase tracking-widest text-gray-600">
+                <div className="container mx-auto px-4 lg:px-14 tablet:px-10 4xl:px-32 py-2">
+                    <div className="lg:text-right tablet:text-right text-center text-xs uppercase tracking-widest text-gray-600">
                         Get your go beyond hustle. Build boldly. Lead internationally Book!
                     </div>
                 </div>
 
                 {/* Desktop nav + mobile toggle */}
-                <div className="container mx-auto flex items-center justify-between px-4 lg:px-14 4xl:px-32 py-4">
+                <div className="container mx-auto flex items-center justify-between px-4 lg:px-14 tablet:px-10 4xl:px-32 py-4">
                     {/* Logo */}
                     <Link to="/" className="font-handwriting text-xl md:text-2xl">
                         Dr. Boahemaa Ntim
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden lg:block">
-                        <ul className="flex items-center space-x-8">
+                    <nav className="hidden lg:block tablet:block">
+                        <ul className="flex items-center space-x-8 lg:space-x-8 tablet:space-x-4">
                             <li>
                                 <Link
                                     to="/"
@@ -131,7 +131,7 @@ const Navbar = () => {
                     {/* Mobile hamburger */}
                     <button
                         onClick={toggleMenu}
-                        className="lg:hidden p-2 text-gray-700 hover:text-gray-900 focus:outline-none"
+                        className="lg:hidden tablet:hidden p-2 text-gray-700 hover:text-gray-900 focus:outline-none"
                         aria-label="Toggle menu"
                     >
                         {isMenuOpen ? <HiX className="w-6 h-6" /> : <HiMenu className="w-6 h-6" />}
@@ -142,14 +142,14 @@ const Navbar = () => {
             {/* Mobile overlay */}
             {isMenuOpen && (
                 <div
-                    className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+                    className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden tablet:hidden"
                     onClick={toggleMenu}
                 />
             )}
 
             {/* Mobile sidebar */}
             <div
-                className={`fixed top-0 left-0 h-full w-[60%] bg-white/80 backdrop-blur-md border-r border-white/20 shadow-xl transform transition-transform duration-300 ease-in-out z-50 lg:hidden ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
+                className={`fixed top-0 left-0 h-full w-[60%] bg-white/80 backdrop-blur-md border-r border-white/20 shadow-xl transform transition-transform duration-300 ease-in-out z-50 lg:hidden tablet:hidden ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
                     }`}
             >
                 <div className="p-6">
