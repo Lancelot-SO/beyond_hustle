@@ -18,76 +18,77 @@ const episodes = [
         id: 1,
         imageSrc: pod1,
         alt: '52 Real Life Lessons book',
-        title: 'Masterclass 1 — “Start with the problem, not the product|Beyond The Hustle GH Ep5',
+        title: 'WITHOUT THIS YOUR BUSINESS WILL FAIL. Premieres JuLY 5.',
         spotifyEmbedUrl:
-            'https://open.spotify.com/embed/track/episode/2IBLQhFBpeSZ6Z8i94MB7A?utm_source=generator',
+            'https://open.spotify.com/embed/episode/74JquzEaDtbwPzQLvASgqW?si=0a79f970b6254d81?utm_source=generator',
     },
     {
         id: 2,
         imageSrc: pod2,
         alt: 'Woman in orange shirt and black vest',
-        title: 'Ep. 12 — “A Deep Dive Into Leadership Beyond Loud Voices.”',
+        title: 'Fuelled by Belief: Building Sustainable Impact with Clara Pinkrah-Sam | Beyond The Hustle Episode 1',
         spotifyEmbedUrl:
-            'https://open.spotify.com/embed/track/512SnwJdZ0y0X000000002?utm_source=generator',
+            'https://open.spotify.com/embed/episode/42aLOmPwJcWeV3WIk1Gw8f?si=1a54df5117ae43f8?utm_source=generator'
     },
     {
         id: 3,
         imageSrc: pod3,
         alt: 'Woman in orange shirt and black vest speaking',
         title:
-            'Ep. 14 — Kwame Shares His Journey Building Tech Solutions In Underserved Communities.',
+            'More Than a Hustle: David Amoo-Osae on Legacy, Leadership & Letdowns | Beyond The Hustle Episode 2',
         spotifyEmbedUrl:
-            'https://open.spotify.com/embed/track/512SnwJdZ0y0X000000003?utm_source=generator',
+            'https://open.spotify.com/embed/episode/5b8uiyMvkt5ayrQxgIoY42?si=4f1c98db476345bc?utm_source=generator',
     },
     {
         id: 4,
         imageSrc: pod4,
         alt: '52 Real Life Lessons orange background',
         title:
-            'Ep. 14 — Kwame Shares His Journey Building Tech Solutions In Underserved Communities.',
+            'Brand It, Build It: Christine Avah on Growth, Branding & Strategy | Beyond The Hustle GH',
         spotifyEmbedUrl:
-            'https://open.spotify.com/embed/track/512SnwJdZ0y0X000000004?utm_source=generator',
+            'https://open.spotify.com/embed/episode/09H5rMU4iyxW0dmwgIs7Yz?si=6903f2bdd5864804?utm_source=generator',
     },
     {
         id: 5,
         imageSrc: pod5,
         alt: 'Lesson 40 with butterflies and quote',
-        title: 'Ep. 12 — “Designing For Impact In West Africa” Feat. Kwame Opoku',
+        title: 'From Prison to Profit: Bazal Darko on Scaling Creativity into a Brand | Beyond The Hustle Episode 4',
         spotifyEmbedUrl:
-            'https://open.spotify.com/embed/track/512SnwJdZ0y0X000000005?utm_source=generator',
+            'https://open.spotify.com/embed/episode/2A39483QBB3f3RSjGYy7hD?si=95e11b62eebc44ad?utm_source=generator',
     },
     {
         id: 6,
         imageSrc: pod6,
         alt: '52 Real Life Lessons physical book',
-        title: 'Ep. 12 — “A Deep Dive Into Leadership Beyond Loud Voices.”',
+        title: 'Masterclass 1: Start With the Problem, Not the Product | Beyond The Hustle Episode 5',
         spotifyEmbedUrl:
-            'https://open.spotify.com/embed/track/512SnwJdZ0y0X000000006?utm_source=generator',
+            'https://open.spotify.com/embed/episode/5b8uiyMvkt5ayrQxgIoY42?si=ff4ea55efefc4ab0?utm_source=generator',
     },
     {
         id: 7,
         imageSrc: pod7,
         alt: '52 Real Life Lessons physical book',
-        title: 'Ep. 12 — “A Deep Dive Into Leadership Beyond Loud Voices.”',
+        title: 'Build First, Brand Later: Akosua Koranteng Adayi on Getting It Wrong | Beyond The Hustle Episode 6',
         spotifyEmbedUrl:
-            'https://open.spotify.com/embed/track/512SnwJdZ0y0X000000006?utm_source=generator',
+            'https://open.spotify.com/embed/episode/1uGxWASEtXrJQSZ4oL7GWc?si=a5e90b4a0f9e4778?utm_source=generator',
     },
     {
         id: 8,
         imageSrc: pod8,
         alt: '52 Real Life Lessons physical book',
-        title: 'Ep. 12 — “Designing For Impact In West Africa” Feat. Kwame Opoku',
+        title: 'Build, Not Bought: Dr.Padi Ayertey on Turning Frustration into Success | Beyond The Hustle Episode 7',
         spotifyEmbedUrl:
-            'https://open.spotify.com/embed/track/512SnwJdZ0y0X000000006?utm_source=generator',
+            'https://open.spotify.com/embed/episode/0ij6kPpgrWxF0jOxz25pUB?si=e6e71a4c9c184b53?utm_source=generator',
     },
     {
         id: 9,
         imageSrc: pod9,
         alt: '52 Real Life Lessons physical book',
-        title: 'Ep. 12 — “A Deep Dive Into Leadership Beyond Loud Voices.”',
+        title: 'Beyond Repairs: Victor Elorm Morgah on Breaking Screens, and Breaking Even | Beyond The Hustle Episode 8',
         spotifyEmbedUrl:
-            'https://open.spotify.com/embed/track/512SnwJdZ0y0X000000006?utm_source=generator',
+            'https://open.spotify.com/embed/episode/74JquzEaDtbwPzQLvASgqW?si=e49c2698e2004eca?utm_source=generator',
     },
+
 ]
 
 // Define the animation variants
