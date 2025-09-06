@@ -18,6 +18,7 @@ import Excerpt from './Components/excerpts/Excerpt'
 import { BlogPage } from './Components/blog/BlogPage'
 import { BlogDetails } from './Components/blog/BlogDetails'
 import PaystackForm from './Components/PaystackForm'
+import Coaching from './Pages/Coaching'
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:id" element={<BlogDetails />} />
           <Route path="/paystack" element={<PaystackForm />} />
+          <Route path='/coaching' element={<Coaching />} />
         </Routes>
         <Footer />
       </BrowserRouter>

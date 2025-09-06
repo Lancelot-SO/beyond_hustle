@@ -28,7 +28,7 @@ export default function WebinarCard() {
 
                     />
                     <div className='flex flex-col items-center gap-4'>
-                        <h3 className="font-playfair font-semibold text-[#1C2237] text-[18px] md:text-[24px] text-center">
+                        <h3 className="font-openSans font-semibold text-[#1C2237] text-[18px] md:text-[24px] text-center">
                             Smart Money Habits for Young Adults
                         </h3>
                         <Link to="#" className='w-[154px] h-[48px] flex items-center justify-center text-white bg-[#D95B24] hover:bg-[#d3693f] shadow-lg'>Register</Link>
@@ -43,10 +43,10 @@ export default function WebinarCard() {
 
                     />
                     <div className='flex flex-col items-center gap-4'>
-                        <h3 className="font-playfair font-semibold text-[#1C2237] text-[18px] md:text-[24px] text-center">
-                            Strategic Business Planning for Entrepreneurs Course
+                        <h3 className="font-openSans font-semibold text-[#1C2237] text-[18px] md:text-[24px] text-center">
+                            EARN EXTRA INCOME OF OVER GHS10K A MONTH!
                         </h3>
-                        <Link to="#" className='w-[154px] h-[48px] flex items-center justify-center text-white bg-[#D95B24] hover:bg-[#d3693f] shadow-lg'>Register</Link>
+                        <Link to="/coaching" className='w-[154px] h-[48px] flex items-center justify-center text-white bg-[#D95B24] hover:bg-[#d3693f] shadow-lg'>Register</Link>
                     </div>
                 </div>
                 <div className="relative w-full md:flex-[1.6] bg-[#F5E4C4] px-6 md:px-12 py-8 md:h-[407px] flex items-center justify-center">
@@ -58,7 +58,7 @@ export default function WebinarCard() {
 
                     />
                     <div className='flex flex-col items-center gap-4'>
-                        <h3 className="font-playfair font-semibold text-[#1C2237] text-[18px] md:text-[24px] text-center">
+                        <h3 className="font-openSans font-semibold text-[#1C2237] text-[18px] md:text-[24px] text-center">
                             Mastering the Basics of Personal Finance webinar
                         </h3>
                         <Link to="#" className='w-[154px] h-[48px] flex items-center justify-center text-white bg-[#D95B24] hover:bg-[#d3693f] shadow-lg'>Register</Link>
