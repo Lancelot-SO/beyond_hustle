@@ -1,34 +1,36 @@
 /* eslint-disable no-irregular-whitespace */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from "react"
-import { BsSoundwave } from "react-icons/bs"
-import { HiMenu, HiX } from "react-icons/hi"
-import { Link, useLocation } from "react-router-dom"
+import React, { useState, useEffect } from "react";
+import { BsSoundwave } from "react-icons/bs";
+import { HiMenu, HiX } from "react-icons/hi";
+import { Link, useLocation } from "react-router-dom";
+import Shop from "./Shop";
 
 const Navbar = () => {
-    const location = useLocation()
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const [activeLink, setActiveLink] = useState(location.pathname)
+    const location = useLocation();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [activeLink, setActiveLink] = useState(location.pathname);
+    const [isShopOpen, setIsShopOpen] = useState(false);
 
     // Update activeLink when route changes
     useEffect(() => {
-        setActiveLink(location.pathname)
-    }, [location.pathname])
+        setActiveLink(location.pathname);
+    }, [location.pathname]);
 
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     // mark clicked link active, and close mobile menu if open
     const handleLinkClick = (path) => {
-        setActiveLink(path)
-        if (isMenuOpen) setIsMenuOpen(false)
-    }
+        setActiveLink(path);
+        if (isMenuOpen) setIsMenuOpen(false);
+    };
 
     // helper to build classes
     const linkClass = (path) =>
         `${activeLink === path
             ? "text-[#D95B24] border-b-2 border-[#D95B24]"
             : "text-gray-700 border-b-2 border-transparent hover:text-[#D95B24] hover:border-[#D95B24]"
-        } pb-1 transition-colors`
+        } pb-1 transition-colors`;
 
     return (
         <>
@@ -117,7 +119,17 @@ const Navbar = () => {
                                     Gallery
                                 </Link>
                             </li>
-                            <li>
+
+                            {/* Shop Now + Contact Us */}
+                            <li className="flex items-center gap-3">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsShopOpen(true)}
+                                    className="border border-[#D95B24] text-[#D95B24] px-4 py-2 hover:bg-[#D95B24]/10 transition-colors"
+                                >
+                                    Shop Now
+                                </button>
+
                                 <Link
                                     to="/contact"
                                     className="bg-[#D95B24] text-white px-4 py-2 hover:bg-orange-600 transition-colors"
@@ -243,11 +255,23 @@ const Navbar = () => {
                                     Gallery
                                 </Link>
                             </li>
-                            <li className="pt-4">
+
+                            {/* Shop + Contact in mobile */}
+                            <li className="pt-2 flex flex-col w-full items-center gap-3">
+                                <button
+                                    onClick={() => {
+                                        setIsShopOpen(true);
+                                        if (isMenuOpen) setIsMenuOpen(false);
+                                    }}
+                                    className="border border-[#D95B24] text-[#D95B24] px-4 py-3 text-center hover:bg-[#D95B24]/10 transition-colors rounded-lg"
+                                >
+                                    Shop Now
+                                </button>
+
                                 <Link
                                     to="/contact"
                                     onClick={() => handleLinkClick("/contact")}
-                                    className="block bg-[#D95B24]/90 text-white px-6 py-3 text-center hover:bg-[#D95B24] transition-colors rounded-lg shadow-lg"
+                                    className="bg-[#D95B24]/90 text-white px-6 py-3 text-center hover:bg-[#D95B24] transition-colors rounded-lg shadow-lg"
                                 >
                                     Contact Us
                                 </Link>
@@ -256,8 +280,16 @@ const Navbar = () => {
                     </nav>
                 </div>
             </div>
-        </>
-    )
-}
 
-export default Navbar
+            {/* Shop Modal */}
+            <Shop
+                isOpen={isShopOpen}
+                onClose={() => setIsShopOpen(false)}
+                workbookTo="/paystack"
+                artworkTo="/excerpts"
+            />
+        </>
+    );
+};
+
+export default Navbar;

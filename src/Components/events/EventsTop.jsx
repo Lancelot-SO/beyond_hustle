@@ -55,28 +55,17 @@ const EventsTop = () => {
                         variants={containerVariants}
                     >
                         <motion.p variants={itemVariants}>
-                            I had an unusual childhood. I was seven years old before I learned that not all
-                            children analyzed their dreams each morning at the breakfast table with mom and
-                            dad, diagramming the archetypes on a yellow pad, next to the bowl of oatmeal.
-                            When I came home with a typical childhood complaint like “Johnny teased me at
-                            recess,” I was usually met with, “What do you think is going on at home for Johnny
-                            that would cause him to tease other kids?”
+
+                            Dr. Boahemaa Ntim is an author, speaker, and entrepreneurship coach dedicated to equipping Africa’s next generation of leaders with the tools to build boldly and lead intentionally. She is the author of Beyond the Hustle, a practical roadmap that challenges entrepreneurs to cut through noise and focus on clarity, systems, and purpose-driven growth.
+
                         </motion.p>
 
                         <motion.p variants={itemVariants} className="mt-4">
-                            My parents weren’t psychotherapists, religious fanatics, or even hippies. They
-                            were regular people who believed that understanding oneself and others was an
-                            essential part of living a happy life. From an early age, I was encouraged to
-                            learn about psychology and spirituality and apply tools from both arenas to my
-                            daily life. Our house was full of books on those subjects and I grew up reading
-                            them.
+                            Through her speaking engagements, Dr. Boahemaa brings a rare blend of academic insight, entrepreneurial experience, and motivational storytelling. Her keynote themes cover entrepreneurship, leadership, innovation, women in business, and purpose-driven growth. She has spoken at universities, corporate organizations, and entrepreneurial forums, leaving audiences energized with practical strategies and the courage to act.
+                            Her mission is simple: to help entrepreneurs go beyond hustle culture and create businesses that truly last.
                         </motion.p>
 
-                        <motion.p variants={itemVariants} className="mt-4">
-                            I have never tired of asking the question: how can our inner lives shift our
-                            outer lives? Emotional awareness, creativity, spiritual practice: these are the
-                            enduring center of my daily life.
-                        </motion.p>
+
                     </motion.div>
                 </motion.div>
 

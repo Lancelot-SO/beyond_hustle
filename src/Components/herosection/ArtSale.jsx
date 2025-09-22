@@ -7,7 +7,7 @@ const ArtSale = () => {
         <div>
             <section className="py-20 px-4 text-center bg-gradient-to-b from-background to-muted/30">
                 <div className="max-w-4xl mx-auto">
-                    <span className="inline-block mb-6 text-sm font-medium bg-muted px-3 py-1 rounded-full text-secondary">
+                    <span className="inline-block mb-6 text-sm font-medium bg-[#1C2237] px-3 py-1 rounded-full text-white">
                         From the bestselling book{" "}
                         <span className="text-[#D95B24]">"Beyond the Hustle"</span>
                     </span>
@@ -25,8 +25,8 @@ const ArtSale = () => {
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                         <a
-                            href="#"
-                            className="inline-flex items-center justify-center px-6 py-3 text-lg font-medium rounded-2xl bg-[#D95B24] text-white hover:bg-[#A34115] transition"
+                            href="/excerpts"
+                            className="inline-flex items-center justify-center px-6 py-3 text-lg font-medium bg-[#D95B24] text-white hover:bg-[#A34115] transition"
                         >
                             Shop Art Pieces
                             <svg

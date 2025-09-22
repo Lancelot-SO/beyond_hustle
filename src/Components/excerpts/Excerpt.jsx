@@ -69,6 +69,8 @@ const Excerpt = () => {
                 </h2>
                 <div className="flex-1 h-px bg-[#B7AE9E]" />
             </div>
+            <span className='text-[#D95B24] font-playfair md:text-2xl text-[20px] font-semibold px-4 md:px-12'>Click on an Excerpt to purchase art work</span>
+
 
             <ExcerptsGrid />
             <Cards />
