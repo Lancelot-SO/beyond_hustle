@@ -11,7 +11,7 @@ const ORDER_URL = `${API_BASE}/api/workbook-orders`;
 const CONFIRM_URL = `${API_BASE}/api/paystack/workbook/confirm`;
 
 // Optional: move to .env in production (e.g., import.meta.env.VITE_PAYSTACK_PUBKEY)
-const PAYSTACK_PUBLIC_KEY = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY;
+const PAYSTACK_PUBLIC_KEY = "pk_test_e9106b3e31c457630c21142d67e633610861fd90";
 
 const PaystackForm = () => {
     // form state
