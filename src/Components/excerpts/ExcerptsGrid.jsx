@@ -27,8 +27,7 @@ const API_BASE = "https://api.drboahemaantim.com";
 const ORDERS_ENDPOINT = `${API_BASE}/api/orders`;
 const CONFIRM_ENDPOINT = `${API_BASE}/api/paystack/confirm`;
 
-// Optional fallback if backend doesn't return a public key
-const PAYSTACK_PUBLIC_KEY_FALLBACK = "pk_test_xxxxxxxxxxxxxxxxxxxxx";
+const PAYSTACK_PUBLIC_KEY_FALLBACK = "pk_test_xxxxxxxxxxxxxxxxxxxxx"; // optional fallback
 
 // Fixed price for all artworks (GHS)
 const FIXED_PRICE_GHS = 200;
@@ -89,15 +88,18 @@ const galleryImages = [
     }),
 ];
 
-// --------------------- Helpers (no abort; fix units) --------------------- //
+// --------------------- Helpers --------------------- //
 async function fetchJSON(url, options = {}) {
     const res = await fetch(url, options);
     let payload = null;
-    try { payload = await res.json(); } catch {
+    try {
+        payload = await res.json();
+    } catch {
         // Ignore JSON parse errors (payload remains null)
     }
     if (!res.ok) {
-        const message = (payload && (payload.message || payload.error)) || `HTTP ${res.status}`;
+        const message =
+            (payload && (payload.message || payload.error)) || `HTTP ${res.status}`;
         throw new Error(message);
     }
     return payload;
@@ -108,6 +110,17 @@ function toPesewas(val) {
     const n = Number(val);
     if (!Number.isFinite(n)) return 0;
     return n < 1000 ? Math.round(n * 100) : Math.round(n);
+}
+
+// Ensure absolute URL for email clients
+function toAbsoluteUrl(src) {
+    try {
+        if (/^https?:\/\//i.test(src)) return src; // already absolute
+        if (src.startsWith("/")) return `${window.location.origin}${src}`;
+        return new URL(src, window.location.href).toString();
+    } catch {
+        return src;
+    }
 }
 
 // ===================================================================== //
@@ -223,14 +236,6 @@ export default function ExcerptsGrid() {
         if (!form.address.trim()) return "Please enter your address.";
         return null;
     };
-
-    /**
-     * Flow:
-     * 1) POST /api/orders -> { reference, access_code, public_key, final_amount, status }
-     * 2) If status === 'paid' (voucher made it free) => success
-     * 3) Else open Paystack inline with newTransaction({ key, email, amount, reference, access_code })
-     * 4) On success => POST /api/paystack/confirm { reference } to verify, save to DB, and email
-     */
     const handlePaystackAndSubmit = async () => {
         const err = validateForm();
         if (err) {
@@ -241,16 +246,20 @@ export default function ExcerptsGrid() {
         setLoading(true);
 
         try {
+            // Build absolute public URL for the image so it renders in emails
+            const absoluteImageUrl = toAbsoluteUrl(selected.src);
+
             // 1) Create order on backend
             const orderPayload = {
                 product_id: `art-${selected.id}`,
                 product_title: selected.title,
-                amount: Math.max(1, Math.round(FIXED_PRICE_GHS * 100)), // prefer sending pesewas
+                product_link: absoluteImageUrl, // 👈 send absolute URL to DB
+                product_alt: selected.alt, // optional but useful
+                amount: Math.max(1, Math.round(FIXED_PRICE_GHS * 100)), // send pesewas
                 full_name: form.name,
                 email: form.email,
                 mobile: form.mobile,
                 address: form.address,
-                voucher_code: "", // optional
             };
 
             const order = await fetchJSON(ORDERS_ENDPOINT, {
@@ -261,7 +270,7 @@ export default function ExcerptsGrid() {
 
             const {
                 reference,
-                final_amount,   // looks like GHS string from your API (e.g. "200")
+                final_amount, // could be "200" (GHS) or already in pesewas depending on API
                 public_key,
                 access_code,
                 status: orderStatus,
@@ -269,16 +278,15 @@ export default function ExcerptsGrid() {
 
             // 2) Free via voucher?
             if (orderStatus === "paid") {
-                alert(`✅ Order completed with voucher! Ref: ${reference}`);
+                alert(`✅ Order completed! Ref: ${reference}`);
                 closeModal();
                 setLoading(false);
                 return;
             }
 
-            // 3) Initialize Paystack popup (convert to pesewas defensively)
+            // 3) Initialize Paystack popup
             const amountPesewas = toPesewas(final_amount ?? FIXED_PRICE_GHS);
             const keyToUse = public_key || PAYSTACK_PUBLIC_KEY_FALLBACK;
-
             const paystack = new PaystackPop();
 
             await new Promise((resolve) => {
@@ -287,16 +295,45 @@ export default function ExcerptsGrid() {
                     email: form.email,
                     amount: amountPesewas,
                     currency: "GHS",
-                    reference, // keep YOUR reference
+                    reference,
                     ...(access_code ? { access_code } : {}),
                     metadata: {
                         custom_fields: [
-                            { display_name: "Buyer", variable_name: "buyer_name", value: form.name },
-                            { display_name: "Mobile", variable_name: "buyer_mobile", value: form.mobile },
-                            { display_name: "Address", variable_name: "buyer_address", value: form.address },
-                            { display_name: "Artwork ID", variable_name: "artwork_id", value: selected.id },
-                            { display_name: "Artwork Title", variable_name: "artwork_title", value: selected.title },
-                            { display_name: "Unit Price (GHS)", variable_name: "price", value: FIXED_PRICE_GHS },
+                            {
+                                display_name: "Buyer",
+                                variable_name: "buyer_name",
+                                value: form.name,
+                            },
+                            {
+                                display_name: "Mobile",
+                                variable_name: "buyer_mobile",
+                                value: form.mobile,
+                            },
+                            {
+                                display_name: "Address",
+                                variable_name: "buyer_address",
+                                value: form.address,
+                            },
+                            {
+                                display_name: "Artwork ID",
+                                variable_name: "artwork_id",
+                                value: selected.id,
+                            },
+                            {
+                                display_name: "Artwork Title",
+                                variable_name: "artwork_title",
+                                value: selected.title,
+                            },
+                            {
+                                display_name: "Image URL",
+                                variable_name: "product_link",
+                                value: absoluteImageUrl,
+                            },
+                            {
+                                display_name: "Unit Price (GHS)",
+                                variable_name: "price",
+                                value: FIXED_PRICE_GHS,
+                            },
                         ],
                     },
                     onSuccess: async (tx) => {
@@ -312,13 +349,15 @@ export default function ExcerptsGrid() {
                                 alert("✅ Payment verified! We’ll reach out shortly.");
                             } else {
                                 alert(
-                                    `⚠️ Payment is processing. Keep your ref: ${tx?.reference || reference} and contact support if you don't receive a receipt soon.`
+                                    `⚠️ Payment is processing. Keep your ref: ${tx?.reference || reference
+                                    } and contact support if you don't receive a receipt soon.`
                                 );
                             }
                         } catch (cErr) {
                             console.error("Confirm error:", cErr);
                             alert(
-                                `We received your payment but couldn't confirm immediately.\nKeep your ref: ${tx?.reference || reference}.`
+                                `We received your payment but couldn't confirm immediately.\nKeep your ref: ${tx?.reference || reference
+                                }.`
                             );
                         } finally {
                             resolve();
@@ -398,7 +437,8 @@ export default function ExcerptsGrid() {
                         {/* Header */}
                         <div className="flex items-center justify-between px-4 md:px-6 py-3 border-b">
                             <div className="font-semibold">
-                                {selected.title} <span className="text-gray-500">#{selected.id}</span>
+                                {selected.title}{" "}
+                                <span className="text-gray-500">#{selected.id}</span>
                             </div>
                             <div className="text-sm text-gray-600">
                                 GHS {Number(FIXED_PRICE_GHS).toLocaleString()}
