@@ -98,8 +98,7 @@ async function fetchJSON(url, options = {}) {
         // Ignore JSON parse errors (payload remains null)
     }
     if (!res.ok) {
-        const message =
-            (payload && (payload.message || payload.error)) || `HTTP ${res.status}`;
+        const message = (payload && (payload.message || payload.error)) || `HTTP ${res.status}`;
         throw new Error(message);
     }
     return payload;
@@ -112,14 +111,28 @@ function toPesewas(val) {
     return n < 1000 ? Math.round(n * 100) : Math.round(n);
 }
 
-// Ensure absolute URL for email clients
+// Ensure absolute URL for email clients / server DB
 function toAbsoluteUrl(src) {
     try {
-        if (/^https?:\/\//i.test(src)) return src; // already absolute
-        if (src.startsWith("/")) return `${window.location.origin}${src}`;
-        return new URL(src, window.location.href).toString();
-    } catch {
+        if (!src) return "";
+        // Already absolute http(s)
+        if (/^https?:\/\//i.test(src)) return src;
+
+        // data/blobs usually not wanted by API; return empty to avoid saving junk
+        if (/^(data:|blob:)/i.test(src)) return "";
+
+        // If it starts with a slash, prefix origin
+        if (typeof window !== "undefined" && src.startsWith("/")) {
+            return `${window.location.origin}${src}`;
+        }
+
+        // Try to resolve relative -> absolute using current page
+        if (typeof window !== "undefined") {
+            return new URL(src, window.location.href).toString();
+        }
         return src;
+    } catch {
+        return "";
     }
 }
 
@@ -153,14 +166,10 @@ export default function ExcerptsGrid() {
     const selected = visibleImages[currentIndex] || galleryImages[0];
 
     const handleLoadMore = () =>
-        setDisplayedCount((prev) =>
-            Math.min(prev + IMAGES_PER_LOAD, TOTAL_GALLERY_IMAGES)
-        );
+        setDisplayedCount((prev) => Math.min(prev + IMAGES_PER_LOAD, TOTAL_GALLERY_IMAGES));
 
     const handleShowLess = () =>
-        setDisplayedCount((prev) =>
-            Math.max(prev - IMAGES_PER_LOAD, MIN_DISPLAY_COUNT)
-        );
+        setDisplayedCount((prev) => Math.max(prev - IMAGES_PER_LOAD, MIN_DISPLAY_COUNT));
 
     const openModal = (index) => {
         setCurrentIndex(index);
@@ -176,12 +185,9 @@ export default function ExcerptsGrid() {
     };
 
     const showPrev = () =>
-        setCurrentIndex(
-            (prev) => (prev + visibleImages.length - 1) % visibleImages.length
-        );
+        setCurrentIndex((prev) => (prev + visibleImages.length - 1) % visibleImages.length);
 
-    const showNext = () =>
-        setCurrentIndex((prev) => (prev + 1) % visibleImages.length);
+    const showNext = () => setCurrentIndex((prev) => (prev + 1) % visibleImages.length);
 
     const totalRows = Math.ceil(displayedCount / IMAGES_PER_LOAD) * ROWS_PER_BLOCK;
 
@@ -231,11 +237,11 @@ export default function ExcerptsGrid() {
     const validateForm = () => {
         if (!form.name.trim()) return "Please enter your full name.";
         if (!/\S+@\S+\.\S+/.test(form.email)) return "Please enter a valid email.";
-        if (!/^[0-9+\-\s]{7,}$/.test(form.mobile))
-            return "Please enter a valid phone number.";
+        if (!/^[0-9+\-\s]{7,}$/.test(form.mobile)) return "Please enter a valid phone number.";
         if (!form.address.trim()) return "Please enter your address.";
         return null;
     };
+
     const handlePaystackAndSubmit = async () => {
         const err = validateForm();
         if (err) {
@@ -246,14 +252,20 @@ export default function ExcerptsGrid() {
         setLoading(true);
 
         try {
-            // Build absolute public URL for the image so it renders in emails
-            const absoluteImageUrl = toAbsoluteUrl(selected.src);
+            // Build absolute public URL for the image so it renders in emails / DB
+            const absoluteImageUrl = toAbsoluteUrl(selected?.src);
 
             // 1) Create order on backend
             const orderPayload = {
                 product_id: `art-${selected.id}`,
                 product_title: selected.title,
-                product_link: absoluteImageUrl, // 👈 send absolute URL to DB
+
+                // primary + aliases (so backend can map any)
+                product_link: absoluteImageUrl,
+                product_url: absoluteImageUrl,
+                image_url: absoluteImageUrl,
+                url: absoluteImageUrl,
+
                 product_alt: selected.alt, // optional but useful
                 amount: Math.max(1, Math.round(FIXED_PRICE_GHS * 100)), // send pesewas
                 full_name: form.name,
@@ -261,12 +273,14 @@ export default function ExcerptsGrid() {
                 mobile: form.mobile,
                 address: form.address,
             };
+            console.log("[orders] payload →", orderPayload);
 
             const order = await fetchJSON(ORDERS_ENDPOINT, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(orderPayload),
             });
+            console.log("[orders] response ←", order);
 
             const {
                 reference,
@@ -276,7 +290,7 @@ export default function ExcerptsGrid() {
                 status: orderStatus,
             } = order || {};
 
-            // 2) Free via voucher?
+            // 2) If backend already marks as paid (e.g., voucher flow)
             if (orderStatus === "paid") {
                 alert(`✅ Order completed! Ref: ${reference}`);
                 closeModal();
@@ -299,41 +313,13 @@ export default function ExcerptsGrid() {
                     ...(access_code ? { access_code } : {}),
                     metadata: {
                         custom_fields: [
-                            {
-                                display_name: "Buyer",
-                                variable_name: "buyer_name",
-                                value: form.name,
-                            },
-                            {
-                                display_name: "Mobile",
-                                variable_name: "buyer_mobile",
-                                value: form.mobile,
-                            },
-                            {
-                                display_name: "Address",
-                                variable_name: "buyer_address",
-                                value: form.address,
-                            },
-                            {
-                                display_name: "Artwork ID",
-                                variable_name: "artwork_id",
-                                value: selected.id,
-                            },
-                            {
-                                display_name: "Artwork Title",
-                                variable_name: "artwork_title",
-                                value: selected.title,
-                            },
-                            {
-                                display_name: "Image URL",
-                                variable_name: "product_link",
-                                value: absoluteImageUrl,
-                            },
-                            {
-                                display_name: "Unit Price (GHS)",
-                                variable_name: "price",
-                                value: FIXED_PRICE_GHS,
-                            },
+                            { display_name: "Buyer", variable_name: "buyer_name", value: form.name },
+                            { display_name: "Mobile", variable_name: "buyer_mobile", value: form.mobile },
+                            { display_name: "Address", variable_name: "buyer_address", value: form.address },
+                            { display_name: "Artwork ID", variable_name: "artwork_id", value: selected.id },
+                            { display_name: "Artwork Title", variable_name: "artwork_title", value: selected.title },
+                            { display_name: "Image URL", variable_name: "product_link", value: absoluteImageUrl },
+                            { display_name: "Unit Price (GHS)", variable_name: "price", value: FIXED_PRICE_GHS },
                         ],
                     },
                     onSuccess: async (tx) => {
@@ -344,6 +330,7 @@ export default function ExcerptsGrid() {
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({ reference: tx?.reference || reference }),
                             });
+                            console.log("[confirm] response ←", confirm);
 
                             if (confirm?.status === "paid") {
                                 alert("✅ Payment verified! We’ll reach out shortly.");
@@ -373,10 +360,7 @@ export default function ExcerptsGrid() {
             closeModal();
         } catch (e) {
             console.error(e);
-            alert(
-                e?.message ||
-                "Unable to initialize payment at the moment. Please try again."
-            );
+            alert(e?.message || "Unable to initialize payment at the moment. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -437,8 +421,7 @@ export default function ExcerptsGrid() {
                         {/* Header */}
                         <div className="flex items-center justify-between px-4 md:px-6 py-3 border-b">
                             <div className="font-semibold">
-                                {selected.title}{" "}
-                                <span className="text-gray-500">#{selected.id}</span>
+                                {selected.title} <span className="text-gray-500">#{selected.id}</span>
                             </div>
                             <div className="text-sm text-gray-600">
                                 GHS {Number(FIXED_PRICE_GHS).toLocaleString()}
@@ -559,9 +542,7 @@ export default function ExcerptsGrid() {
                                             disabled={loading}
                                             className="w-full md:w-auto px-5 py-2 bg-[#D95B24] text-white rounded shadow hover:opacity-90 disabled:opacity-60"
                                         >
-                                            {loading
-                                                ? "Processing..."
-                                                : `Buy • GHS ${Number(FIXED_PRICE_GHS).toLocaleString()}`}
+                                            {loading ? "Processing..." : `Buy • GHS ${Number(FIXED_PRICE_GHS).toLocaleString()}`}
                                         </button>
 
                                         <button
@@ -575,8 +556,8 @@ export default function ExcerptsGrid() {
                                         </button>
 
                                         <p className="text-[11px] text-gray-500">
-                                            Payments are processed securely by Paystack. After
-                                            payment, we’ll verify and email your receipt.
+                                            Payments are processed securely by Paystack. After payment, we’ll verify and email your
+                                            receipt.
                                         </p>
                                     </div>
                                 )}
