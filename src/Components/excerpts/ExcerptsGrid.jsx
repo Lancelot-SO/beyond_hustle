@@ -3,6 +3,8 @@
 
 import React, { useMemo, useState } from "react";
 import PaystackPop from "@paystack/inline-js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // --------------------- ASSETS (first 16 real images) --------------------- //
 import bh1 from "../../assets/excerpts/bh1.png";
@@ -245,7 +247,7 @@ export default function ExcerptsGrid() {
     const handlePaystackAndSubmit = async () => {
         const err = validateForm();
         if (err) {
-            alert(err);
+            toast.error(err);
             return;
         }
 
@@ -292,7 +294,7 @@ export default function ExcerptsGrid() {
 
             // 2) If backend already marks as paid (e.g., voucher flow)
             if (orderStatus === "paid") {
-                alert(`✅ Order completed! Ref: ${reference}`);
+                toast.success(`✅ Order completed! Ref: ${reference}`);
                 closeModal();
                 setLoading(false);
                 return;
@@ -333,16 +335,16 @@ export default function ExcerptsGrid() {
                             console.log("[confirm] response ←", confirm);
 
                             if (confirm?.status === "paid") {
-                                alert("✅ Payment verified! We’ll reach out shortly.");
+                                toast.success("✅ Payment verified! We’ll reach out shortly.");
                             } else {
-                                alert(
+                                toast.info(
                                     `⚠️ Payment is processing. Keep your ref: ${tx?.reference || reference
                                     } and contact support if you don't receive a receipt soon.`
                                 );
                             }
                         } catch (cErr) {
                             console.error("Confirm error:", cErr);
-                            alert(
+                            toast.info(
                                 `We received your payment but couldn't confirm immediately.\nKeep your ref: ${tx?.reference || reference
                                 }.`
                             );
@@ -351,7 +353,7 @@ export default function ExcerptsGrid() {
                         }
                     },
                     onCancel: () => {
-                        alert("Payment canceled.");
+                        toast.error("Payment canceled.");
                         resolve();
                     },
                 });
@@ -360,7 +362,7 @@ export default function ExcerptsGrid() {
             closeModal();
         } catch (e) {
             console.error(e);
-            alert(e?.message || "Unable to initialize payment at the moment. Please try again.");
+            toast.error(e?.message || "Unable to initialize payment at the moment. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -369,6 +371,7 @@ export default function ExcerptsGrid() {
     // ------------------------------- UI ------------------------------- //
     return (
         <div className="p-4 lg:px-14 4xl:px-32 flex flex-col items-center">
+            <ToastContainer />
             {/* Grid container for images */}
             <div
                 className="grid w-full grid-cols-3 gap-8 mb-4 auto-rows-auto"
