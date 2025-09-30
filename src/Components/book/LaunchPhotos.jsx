@@ -20,11 +20,30 @@ import launch13 from "../../assets/launch/launch13.png";
 import launch14 from "../../assets/launch/launch14.png";
 import launch15 from "../../assets/launch/launch15.png";
 import launch16 from "../../assets/launch/launch16.png";
+import launch17 from "../../assets/launch/launch17.jpg";
+import launch18 from "../../assets/launch/launch18.jpg";
+import launch19 from "../../assets/launch/launch19.jpg";
+import launch20 from "../../assets/launch/launch20.jpg";
+import launch21 from "../../assets/launch/launch21.jpg";
+import launch22 from "../../assets/launch/launch22.jpg";
+import launch23 from "../../assets/launch/launch23.jpg";
+import launch24 from "../../assets/launch/launch24.jpg";
+import launch25 from "../../assets/launch/launch25.jpg";
+import launch26 from "../../assets/launch/launch26.jpg";
+import launch27 from "../../assets/launch/launch27.jpg";
+import launch28 from "../../assets/launch/launch28.jpg";
+import launch29 from "../../assets/launch/launch29.jpg";
+import launch30 from "../../assets/launch/launch30.jpg";
+import launch31 from "../../assets/launch/launch31.jpg";
+import launch32 from "../../assets/launch/launch32.jpg";
+import launch33 from "../../assets/launch/launch33.jpg";
+
+
 
 // Constants for initial display and gallery settings
 const INITIAL_DISPLAY_COUNT = 16;
 const IMAGES_PER_LOAD = 16;
-const TOTAL_GALLERY_IMAGES = 52;
+const TOTAL_GALLERY_IMAGES = 33;
 const MIN_DISPLAY_COUNT = INITIAL_DISPLAY_COUNT;
 const ROWS_PER_BLOCK = 7;
 
@@ -66,6 +85,25 @@ const galleryImages = [
     { id: 14, src: launch14, alt: "launch 14" },
     { id: 15, src: launch15, alt: "launch 15" },
     { id: 16, src: launch16, alt: "launch 16" },
+    { id: 17, src: launch17, alt: "launch 17" },
+    { id: 18, src: launch18, alt: "launch 18" },
+    { id: 19, src: launch19, alt: "launch 19" },
+    { id: 20, src: launch20, alt: "launch 20" },
+    { id: 21, src: launch21, alt: "launch 21" },
+    { id: 22, src: launch22, alt: "launch 22" },
+    { id: 23, src: launch23, alt: "launch 23" },
+    { id: 24, src: launch24, alt: "launch 24" },
+    { id: 25, src: launch25, alt: "launch 25" },
+    { id: 26, src: launch26, alt: "launch 26" },
+    { id: 27, src: launch27, alt: "launch 27" },
+    { id: 28, src: launch28, alt: "launch 28" },
+    { id: 29, src: launch29, alt: "launch 29" },
+    { id: 30, src: launch30, alt: "launch 30" },
+    { id: 31, src: launch31, alt: "launch 31" },
+    { id: 32, src: launch32, alt: "launch 32" },
+    { id: 33, src: launch33, alt: "launch 33" },
+
+
     // Generate placeholders for remaining slots
     ...Array.from({ length: TOTAL_GALLERY_IMAGES - 16 }, (_, idx) => {
         const id = idx + 17;

@@ -23,6 +23,40 @@ import bh13 from "../../assets/excerpts/bh13.png";
 import bh14 from "../../assets/excerpts/bh14.png";
 import bh15 from "../../assets/excerpts/bh15.png";
 import bh16 from "../../assets/excerpts/bh16.png";
+import bh17 from "../../assets/excerpts/bh17.png";
+import bh18 from "../../assets/excerpts/bh18.png";
+import bh19 from "../../assets/excerpts/bh19.png";
+import bh20 from "../../assets/excerpts/bh20.png";
+import bh21 from "../../assets/excerpts/bh21.png";
+import bh22 from "../../assets/excerpts/bh22.png";
+import bh23 from "../../assets/excerpts/bh23.png";
+import bh24 from "../../assets/excerpts/bh24.png";
+import bh25 from "../../assets/excerpts/bh25.png";
+import bh26 from "../../assets/excerpts/bh26.png";
+import bh27 from "../../assets/excerpts/bh27.png";
+import bh28 from "../../assets/excerpts/bh28.png";
+import bh29 from "../../assets/excerpts/bh29.png";
+import bh30 from "../../assets/excerpts/bh30.png";
+import bh31 from "../../assets/excerpts/bh31.png";
+import bh32 from "../../assets/excerpts/bh32.png";
+import bh33 from "../../assets/excerpts/bh33.png";
+import bh34 from "../../assets/excerpts/bh34.png";
+import bh35 from "../../assets/excerpts/bh35.png";
+import bh36 from "../../assets/excerpts/bh36.png";
+import bh37 from "../../assets/excerpts/bh37.png";
+import bh38 from "../../assets/excerpts/bh38.png";
+import bh39 from "../../assets/excerpts/bh39.png";
+import bh40 from "../../assets/excerpts/bh40.png";
+import bh41 from "../../assets/excerpts/bh41.png";
+import bh42 from "../../assets/excerpts/bh42.png";
+import bh43 from "../../assets/excerpts/bh43.png";
+import bh44 from "../../assets/excerpts/bh44.png";
+import bh45 from "../../assets/excerpts/bh45.png";
+import bh46 from "../../assets/excerpts/bh46.png";
+import bh47 from "../../assets/excerpts/bh47.png";
+import bh48 from "../../assets/excerpts/bh48.png";
+import bh49 from "../../assets/excerpts/bh49.png";
+
 
 // --------------------------- CONFIG --------------------------- //
 const API_BASE = "https://api.drboahemaantim.com";
@@ -37,7 +71,7 @@ const FIXED_PRICE_GHS = 200;
 // Grid settings
 const INITIAL_DISPLAY_COUNT = 16;
 const IMAGES_PER_LOAD = 16;
-const TOTAL_GALLERY_IMAGES = 52;
+const TOTAL_GALLERY_IMAGES = 49;
 const MIN_DISPLAY_COUNT = INITIAL_DISPLAY_COUNT;
 const ROWS_PER_BLOCK = 7;
 
@@ -79,6 +113,41 @@ const galleryImages = [
     { id: 14, src: bh14, alt: "bh 14", title: "Artwork #14" },
     { id: 15, src: bh15, alt: "bh 15", title: "Artwork #15" },
     { id: 16, src: bh16, alt: "bh 16", title: "Artwork #16" },
+    { id: 17, src: bh17, alt: "bh 17", title: "Artwork #17" },
+    { id: 18, src: bh18, alt: "bh 18", title: "Artwork #18" },
+    { id: 19, src: bh19, alt: "bh 19", title: "Artwork #19" },
+    { id: 20, src: bh20, alt: "bh 20", title: "Artwork #20" },
+    { id: 21, src: bh21, alt: "bh 21", title: "Artwork #21" },
+    { id: 22, src: bh22, alt: "bh 22", title: "Artwork #22" },
+    { id: 23, src: bh23, alt: "bh 23", title: "Artwork #23" },
+    { id: 24, src: bh24, alt: "bh 24", title: "Artwork #24" },
+    { id: 25, src: bh25, alt: "bh 25", title: "Artwork #25" },
+    { id: 26, src: bh26, alt: "bh 26", title: "Artwork #26" },
+    { id: 27, src: bh27, alt: "bh 27", title: "Artwork #27" },
+    { id: 28, src: bh28, alt: "bh 28", title: "Artwork #28" },
+    { id: 29, src: bh29, alt: "bh 29", title: "Artwork #29" },
+    { id: 30, src: bh30, alt: "bh 30", title: "Artwork #30" },
+    { id: 31, src: bh31, alt: "bh 31", title: "Artwork #31" },
+    { id: 32, src: bh32, alt: "bh 32", title: "Artwork #32" },
+    { id: 33, src: bh33, alt: "bh 33", title: "Artwork #33" },
+    { id: 34, src: bh34, alt: "bh 34", title: "Artwork #34" },
+    { id: 35, src: bh35, alt: "bh 35", title: "Artwork #35" },
+    { id: 36, src: bh36, alt: "bh 36", title: "Artwork #36" },
+    { id: 37, src: bh37, alt: "bh 37", title: "Artwork #37" },
+    { id: 38, src: bh38, alt: "bh 38", title: "Artwork #38" },
+    { id: 39, src: bh39, alt: "bh 39", title: "Artwork #39" },
+    { id: 40, src: bh40, alt: "bh 40", title: "Artwork #40" },
+    { id: 41, src: bh41, alt: "bh 41", title: "Artwork #41" },
+    { id: 42, src: bh42, alt: "bh 42", title: "Artwork #42" },
+    { id: 43, src: bh43, alt: "bh 43", title: "Artwork #43" },
+    { id: 44, src: bh44, alt: "bh 44", title: "Artwork #44" },
+    { id: 45, src: bh45, alt: "bh 45", title: "Artwork #45" },
+    { id: 46, src: bh46, alt: "bh 46", title: "Artwork #46" },
+    { id: 47, src: bh47, alt: "bh 47", title: "Artwork #47" },
+    { id: 48, src: bh48, alt: "bh 48", title: "Artwork #48" },
+    { id: 49, src: bh49, alt: "bh 49", title: "Artwork #49" },
+
+
     ...Array.from({ length: TOTAL_GALLERY_IMAGES - 16 }, (_, idx) => {
         const id = idx + 17;
         return {
