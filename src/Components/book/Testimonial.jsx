@@ -5,9 +5,9 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
 // replace these with your actual image imports
-import person1 from '../../assets/about/main.png'
-import person2 from '../../assets/about/main.png'
-import person3 from '../../assets/about/main.png'
+import person1 from '../../assets/about/person1.jpg'
+import person2 from '../../assets/about/person2.jpg'
+import person3 from '../../assets/about/person3.jpg'
 
 
 const testimonials = [
@@ -16,12 +16,12 @@ const testimonials = [
         quote:
             "At last. At last this very important book has been written, encouraging women to take up all the creative space they deserve in the world.",
         name: "DAVIDA DZATO",
-        title: "Author Of Kitchen Table Wisdom",
+        title: "UI/UX Designer",
     },
     {
         image: person2, // Placeholder for second person
         quote: "“Beyond the Hustle has given me the clarity and courage to lead my team with purpose.”",
-        name: "JANE DOE",
+        name: "LANCELOT HANS",
         title: "Tech Entrepreneur",
     },
     {

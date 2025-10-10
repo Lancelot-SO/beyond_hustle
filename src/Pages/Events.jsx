@@ -7,7 +7,7 @@ import EventsTop from '../Components/events/EventsTop'
 import PastEvents from '../Components/events/PastEvents'
 import Conference from '../Components/events/Conference'
 import EventCard from '../Components/events/EventCards'
-import EventVideo from '../Components/events/EventVideo'
+// import EventVideo from '../Components/events/EventVideo'
 import Testimonial from '../Components/book/Testimonial'
 import MailContact from '../Components/MailContact'
 
@@ -67,7 +67,7 @@ const Events = () => {
             <PastEvents />
             <Conference />
             <EventCard />
-            <EventVideo />
+            {/* <EventVideo /> */}
             <Testimonial />
             <MailContact />
         </div>

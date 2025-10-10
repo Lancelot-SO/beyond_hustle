@@ -25,12 +25,14 @@ const itemVariants = {
 
 
 const topics = [
-    "Designing for Impact: UX in Emerging Markets",
-    "Product Thinking for Startups",
-    "The Role of Design in Digital Innovation",
-    "Bridging Product and Business Strategy",
-    "Women in Tech & Leadership",
-    "Tailored for individuals and professionals",
+    "Beyond the Hustle: Building Businesses That Endure",
+    "Coaching Entrepreneurs for Impact: The Art and Science of Guiding Start-Ups",
+    "From Idea to Impact: Turning Concepts into Viable Businesses",
+    "Reinvent, Don’t Retreat: Lessons in Resilience from Business Failure",
+    "Digital Presence and Storytelling for African SMEs",
+    "Systems, Structures, and Strategy: The CEO’s Playbook for Scaling a Small Business",
+    "Money Matters: Funding, Financial Discipline, and the Entrepreneur’s Growth Journey",
+    "The Future-Ready Entrepreneur: AI, Innovation, and the New Skills of Business Growth",
 ]
 
 const EventsTop = () => {
