@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 // Footer.jsx
 import React, { useState, useEffect, useRef } from 'react'
-import { Instagram, Twitter, Music, Linkedin, ChevronUp, Star } from 'lucide-react'
+import { Instagram, Twitter, Linkedin, ChevronUp } from 'lucide-react'
 import { FaTiktok } from 'react-icons/fa'
 
 export default function Footer() {
@@ -27,16 +27,30 @@ export default function Footer() {
         <footer className="w-full">
             {/* Top section */}
             <div className="bg-[#1C2237] text-white py-8 md:py-12 px-4 lg:px-14 4xl:px-32 relative">
-                <div className="container mx-auto  flex flex-col md:flex-row items-center justify-between gap-6">
-                    {/* Left section: Name and Star */}
+                <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+                    {/* Left section: Name */}
                     <div className="flex flex-col items-center md:items-start text-center md:text-left">
                         <div className="flex items-center mb-2">
-                            <h2 className="text-3xl md:text-4xl font-handwriting leading-[30px]">Dr. Boahemaa Ntim</h2>
+                            <h2 className="text-3xl md:text-4xl font-handwriting leading-[30px]">
+                                Dr. Boahemaa Ntim
+                            </h2>
                         </div>
                     </div>
 
+                    {/* Middle section: Download App */}
+                    <div className="mt-4 md:mt-0">
+                        <a
+                            href="https://drive.google.com/file/d/16iSGXaaNmXP7IQhREOYXyq4KDmbz74Eo/view?usp=sharing"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-[#D95B24] text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-[#b74718] transition-colors"
+                        >
+                            Download App
+                        </a>
+                    </div>
+
                     {/* Right section: Social Icons */}
-                    <div className="flex gap-8 mt-2 md:mt-0 justify-center md:justify-end">
+                    <div className="flex gap-8 mt-4 md:mt-0 justify-center md:justify-end">
                         <a
                             href="https://www.instagram.com/bthustlegh"
                             target="_blank"
@@ -44,7 +58,7 @@ export default function Footer() {
                             ref={instagramRef}
                             aria-label="Instagram"
                         >
-                            <Instagram className="h-6 w-6 hover:text-vibrant-orange transition-colors hover:text-[#D95B24]" />
+                            <Instagram className="h-6 w-6 hover:text-[#D95B24] transition-colors" />
                         </a>
                         <a
                             href="https://x.com/bthustlegh"
@@ -53,7 +67,7 @@ export default function Footer() {
                             ref={twitterRef}
                             aria-label="Twitter"
                         >
-                            <Twitter className="h-6 w-6 hover:text-vibrant-orange transition-colors hover:text-[#D95B24]" />
+                            <Twitter className="h-6 w-6 hover:text-[#D95B24] transition-colors" />
                         </a>
                         <a
                             href="https://www.tiktok.com/@bthustlegh"
@@ -62,7 +76,7 @@ export default function Footer() {
                             ref={tiktokRef}
                             aria-label="TikTok"
                         >
-                            <FaTiktok className="h-6 w-6 hover:text-vibrant-orange transition-colors hover:text-[#D95B24]" />
+                            <FaTiktok className="h-6 w-6 hover:text-[#D95B24] transition-colors" />
                         </a>
                         <a
                             href="https://www.linkedin.com/company/beyond-the-hustle-gh/"
@@ -71,12 +85,12 @@ export default function Footer() {
                             ref={linkedinRef}
                             aria-label="LinkedIn"
                         >
-                            <Linkedin className="h-6 w-6 hover:text-vibrant-orange transition-colors hover:text-[#D95B24]" />
+                            <Linkedin className="h-6 w-6 hover:text-[#D95B24] transition-colors" />
                         </a>
                     </div>
                 </div>
 
-                {/* Scroll-to-top */}
+                {/* Scroll-to-top button */}
                 {showScrollToTop && (
                     <button
                         onClick={scrollToTop}
