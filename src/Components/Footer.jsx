@@ -40,7 +40,7 @@ export default function Footer() {
                     {/* Middle section: Download App */}
                     <div className="mt-4 md:mt-0">
                         <a
-                            href="https://drive.google.com/file/d/16iSGXaaNmXP7IQhREOYXyq4KDmbz74Eo/view?usp=sharing"
+                            href="https://drive.google.com/file/d/1-FU72B4gzrF_KYnOpoZdbYGVVrbW4H9e/view?usp=sharing"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-[#D95B24] text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-[#b74718] transition-colors"
