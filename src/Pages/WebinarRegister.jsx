@@ -1,6 +1,8 @@
 // WebinarRegister.jsx
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
+import { FaRegShareSquare } from "react-icons/fa";
+
 
 const WebinarRegister = () => {
     const [formData, setFormData] = useState({
@@ -17,9 +19,28 @@ const WebinarRegister = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // You can connect this to an API, Google Sheet, Firebase etc.
         console.log("Form Submitted:", formData);
         alert("Thank you for registering!");
+    };
+
+    // SHARE HANDLER
+    const handleShare = async () => {
+        const shareData = {
+            title: "Business Masterminds Webinar",
+            text: "Join this powerful free business webinar!",
+            url: window.location.href,
+        };
+
+        if (navigator.share) {
+            try {
+                await navigator.share(shareData);
+            } catch (err) {
+                console.log("Share cancelled", err);
+            }
+        } else {
+            navigator.clipboard.writeText(window.location.href);
+            alert("Link copied! Share it with your friends.");
+        }
     };
 
     return (
@@ -28,7 +49,8 @@ const WebinarRegister = () => {
 
                 {/* HEADER SECTION */}
                 <h1 className="text-2xl md:text-3xl font-bold text-center text-white">
-                    Discover the power of <span className="text-[#D95B24]">business masterminds!</span>
+                    Discover the power of{" "}
+                    <span className="text-[#D95B24]">business masterminds!</span>
                 </h1>
 
                 <p className="text-center text-sm mt-3 text-gray-300">
@@ -36,7 +58,7 @@ const WebinarRegister = () => {
                 </p>
 
                 <p className="text-center text-sm mt-2 text-[#D95B24] font-semibold">
-                    Zoom Link will be sent to your email few days to the webinar after registration.
+                    Zoom Link will be sent to your email a few days before the webinar.
                 </p>
 
                 {/* EVENT DETAILS */}
@@ -89,7 +111,7 @@ const WebinarRegister = () => {
                         />
                     </div>
 
-                    {/* Business Idea */}
+                    {/* Message */}
                     <div>
                         <label className="block mb-1 text-sm font-medium">
                             What do you hope to learn from this webinar?
@@ -110,6 +132,16 @@ const WebinarRegister = () => {
                         className="w-full bg-gradient-to-r from-[#FF9E9E] to-[#FFD5A5] text-black font-semibold py-3 rounded-md hover:opacity-90 transition"
                     >
                         Click to Register
+                    </button>
+
+                    {/* SHARE BUTTON */}
+                    <button
+                        type="button"
+                        onClick={handleShare}
+                        className="w-full bg-orange-500 text-white font-semibold py-3 rounded-md hover:bg-orange-600 transition mt-2 flex items-center justify-center gap-4"
+                    >
+                        Share with Friends
+                        <FaRegShareSquare size={20} className="inline-block ml-2" />
                     </button>
                 </form>
             </div>
