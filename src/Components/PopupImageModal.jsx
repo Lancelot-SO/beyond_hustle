@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react"
 import { X } from "lucide-react"
 import { useNavigate } from "react-router-dom"
-import promo from "../assets/hero/promo.jpg"
+import webinar from "../assets/webinar/webinar.jpg"
 
 const PopupImageModal = () => {
     const [isOpen, setIsOpen] = useState(false) // start hidden
@@ -40,14 +40,14 @@ const PopupImageModal = () => {
                 {/* Close Button */}
                 <button
                     onClick={() => setIsOpen(false)}
-                    className="absolute top-6 right-3 text-gray-600 hover:text-gray-900"
+                    className="absolute top-2 right-1 text-gray-600 hover:text-[#D95B24]"
                 >
                     <X className="w-6 h-6" />
                 </button>
 
                 {/* Image */}
                 <img
-                    src={promo}
+                    src={webinar}
                     alt="Promo"
                     className="rounded-lg mx-auto mb-4"
                 />
@@ -56,7 +56,7 @@ const PopupImageModal = () => {
                 <button
                     onClick={() => {
                         setIsOpen(false)
-                        navigate("/coaching")
+                        navigate("/webinar-register")
                     }}
                     className="bg-[#D95B24] hover:bg-[#A34115] text-white px-6 py-3 rounded-lg font-semibold transition"
                 >
