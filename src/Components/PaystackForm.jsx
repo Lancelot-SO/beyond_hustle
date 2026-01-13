@@ -198,7 +198,7 @@ export default function PaystackForm({
     };
 
     return (
-        <div className="min-h-screen grid md:grid-cols-2 bg-gray-100 mt-[70px]">
+        <div className="min-h-screen grid md:grid-cols-2 bg-gray-100 mt-[150px] md:mt-[100px]">
             <div className="hidden md:flex flex-col items-center justify-center bg-[#1C2237]">
                 <h2 className="text-3xl font-bold font-openSans mb-6 text-center text-[#D95B24]">
                     Make Payment for your workbook.

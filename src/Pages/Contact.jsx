@@ -40,7 +40,7 @@ const Contact = () => {
     return (
         <div>
             {/* Hero */}
-            <div className="mt-[80px] md:mt-[100px] lg:mt-[120px] relative">
+            <div className="mt-[150px] md:mt-[100px] lg:mt-[120px] relative">
                 <img
                     src={contactbg}
                     alt="Hero"
@@ -78,11 +78,18 @@ const Contact = () => {
                         <div className="w-24 h-1 bg-[#D95B24] mx-auto" />
                     </div>
                     <p className="text-muted-foreground text-[14px] md:text-[16px] font-openSans">
-                        General inquiries, media requests or partnership opportunities: <br />You can reach out to our team via email at{' '}
-                        <a href="Boahemaadankyi@yahoo.com" className="text-[#D95B24] italic hover:underline">
-                            Boahemaadankyi@yahoo.com
-                        </a> or use the contact form below.{' '}
+                        General inquiries, media requests or partnership opportunities:
+                        <br />
+                        You can reach out to our team via email at{" "}
+                        <a
+                            href="mailto:prince.nortey@blacksmithafrica.com"
+                            className="text-[#D95B24] italic hover:underline"
+                        >
+                            prince.nortey@blacksmithafrica.com
+                        </a>{" "}
+                        or use the contact form below.
                     </p>
+
 
                     <form ref={form} onSubmit={handleSubmit} className="mt-8 space-y-6 px-2">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

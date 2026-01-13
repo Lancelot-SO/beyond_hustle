@@ -40,7 +40,7 @@ export default function HomePage() {
     }
 
     return (
-        <div className="md:mt-[90px] mt-[110px] 4xl:px-32 bg-gray-50">
+        <div className="md:mt-[110px] mt-[160px] 4xl:px-32 bg-gray-50">
             {/* Header */}
             <motion.header className="border-b bg-white" {...fadeInDown}>
                 <div className="container mx-auto px-4 py-4">

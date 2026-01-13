@@ -8,24 +8,46 @@ import Shop from "./Shop";
 
 const Navbar = () => {
     const location = useLocation();
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [activeLink, setActiveLink] = useState(location.pathname);
     const [isShopOpen, setIsShopOpen] = useState(false);
+    const [isNavbarVisible, setIsNavbarVisible] = useState(true);
 
-    // Update activeLink when route changes
+    // Update active link on route change
     useEffect(() => {
         setActiveLink(location.pathname);
     }, [location.pathname]);
 
+    // Hide navbar while scrolling, show when scroll stops
+    useEffect(() => {
+        let scrollTimeout = null;
+
+        const handleScroll = () => {
+            setIsNavbarVisible(false);
+
+            if (scrollTimeout) clearTimeout(scrollTimeout);
+
+            scrollTimeout = setTimeout(() => {
+                setIsNavbarVisible(true);
+            }, 200);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            if (scrollTimeout) clearTimeout(scrollTimeout);
+        };
+    }, []);
+
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-    // mark clicked link active, and close mobile menu if open
     const handleLinkClick = (path) => {
         setActiveLink(path);
         if (isMenuOpen) setIsMenuOpen(false);
     };
 
-    // helper to build classes
     const linkClass = (path) =>
         `${activeLink === path
             ? "text-[#D95B24] border-b-2 border-[#D95B24]"
@@ -34,52 +56,56 @@ const Navbar = () => {
 
     return (
         <>
-            {/* Fixed Navbar */}
-            <header className="fixed top-0 left-0 w-full bg-white shadow-sm z-50">
-                {/* Tagline */}
-                <div className="container mx-auto px-4 lg:px-14 tablet:px-10 4xl:px-32 py-2">
+            {/* Navbar */}
+            <header
+                className={`fixed top-0 left-0 w-full bg-white shadow-sm z-50
+                transition-all duration-300 ease-in-out
+                ${isNavbarVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}`}
+            >
+                {/* Top Bar */}
+                <div className="container mx-auto px-4 lg:px-14 tablet:px-10 4xl:px-32 py-2 flex flex-col md:flex-row items-center justify-between">
+                    <div className="mt-4 md:mt-0 mb-2">
+                        <Link
+                            to="/mobile-app"
+                            className="bg-[#D95B24] text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-[#b74718] transition-colors"
+                        >
+                            Download App
+                        </Link>
+                    </div>
                     <div className="lg:text-right tablet:text-right text-center text-xs uppercase tracking-widest text-gray-600">
-                        Get your go beyond hustle. Build boldly. Lead internationally Book!
+                        Get your go beyond hustle. Build boldly. Lead internationally.
                     </div>
                 </div>
 
-                {/* Desktop nav + mobile toggle */}
+                {/* Main Nav */}
                 <div className="container mx-auto flex items-center justify-between px-4 lg:px-14 tablet:px-10 4xl:px-32 py-4">
                     {/* Logo */}
                     <Link to="/" className="font-handwriting text-xl md:text-2xl">
                         Dr. Boahemaa Ntim
                     </Link>
 
-                    {/* Desktop Navigation */}
+                    {/* Desktop Nav */}
                     <nav className="hidden lg:block tablet:block">
-                        <ul className="flex items-center space-x-8 lg:space-x-8 tablet:space-x-4">
-                            <li>
-                                <Link
-                                    to="/"
-                                    onClick={() => handleLinkClick("/")}
-                                    className={linkClass("/")}
-                                >
-                                    Home
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/about"
-                                    onClick={() => handleLinkClick("/about")}
-                                    className={linkClass("/about")}
-                                >
-                                    About
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/books"
-                                    onClick={() => handleLinkClick("/books")}
-                                    className={linkClass("/books")}
-                                >
-                                    Books
-                                </Link>
-                            </li>
+                        <ul className="flex items-center space-x-8 tablet:space-x-4">
+                            {[
+                                ["/", "Home"],
+                                ["/about", "About"],
+                                ["/books", "Books"],
+                                ["/podcast", "Podcast"],
+                                ["/webinars", "Webinars & Courses"],
+                                ["/gallery", "Gallery"],
+                            ].map(([path, label]) => (
+                                <li key={path}>
+                                    <Link
+                                        to={path}
+                                        onClick={() => handleLinkClick(path)}
+                                        className={linkClass(path)}
+                                    >
+                                        {label}
+                                    </Link>
+                                </li>
+                            ))}
+
                             <li>
                                 <Link
                                     to="/events"
@@ -92,38 +118,9 @@ const Navbar = () => {
                                     </div>
                                 </Link>
                             </li>
-                            <li>
-                                <Link
-                                    to="/podcast"
-                                    onClick={() => handleLinkClick("/podcast")}
-                                    className={linkClass("/podcast")}
-                                >
-                                    Podcast
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/webinars"
-                                    onClick={() => handleLinkClick("/webinars")}
-                                    className={linkClass("/webinars")}
-                                >
-                                    Webinars & Courses
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/gallery"
-                                    onClick={() => handleLinkClick("/gallery")}
-                                    className={linkClass("/gallery")}
-                                >
-                                    Gallery
-                                </Link>
-                            </li>
 
-                            {/* Shop Now + Contact Us */}
                             <li className="flex items-center gap-3">
                                 <button
-                                    type="button"
                                     onClick={() => setIsShopOpen(true)}
                                     className="border border-[#D95B24] text-[#D95B24] px-4 py-2 hover:bg-[#D95B24]/10 transition-colors"
                                 >
@@ -140,144 +137,95 @@ const Navbar = () => {
                         </ul>
                     </nav>
 
-                    {/* Mobile hamburger */}
+                    {/* Mobile Toggle */}
                     <button
                         onClick={toggleMenu}
-                        className="lg:hidden tablet:hidden p-2 text-gray-700 hover:text-gray-900 focus:outline-none"
-                        aria-label="Toggle menu"
+                        className="lg:hidden tablet:hidden p-2"
                     >
                         {isMenuOpen ? <HiX className="w-6 h-6" /> : <HiMenu className="w-6 h-6" />}
                     </button>
                 </div>
             </header>
 
-            {/* Mobile overlay */}
+            {/* Mobile Overlay */}
             {isMenuOpen && (
                 <div
-                    className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden tablet:hidden"
+                    className="fixed inset-0 bg-black/50 z-40"
                     onClick={toggleMenu}
                 />
             )}
 
-            {/* Mobile sidebar */}
+            {/* Mobile Menu */}
             <div
-                className={`fixed top-0 left-0 h-full w-[60%] bg-white/80 backdrop-blur-md border-r border-white/20 shadow-xl transform transition-transform duration-300 ease-in-out z-50 lg:hidden tablet:hidden ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
-                    }`}
+                className={`fixed top-0 left-0 h-full w-[60%] bg-white/80 backdrop-blur-md
+                border-r border-white/20 shadow-xl z-50
+                transition-transform duration-300
+                ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
             >
                 <div className="p-6">
-                    <Link to="/" className="font-handwriting text-xl md:text-2xl mb-8 block">
+                    <Link to="/" className="font-handwriting text-xl mb-8 block">
                         Dr. Boahemaa Ntim
                     </Link>
-                    <nav>
-                        <ul className="space-y-4">
-                            <li>
-                                <Link
-                                    to="/"
-                                    onClick={() => handleLinkClick("/")}
-                                    className={`block text-lg ${activeLink === "/"
-                                        ? "text-[#D95B24] border-b-2 border-[#D95B24]"
-                                        : "text-gray-800 hover:text-[#D95B24] border-b-2 border-transparent hover:border-[#D95B24]"
-                                        } py-2 px-2 rounded-lg transition-colors`}
-                                >
-                                    Home
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/about"
-                                    onClick={() => handleLinkClick("/about")}
-                                    className={`block text-lg ${activeLink === "/about"
-                                        ? "text-[#D95B24] border-b-2 border-[#D95B24]"
-                                        : "text-gray-800 hover:text-[#D95B24] border-b-2 border-transparent hover:border-[#D95B24]"
-                                        } py-2 px-2 rounded-lg transition-colors`}
-                                >
-                                    About
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/books"
-                                    onClick={() => handleLinkClick("/books")}
-                                    className={`block text-lg ${activeLink === "/books"
-                                        ? "text-[#D95B24] border-b-2 border-[#D95B24]"
-                                        : "text-gray-800 hover:text-[#D95B24] border-b-2 border-transparent hover:border-[#D95B24]"
-                                        } py-2 px-2 rounded-lg transition-colors`}
-                                >
-                                    Books
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/events"
-                                    onClick={() => handleLinkClick("/events")}
-                                    className={`flex items-center text-lg ${activeLink === "/events"
-                                        ? "text-[#D95B24] border-b-2 border-[#D95B24]"
-                                        : "text-gray-800 hover:text-[#D95B24] border-b-2 border-transparent hover:border-[#D95B24]"
-                                        } py-2 px-2 rounded-lg transition-colors`}
-                                >
-                                    <BsSoundwave className="w-5 h-5 mr-2" />
-                                    Speaking & Events
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/podcast"
-                                    onClick={() => handleLinkClick("/podcast")}
-                                    className={`block text-lg ${activeLink === "/podcast"
-                                        ? "text-[#D95B24] border-b-2 border-[#D95B24]"
-                                        : "text-gray-800 hover:text-[#D95B24] border-b-2 border-transparent hover:border-[#D95B24]"
-                                        } py-2 px-2 rounded-lg transition-colors`}
-                                >
-                                    Podcast
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/webinars"
-                                    onClick={() => handleLinkClick("/webinars")}
-                                    className={`block text-lg ${activeLink === "/webinars"
-                                        ? "text-[#D95B24] border-b-2 border-[#D95B24]"
-                                        : "text-gray-800 hover:text-[#D95B24] border-b-2 border-transparent hover:border-[#D95B24]"
-                                        } py-2 px-2 rounded-lg transition-colors`}
-                                >
-                                    Webinars & Courses
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/gallery"
-                                    onClick={() => handleLinkClick("/gallery")}
-                                    className={`block text-lg ${activeLink === "/gallery"
-                                        ? "text-[#D95B24] border-b-2 border-[#D95B24]"
-                                        : "text-gray-800 hover:text-[#D95B24] border-b-2 border-transparent hover:border-[#D95B24]"
-                                        } py-2 px-2 rounded-lg transition-colors`}
-                                >
-                                    Gallery
-                                </Link>
-                            </li>
 
-                            {/* Shop + Contact in mobile */}
-                            <li className="pt-2 flex flex-col w-full items-center gap-3">
-                                <button
-                                    onClick={() => {
-                                        setIsShopOpen(true);
-                                        if (isMenuOpen) setIsMenuOpen(false);
-                                    }}
-                                    className="border border-[#D95B24] text-[#D95B24] px-4 py-3 text-center hover:bg-[#D95B24]/10 transition-colors rounded-lg"
-                                >
-                                    Shop Now
-                                </button>
-
+                    <ul className="space-y-4">
+                        {[
+                            ["/", "Home"],
+                            ["/about", "About"],
+                            ["/books", "Books"],
+                            ["/podcast", "Podcast"],
+                            ["/webinars", "Webinars & Courses"],
+                            ["/gallery", "Gallery"],
+                        ].map(([path, label]) => (
+                            <li key={path}>
                                 <Link
-                                    to="/contact"
-                                    onClick={() => handleLinkClick("/contact")}
-                                    className="bg-[#D95B24]/90 text-white px-6 py-3 text-center hover:bg-[#D95B24] transition-colors rounded-lg shadow-lg"
+                                    to={path}
+                                    onClick={() => handleLinkClick(path)}
+                                    className={`block text-lg py-2 border-b-2
+                                    ${activeLink === path
+                                            ? "text-[#D95B24] border-[#D95B24]"
+                                            : "border-transparent hover:border-[#D95B24] hover:text-[#D95B24]"
+                                        }`}
                                 >
-                                    Contact Us
+                                    {label}
                                 </Link>
                             </li>
-                        </ul>
-                    </nav>
+                        ))}
+
+                        <li>
+                            <Link
+                                to="/events"
+                                onClick={() => handleLinkClick("/events")}
+                                className={`flex items-center text-lg py-2 border-b-2
+                                ${activeLink === "/events"
+                                        ? "text-[#D95B24] border-[#D95B24]"
+                                        : "border-transparent hover:border-[#D95B24] hover:text-[#D95B24]"
+                                    }`}
+                            >
+                                <BsSoundwave className="mr-2" />
+                                Speaking & Events
+                            </Link>
+                        </li>
+
+                        <li className="pt-4 flex flex-col gap-3">
+                            <button
+                                onClick={() => {
+                                    setIsShopOpen(true);
+                                    setIsMenuOpen(false);
+                                }}
+                                className="border border-[#D95B24] text-[#D95B24] py-3 rounded-lg"
+                            >
+                                Shop Now
+                            </button>
+
+                            <Link
+                                to="/contact"
+                                onClick={() => handleLinkClick("/contact")}
+                                className="bg-[#D95B24] text-white py-3 text-center rounded-lg"
+                            >
+                                Contact Us
+                            </Link>
+                        </li>
+                    </ul>
                 </div>
             </div>
 

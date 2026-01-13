@@ -264,7 +264,7 @@ export default function RegistrationModal({ open, onOpenChange }) {
                             type="submit"
                             className="flex-1 bg-[#D95B24] text-white rounded px-4 py-2 hover:bg-[#A34115]"
                         >
-                            Submit Registration
+                            Submit
                         </button>
                     </div>
                 </form>

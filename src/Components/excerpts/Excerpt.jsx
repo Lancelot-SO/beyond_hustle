@@ -24,7 +24,7 @@ const Excerpt = () => {
     }, [])
     return (
         <div>
-            <div className="mt-[100px] md:mt-[80px] lg:mt-[100px]">
+            <div className="mt-[150px] md:mt-[80px] lg:mt-[100px]">
                 <div className="relative">
                     {/* hero image shrinks height on smaller breakpoints */}
                     <img

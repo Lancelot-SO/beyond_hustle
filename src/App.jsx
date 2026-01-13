@@ -20,6 +20,7 @@ import { BlogDetails } from './Components/blog/BlogDetails'
 import PaystackForm from './Components/PaystackForm'
 import Coaching from './Pages/Coaching'
 import WebinarRegister from './Pages/WebinarRegister'
+import MobileApp from './Components/MobileApp'
 
 function App() {
 
@@ -44,6 +45,8 @@ function App() {
           <Route path="/paystack" element={<PaystackForm />} />
           <Route path='/coaching' element={<Coaching />} />
           <Route path='/webinar-register' element={<WebinarRegister />} />
+          <Route path='/mobile-app' element={<MobileApp />} />
+
         </Routes>
         <Footer />
       </BrowserRouter>

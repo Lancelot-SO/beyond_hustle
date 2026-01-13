@@ -556,7 +556,7 @@ export default function ExcerptsGrid() {
                                 )}
 
                                 {showForm && (
-                                    <div className="space-y-4">
+                                    <div className="space-y-4 max-h-[55vh] overflow-y-auto overscroll-contain pr-1">
                                         <div className="text-sm text-gray-700">
                                             Enter your details to purchase{" "}
                                             <span className="font-medium">{selected.title}</span>.
@@ -622,9 +622,9 @@ export default function ExcerptsGrid() {
                                                 setShowForm(false);
                                                 setShowChoice(true);
                                             }}
-                                            className="block text-center md:inline-block md:ml-3 text-sm text-gray-600 hover:text-gray-800"
+                                            className="block text-center md:inline-block md:ml-3 text-sm text-black hover:text-gray-800"
                                         >
-                                            Back
+                                            Go Back
                                         </button>
 
                                         <p className="text-[11px] text-gray-500">
