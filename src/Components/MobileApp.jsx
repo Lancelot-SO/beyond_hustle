@@ -124,6 +124,106 @@ const MobileApp = () => {
                     </div>
                 </section>
 
+                {/* App Enquiries Section */}
+                <section className="w-full px-6 py-20 bg-white">
+                    <div className="max-w-3xl mx-auto text-center">
+                        <h2 className="text-2xl md:text-4xl font-bold mb-4 text-[#D95B24]">
+                            App Enquiries & Support
+                        </h2>
+                        <p className="text-sm md:text-base text-muted-foreground mb-10">
+                            Have questions about the Beyond The Hustle mobile app?
+                            Fill out the form below and our support team will get back to you.
+                        </p>
+
+                        <form className="space-y-5 text-left">
+                            {/* Full Name */}
+                            <div>
+                                <label className="block text-sm mb-1 text-gray-700">
+                                    Full Name
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="e.g. Ama Mensah"
+                                    name="full_name"
+                                    className="w-full border rounded-lg px-4 py-3 outline-none
+                    focus:ring-2 focus:ring-[#D95B24]"
+                                />
+                            </div>
+
+                            {/* Email */}
+                            <div>
+                                <label className="block text-sm mb-1 text-gray-700">
+                                    Email Address
+                                </label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="you@example.com"
+                                    className="w-full border rounded-lg px-4 py-3 outline-none
+                    focus:ring-2 focus:ring-[#D95B24]"
+                                />
+                            </div>
+
+                            {/* Phone */}
+                            <div>
+                                <label className="block text-sm mb-1 text-gray-700">
+                                    Phone Number
+                                </label>
+                                <input
+                                    type="tel"
+                                    name="mobile"
+                                    placeholder="+233 54 180 4792"
+                                    className="w-full border rounded-lg px-4 py-3 outline-none
+                    focus:ring-2 focus:ring-[#D95B24]"
+                                />
+                            </div>
+
+                            {/* Enquiry Type */}
+                            <div>
+                                <label className="block text-sm mb-1 text-gray-700">
+                                    Enquiry Type
+                                </label>
+                                <select
+                                    className="w-full border rounded-lg px-4 py-3 outline-none
+                    focus:ring-2 focus:ring-[#D95B24]"
+                                    name="enquiryType"
+                                >
+                                    <option>General Enquiry</option>
+                                    <option>Technical Support</option>
+                                    <option>App Download Issues</option>
+                                    <option>Feedback & Suggestions</option>
+                                </select>
+                            </div>
+
+                            {/* Message */}
+                            <div>
+                                <label className="block text-sm mb-1 text-gray-700">
+                                    Message
+                                </label>
+                                <textarea
+                                    rows={4}
+                                    name="message"
+                                    placeholder="Tell us how we can help you..."
+                                    className="w-full border rounded-lg px-4 py-3 outline-none
+                    focus:ring-2 focus:ring-[#D95B24]"
+                                />
+                            </div>
+
+                            {/* Submit */}
+                            <div className="text-center pt-4">
+                                <button
+                                    type="submit"
+                                    className="px-8 py-3 bg-[#D95B24] text-white rounded-lg
+                    hover:opacity-90 transition font-medium shadow-md"
+                                >
+                                    Send Enquiry
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+
 
                 {/* Footer Note */}
                 <section className="w-full px-6 py-12 text-center">

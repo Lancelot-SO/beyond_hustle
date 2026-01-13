@@ -45,7 +45,7 @@ export default function Footer() {
                             rel="noopener noreferrer"
                             className="bg-[#D95B24] text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-[#b74718] transition-colors"
                         >
-                            Download App
+                            App Support
                         </a>
                     </div>
 

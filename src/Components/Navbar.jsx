@@ -58,7 +58,7 @@ const Navbar = () => {
         <>
             {/* Navbar */}
             <header
-                className={`fixed top-0 left-0 w-full bg-white shadow-sm z-50
+                className={`fixed top-0 left-0 w-full bg-white shadow-sm z-50 border-b border-gray-800
                 transition-all duration-300 ease-in-out
                 ${isNavbarVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}`}
             >
@@ -69,7 +69,7 @@ const Navbar = () => {
                             to="/mobile-app"
                             className="bg-[#D95B24] text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-[#b74718] transition-colors"
                         >
-                            Download App
+                            App Support
                         </Link>
                     </div>
                     <div className="lg:text-right tablet:text-right text-center text-xs uppercase tracking-widest text-gray-600">
