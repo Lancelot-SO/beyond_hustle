@@ -208,6 +208,23 @@ const MobileApp = () => {
                     focus:ring-2 focus:ring-[#D95B24]"
                                 />
                             </div>
+                            {/* Screenshots Attachment */}
+                            <div>
+                                <label className="block text-sm mb-1 text-gray-700">
+                                    Screenshots (optional)
+                                </label>
+                                <input
+                                    type="file"
+                                    name="screenshots"
+                                    accept="image/*"
+                                    multiple
+                                    className="w-full border rounded-lg px-4 py-3 bg-white
+        outline-none focus:ring-2 focus:ring-[#D95B24]"
+                                />
+                                <p className="text-xs text-muted-foreground mt-1">
+                                    Upload screenshots to help us better understand the issue.
+                                </p>
+                            </div>
 
                             {/* Submit */}
                             <div className="text-center pt-4">
