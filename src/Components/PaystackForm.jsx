@@ -18,7 +18,7 @@ const API_CONFIRM_URL = "https://api.drboahemaantim.com/api/paystack/workbook/co
 export default function PaystackForm({
     productId = "workbook-001",
     productTitle = "Dr. Boahemaa Ntim Workbook",
-    amountPesewas = 8500, // GHS * 100
+    amountPesewas = 7500, // GHS * 100
 }) {
     // Form state
     const [first_name, setFirstName] = useState("");
@@ -333,5 +333,5 @@ PaystackForm.propTypes = {
 PaystackForm.defaultProps = {
     productId: "workbook-001",
     productTitle: "Dr. Boahemaa Ntim Workbook",
-    amountPesewas: 8500,
+    amountPesewas: 7500,
 };
