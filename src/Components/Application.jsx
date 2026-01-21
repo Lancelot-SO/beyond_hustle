@@ -45,6 +45,7 @@ const Application = () => {
                         </label>
                         <input
                             type="text"
+                            name="full_name"
                             className="mt-1 w-full rounded-lg border-gray-300 py-2 px-2 border-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
                             placeholder="Enter your full name"
                             required
@@ -58,6 +59,7 @@ const Application = () => {
                         </label>
                         <input
                             type="number"
+                            name="age"
                             className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
                             placeholder="Your age"
                             required
@@ -71,6 +73,7 @@ const Application = () => {
                         </label>
                         <input
                             type="email"
+                            name="email"
                             className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
                             placeholder="example@email.com"
                             required
@@ -84,6 +87,7 @@ const Application = () => {
                         </label>
                         <input
                             type="tel"
+                            name="phone"
                             className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
                             placeholder="+233..."
                             required
@@ -97,6 +101,7 @@ const Application = () => {
                         </label>
                         <input
                             type="file"
+                            name="national_id"
                             className="mt-1 w-full text-sm text-gray-600
                             file:mr-4 file:py-2 file:px-4
                             file:rounded-lg file:border-0
@@ -113,6 +118,7 @@ const Application = () => {
                         </label>
                         <input
                             type="text"
+                            name="institution"
                             placeholder="e.g., KNUST"
                             className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
                         />
@@ -125,6 +131,7 @@ const Application = () => {
                         </label>
                         <input
                             type="text"
+                            name="course"
                             placeholder="e.g., Computer Science"
                             className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
                         />
@@ -137,6 +144,7 @@ const Application = () => {
                         </label>
                         <input
                             type="text"
+                            name="company"
                             placeholder="e.g., Google, Microsoft"
                             className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
                         />
@@ -150,6 +158,7 @@ const Application = () => {
                         <select
                             className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
                             required
+                            name="industry"
                         >
                             <option value="">Choose</option>
                             <option>Technology</option>
@@ -186,6 +195,7 @@ const Application = () => {
                         </label>
                         <input
                             type="text"
+                            name="receipt"
                             className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
                             placeholder="Enter receipt number(s)"
                             required
