@@ -21,6 +21,7 @@ import PaystackForm from './Components/PaystackForm'
 import Coaching from './Pages/Coaching'
 import WebinarRegister from './Pages/WebinarRegister'
 import MobileApp from './Components/MobileApp'
+import Application from './Components/Application'
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
           <Route path='/coaching' element={<Coaching />} />
           <Route path='/webinar-register' element={<WebinarRegister />} />
           <Route path='/mobile-app' element={<MobileApp />} />
+          <Route path='/application' element={<Application />} />
 
         </Routes>
         <Footer />
