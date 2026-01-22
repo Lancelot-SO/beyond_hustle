@@ -1,9 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import application from "../assets/application.jpeg";
 
 const Application = () => {
+    const [teamSize, setTeamSize] = useState("");
+    const [receiptCount, setReceiptCount] = useState(1);
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 mt-[150px] md:mt-[80px] lg:mt-[100px]">
 
@@ -17,7 +20,7 @@ const Application = () => {
                 <img
                     src={application}
                     alt="Application visual"
-                    className="h-full w-full object-cover object-center"
+                    className="h-full w-full"
                 />
             </motion.div>
 
@@ -46,9 +49,9 @@ const Application = () => {
                         <input
                             type="text"
                             name="full_name"
-                            className="mt-1 w-full rounded-lg border-gray-300 py-2 px-2 border-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
-                            placeholder="Enter your full name"
                             required
+                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24]"
+                            placeholder="Enter your full name"
                         />
                     </div>
 
@@ -60,9 +63,9 @@ const Application = () => {
                         <input
                             type="number"
                             name="age"
-                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
-                            placeholder="Your age"
                             required
+                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24]"
+                            placeholder="Your age"
                         />
                     </div>
 
@@ -74,9 +77,9 @@ const Application = () => {
                         <input
                             type="email"
                             name="email"
-                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
-                            placeholder="example@email.com"
                             required
+                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24]"
+                            placeholder="example@email.com"
                         />
                     </div>
 
@@ -88,9 +91,9 @@ const Application = () => {
                         <input
                             type="tel"
                             name="phone"
-                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
-                            placeholder="+233..."
                             required
+                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24]"
+                            placeholder="+233..."
                         />
                     </div>
 
@@ -102,39 +105,23 @@ const Application = () => {
                         <input
                             type="file"
                             name="national_id"
+                            required
                             className="mt-1 w-full text-sm text-gray-600
                             file:mr-4 file:py-2 file:px-4
                             file:rounded-lg file:border-0
                             file:bg-orange-50 file:text-[#D95B24]
                             hover:file:bg-orange-100"
-                            required
                         />
                     </div>
 
-                    {/* Institution */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                            Institution of Study
-                        </label>
-                        <input
-                            type="text"
-                            name="institution"
-                            placeholder="e.g., KNUST"
-                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
-                        />
-                    </div>
-
-                    {/* Course */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                            Course of Study
-                        </label>
+                    {/* Course */} <div> <label className="block text-sm font-medium text-gray-700">
+                        Course of Study
+                    </label>
                         <input
                             type="text"
                             name="course"
                             placeholder="e.g., Computer Science"
-                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
-                        />
+                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]" />
                     </div>
 
                     {/* Organization */}
@@ -146,8 +133,7 @@ const Application = () => {
                             type="text"
                             name="company"
                             placeholder="e.g., Google, Microsoft"
-                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
-                        />
+                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]" />
                     </div>
 
                     {/* Industry */}
@@ -156,9 +142,9 @@ const Application = () => {
                             Business Industry <span className="text-red-500">*</span>
                         </label>
                         <select
-                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
-                            required
                             name="industry"
+                            required
+                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24]"
                         >
                             <option value="">Choose</option>
                             <option>Technology</option>
@@ -174,13 +160,21 @@ const Application = () => {
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                             Number of Team Members <span className="text-red-500">*</span>
                         </label>
+
                         <div className="grid grid-cols-2 gap-2 text-sm">
-                            {["1", "2", "3", "4", "5", "6+"].map((num) => (
+                            {["1", "2-5", "6+"].map((num) => (
                                 <label key={num} className="flex items-center gap-2">
                                     <input
                                         type="radio"
                                         name="team"
-                                        className="text-[#D95B24] focus:ring-[#D95B24]"
+                                        value={num}
+                                        onChange={() => {
+                                            setTeamSize(num);
+                                            if (num === "1") setReceiptCount(1);
+                                            if (num === "2-5") setReceiptCount(5);
+                                            if (num === "6+") setReceiptCount(6);
+                                        }}
+                                        className="text-[#D95B24]"
                                     />
                                     {num}
                                 </label>
@@ -188,19 +182,46 @@ const Application = () => {
                         </div>
                     </div>
 
-                    {/* Receipt */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                            Receipt Number <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                            type="text"
-                            name="receipt"
-                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]"
-                            placeholder="Enter receipt number(s)"
-                            required
-                        />
-                    </div>
+                    {/* Dynamic Receipt Fields */}
+                    {teamSize && (
+                        <div className="space-y-3">
+                            <label className="block text-sm font-medium text-gray-700">
+                                Receipt Code(s) <span className="text-red-500">*</span>
+                            </label>
+
+                            {Array.from({ length: receiptCount }).map((_, index) => (
+                                <div key={index} className="flex gap-2 items-center">
+                                    <input
+                                        type="text"
+                                        name={`receipt_code_${index + 1}`}
+                                        required
+                                        placeholder={`Receipt Code ${index + 1}`}
+                                        className="w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24]"
+                                    />
+                                    {teamSize === "6+" && receiptCount > 1 && (
+                                        <button
+                                            type="button"
+                                            onClick={() => setReceiptCount((prev) => prev - 1)}
+                                            className="text-sm text-red-500 font-medium hover:underline"
+                                        >
+                                            Remove
+                                        </button>
+                                    )}
+                                </div>
+                            ))}
+
+                            {teamSize === "6+" && (
+                                <button
+                                    type="button"
+                                    onClick={() => setReceiptCount((prev) => prev + 1)}
+                                    className="text-sm text-[#D95B24] font-medium hover:underline"
+                                >
+                                    + Add another field
+                                </button>
+                            )}
+                        </div>
+                    )}
+
 
                     {/* Submit */}
                     <button
