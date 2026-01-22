@@ -8,14 +8,14 @@ const PopupImageModal = () => {
     const [isOpen, setIsOpen] = useState(false) // start hidden
     const navigate = useNavigate()
 
-    // Show only once per session
-    useEffect(() => {
-        const hasSeenPopup = sessionStorage.getItem("hasSeenPopup")
-        if (!hasSeenPopup) {
-            setIsOpen(true)
-            sessionStorage.setItem("hasSeenPopup", "true")
-        }
-    }, [])
+    // Show only once per session. this pops up every time the page is refreshed so we don't need it now
+    // useEffect(() => {
+    //     const hasSeenPopup = sessionStorage.getItem("hasSeenPopup")
+    //     if (!hasSeenPopup) {
+    //         setIsOpen(true)
+    //         sessionStorage.setItem("hasSeenPopup", "true")
+    //     }
+    // }, [])
 
     // Close on ESC key
     useEffect(() => {

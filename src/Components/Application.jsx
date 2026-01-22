@@ -4,149 +4,160 @@ import { motion } from "framer-motion";
 import application from "../assets/application.jpeg";
 
 const Application = () => {
-    const [teamSize, setTeamSize] = useState("");
+    const [teamRange, setTeamRange] = useState("");
     const [receiptCount, setReceiptCount] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError("");
+        setSuccess("");
+
+        const formData = new FormData(e.target);
+
+        const receipts = [];
+        for (let i = 1; i <= receiptCount; i++) {
+            const value = formData.get(`receipt_codes_${i}`);
+            if (!value || value.length !== 11) {
+                setError("Each receipt code must be exactly 11 characters.");
+                setLoading(false);
+                return;
+            }
+            receipts.push(value);
+            formData.delete(`receipt_codes_${i}`);
+        }
+
+        const count = receipts.length;
+
+        if (teamRange === "single" && count !== 1) {
+            setError("You selected 1 team member. Only 1 receipt code is allowed.");
+            setLoading(false);
+            return;
+        }
+
+        if (teamRange === "range" && (count < 2 || count > 5)) {
+            setError("For 2–5 team members, receipt codes must be between 2 and 5.");
+            setLoading(false);
+            return;
+        }
+
+        if (teamRange === "large" && count < 6) {
+            setError("For 6+ team members, at least 6 receipt codes are required.");
+            setLoading(false);
+            return;
+        }
+
+        receipts.forEach((code) => formData.append("receipt_codes[]", code));
+        formData.set("team", count);
+
+        const file = formData.get("national_id");
+        if (file && file.size > 5 * 1024 * 1024) {
+            setError("National ID must not exceed 5MB.");
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                "https://api.drboahemaantim.com/api/business-pitch",
+                { method: "POST", body: formData }
+            );
+
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.message);
+
+            setSuccess("Application submitted successfully!");
+            e.target.reset();
+            setReceiptCount(1);
+            setTeamRange("");
+        } catch (err) {
+            setError("Submission failed. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const addReceiptField = () => setReceiptCount((p) => p + 1);
+    const removeReceiptField = () =>
+        receiptCount > 1 && setReceiptCount((p) => p - 1);
+
+    const label = "block text-sm font-semibold text-gray-700";
+    const input =
+        "w-full border-2 border-gray-200 rounded-lg p-3 focus:outline-none focus:border-[#D95B24]";
+    const required = <span className="text-red-500">*</span>;
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-[150px] md:mt-[80px] lg:mt-[100px]">
-
-            {/* Left Image Section */}
-            <motion.div
-                initial={{ opacity: 0, x: -60 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="hidden md:block h-full w-full"
-            >
-                <img
-                    src={application}
-                    alt="Application visual"
-                    className="h-full w-full"
-                />
+        <div className="grid grid-cols-1 md:grid-cols-2 mt-[150px]">
+            <motion.div className="hidden md:block">
+                <img src={application} alt="Application" className="h-full w-full" />
             </motion.div>
 
-            {/* Right Form Section */}
-            <motion.div
-                initial={{ opacity: 0, x: 60 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-                className="flex items-center justify-center bg-gray-50 px-6 py-12"
-            >
-                <motion.form
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-                    className="w-full max-w-xl bg-white rounded-2xl shadow-xl p-8 space-y-5"
+            <div className="flex justify-center bg-gray-50 px-6 py-12">
+                <form
+                    onSubmit={handleSubmit}
+                    className="w-full max-w-xl bg-white rounded-3xl shadow-2xl p-8 space-y-6"
                 >
-                    <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-                        Applicant Information
-                    </h2>
-
-                    {/* Full Name */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                            Full Name <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                            type="text"
-                            name="full_name"
-                            required
-                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24]"
-                            placeholder="Enter your full name"
-                        />
+                    <div className="space-y-1">
+                        <h2 className="text-2xl font-bold text-gray-800">
+                            Applicant Information
+                        </h2>
+                        <p className="text-sm text-gray-500">
+                            Fields marked with <span className="text-red-500">*</span> are required
+                        </p>
                     </div>
 
-                    {/* Age */}
+                    {error && <p className="text-red-600 text-sm">{error}</p>}
+                    {success && <p className="text-green-600 text-sm">{success}</p>}
+
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                            Age <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                            type="number"
-                            name="age"
-                            required
-                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24]"
-                            placeholder="Your age"
-                        />
+                        <label className={label}>Full Name {required}</label>
+                        <input name="full_name" required className={input} />
                     </div>
 
-                    {/* Email */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                            Email Address <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                            type="email"
-                            name="email"
-                            required
-                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24]"
-                            placeholder="example@email.com"
-                        />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className={label}>Age {required}</label>
+                            <input type="number" name="age" required className={input} />
+                        </div>
+                        <div>
+                            <label className={label}>Phone Number {required}</label>
+                            <input name="phone" required className={input} />
+                        </div>
                     </div>
 
-                    {/* Phone */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                            Phone Number <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                            type="tel"
-                            name="phone"
-                            required
-                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24]"
-                            placeholder="+233..."
-                        />
+                        <label className={label}>Email Address {required}</label>
+                        <input type="email" name="email" required className={input} />
                     </div>
 
-                    {/* Upload ID */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                            Upload National ID <span className="text-red-500">*</span>
-                        </label>
+                        <label className={label}>Upload National ID {required}</label>
                         <input
                             type="file"
                             name="national_id"
                             required
-                            className="mt-1 w-full text-sm text-gray-600
-                            file:mr-4 file:py-2 file:px-4
-                            file:rounded-lg file:border-0
-                            file:bg-orange-50 file:text-[#D95B24]
-                            hover:file:bg-orange-100"
+                            accept=".jpg,.png,.pdf"
+                            className="w-full text-sm"
                         />
                     </div>
 
-                    {/* Course */} <div> <label className="block text-sm font-medium text-gray-700">
-                        Course of Study
-                    </label>
-                        <input
-                            type="text"
-                            name="course"
-                            placeholder="e.g., Computer Science"
-                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]" />
+                    <div>
+                        <label className={label}>Course of Study</label>
+                        <input name="course" className={input} />
                     </div>
 
-                    {/* Organization */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                            Organization / Company
-                        </label>
-                        <input
-                            type="text"
-                            name="company"
-                            placeholder="e.g., Google, Microsoft"
-                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24] focus:ring-[#D95B24]" />
+                        <label className={label}>Organization / Company</label>
+                        <input name="company" className={input} />
                     </div>
 
-                    {/* Industry */}
                     <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                            Business Industry <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                            name="industry"
-                            required
-                            className="mt-1 w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24]"
-                        >
-                            <option value="">Choose</option>
+                        <label className={label}>Business Industry {required}</label>
+                        <select name="industry" required className={input}>
+                            <option value="">Select</option>
                             <option>Technology</option>
                             <option>Finance</option>
                             <option>Creative</option>
@@ -155,54 +166,46 @@ const Application = () => {
                         </select>
                     </div>
 
-                    {/* Team Size */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Number of Team Members <span className="text-red-500">*</span>
+                    <div className="space-y-2">
+                        <label className={label}>Number of Team Members {required}</label>
+
+                        <label className="flex items-center gap-2 text-sm">
+                            <input type="radio" name="team_option" required
+                                onChange={() => { setTeamRange("single"); setReceiptCount(1); }} />
+                            1 Member
                         </label>
 
-                        <div className="grid grid-cols-2 gap-2 text-sm">
-                            {["1", "2-5", "6+"].map((num) => (
-                                <label key={num} className="flex items-center gap-2">
-                                    <input
-                                        type="radio"
-                                        name="team"
-                                        value={num}
-                                        onChange={() => {
-                                            setTeamSize(num);
-                                            if (num === "1") setReceiptCount(1);
-                                            if (num === "2-5") setReceiptCount(5);
-                                            if (num === "6+") setReceiptCount(6);
-                                        }}
-                                        className="text-[#D95B24]"
-                                    />
-                                    {num}
-                                </label>
-                            ))}
-                        </div>
+                        <label className="flex items-center gap-2 text-sm">
+                            <input type="radio" name="team_option"
+                                onChange={() => { setTeamRange("range"); setReceiptCount(2); }} />
+                            2–5 Members
+                        </label>
+
+                        <label className="flex items-center gap-2 text-sm">
+                            <input type="radio" name="team_option"
+                                onChange={() => { setTeamRange("large"); setReceiptCount(6); }} />
+                            6+ Members
+                        </label>
                     </div>
 
-                    {/* Dynamic Receipt Fields */}
-                    {teamSize && (
+                    {teamRange && (
                         <div className="space-y-3">
-                            <label className="block text-sm font-medium text-gray-700">
-                                Receipt Code(s) <span className="text-red-500">*</span>
-                            </label>
+                            <label className={label}>Receipt Code(s) {required}</label>
 
-                            {Array.from({ length: receiptCount }).map((_, index) => (
-                                <div key={index} className="flex gap-2 items-center">
+                            {Array.from({ length: receiptCount }).map((_, i) => (
+                                <div key={i} className="flex gap-2">
                                     <input
-                                        type="text"
-                                        name={`receipt_code_${index + 1}`}
+                                        name={`receipt_codes_${i + 1}`}
+                                        maxLength={11}
                                         required
-                                        placeholder={`Receipt Code ${index + 1}`}
-                                        className="w-full rounded-lg border-gray-300 border-2 py-2 px-2 focus:border-[#D95B24]"
+                                        placeholder={`Receipt Code ${i + 1}`}
+                                        className={input}
                                     />
-                                    {teamSize === "6+" && receiptCount > 1 && (
+                                    {teamRange !== "single" && (
                                         <button
                                             type="button"
-                                            onClick={() => setReceiptCount((prev) => prev - 1)}
-                                            className="text-sm text-red-500 font-medium hover:underline"
+                                            onClick={removeReceiptField}
+                                            className="text-red-500 text-sm font-medium"
                                         >
                                             Remove
                                         </button>
@@ -210,28 +213,27 @@ const Application = () => {
                                 </div>
                             ))}
 
-                            {teamSize === "6+" && (
+                            {teamRange !== "single" && (
                                 <button
                                     type="button"
-                                    onClick={() => setReceiptCount((prev) => prev + 1)}
-                                    className="text-sm text-[#D95B24] font-medium hover:underline"
+                                    onClick={addReceiptField}
+                                    className="text-[#D95B24] text-sm font-semibold"
                                 >
-                                    + Add another field
+                                    + Add another receipt
                                 </button>
                             )}
                         </div>
                     )}
 
-
-                    {/* Submit */}
                     <button
                         type="submit"
-                        className="w-full mt-4 bg-[#D95B24] text-white py-3 rounded-xl font-semibold hover:bg-[#993911] transition"
+                        disabled={loading}
+                        className="w-full bg-[#D95B24] hover:bg-[#c44f1f] transition text-white py-3 rounded-xl font-semibold disabled:opacity-60"
                     >
-                        Next
+                        {loading ? "Submitting..." : "Submit Application"}
                     </button>
-                </motion.form>
-            </motion.div>
+                </form>
+            </div>
         </div>
     );
 };
