@@ -69,12 +69,12 @@ const Application = () => {
             const result = await response.json();
             if (!response.ok) throw new Error(result.message);
 
-            setSuccess("Application submitted successfully!");
+            setSuccess(result.message || "Application submitted successfully!");
             e.target.reset();
             setReceiptCount(1);
             setTeamRange("");
         } catch (err) {
-            setError("Submission failed. Please try again.");
+            setError(err.message || "Submission failed. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -142,6 +142,11 @@ const Application = () => {
                             accept=".jpg,.png,.pdf"
                             className="w-full text-sm"
                         />
+                    </div>
+
+                    <div>
+                        <label className={label}>Institution</label>
+                        <input name="institution" className={input} />
                     </div>
 
                     <div>
