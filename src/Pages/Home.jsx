@@ -7,7 +7,7 @@ import Resources from '../Components/herosection/Resources'
 import Featured from '../Components/herosection/Featured'
 import ImageGrid from '../Components/herosection/ImageGrid'
 import BottomSection from '../Components/herosection/BottomSection'
-import PopupImageModal from '../Components/PopupImageModal'
+// import PopupImageModal from '../Components/PopupImageModal'
 import ArtSale from '../Components/herosection/ArtSale'
 
 const Home = () => {
@@ -18,7 +18,7 @@ const Home = () => {
     return (
         <div>
             {/* Show popup modal */}
-            <PopupImageModal />
+            {/* <PopupImageModal /> */}
 
             <Hero />
             <MainSection />
