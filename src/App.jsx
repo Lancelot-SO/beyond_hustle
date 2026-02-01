@@ -22,11 +22,30 @@ import Coaching from './Pages/Coaching'
 import WebinarRegister from './Pages/WebinarRegister'
 import MobileApp from './Components/MobileApp'
 import Application from './Components/Application'
+import PromoPopup from './Components/PromoPopup'
+import { useState, useEffect } from 'react'
 
 function App() {
+  const [showPromo, setShowPromo] = useState(false);
+
+  useEffect(() => {
+    const hasSeenPromo = sessionStorage.getItem('hasSeenPromo');
+    if (!hasSeenPromo) {
+      const timer = setTimeout(() => {
+        setShowPromo(true);
+      }, 1500); // Small delay for better UX
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const handleClosePromo = () => {
+    setShowPromo(false);
+    sessionStorage.setItem('hasSeenPromo', 'true');
+  };
 
   return (
     <div>
+      <PromoPopup isOpen={showPromo} onClose={handleClosePromo} />
       <BrowserRouter>
         <Navbar />
         <Routes>
