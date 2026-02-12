@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-const Shop = ({ isOpen, onClose, workbookTo = "/paystack", artworkTo = "/excerpts" }) => {
+const Shop = ({ isOpen, onClose, workbookTo = "/paystack", mainBookTo = "/main-book", artworkTo = "/excerpts" }) => {
     // Close on ESC
     useEffect(() => {
         if (!isOpen) return;
@@ -48,6 +48,17 @@ const Shop = ({ isOpen, onClose, workbookTo = "/paystack", artworkTo = "/excerpt
                     {/* Body */}
                     <div className="px-6 py-6 space-y-5">
                         {/* Row 1 */}
+
+                        <div className="flex items-center gap-3">
+                            <Link
+                                to={mainBookTo}
+                                className="px-4 py-2 rounded-lg bg-[#D95B24] text-white hover:bg-[#c04e1f] transition-colors"
+                                onClick={onClose}
+                            >
+                                Buy
+                            </Link>
+                            <span className="text-gray-800 font-medium">Purchase BTH Book</span>
+                        </div>
                         <div className="flex items-center gap-3">
                             <Link
                                 to={workbookTo}

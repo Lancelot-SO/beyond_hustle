@@ -25,7 +25,7 @@ const itemVariants = {
 
 
 const topics = [
-    "Beyond the Hustle: Building Businesses That Endure",
+    "Beyond The Hustle: Building Businesses That Endure",
     "Coaching Entrepreneurs for Impact: The Art and Science of Guiding Start-Ups",
     "From Idea to Impact: Turning Concepts into Viable Businesses",
     "Reinvent, Don’t Retreat: Lessons in Resilience from Business Failure",
@@ -58,13 +58,13 @@ const EventsTop = () => {
                     >
                         <motion.p variants={itemVariants}>
 
-                            Dr. Boahemaa Ntim is an author, speaker, and entrepreneurship coach dedicated to equipping Africa’s next generation of leaders with the tools to build boldly and lead intentionally. She is the author of Beyond the Hustle, a practical roadmap that challenges entrepreneurs to cut through noise and focus on clarity, systems, and purpose-driven growth.
+                            Dr. Boahemaa Ntim is an author, speaker, and entrepreneurship coach dedicated to equipping Africa’s next generation of leaders with the tools to build boldly and lead intentionally. She is the author of Beyond The Hustle, a practical roadmap that challenges entrepreneurs to cut through noise and focus on clarity, systems, and purpose-driven growth.
 
                         </motion.p>
 
                         <motion.p variants={itemVariants} className="mt-4">
                             Through her speaking engagements, Dr. Boahemaa brings a rare blend of academic insight, entrepreneurial experience, and motivational storytelling. Her keynote themes cover entrepreneurship, leadership, innovation, women in business, and purpose-driven growth. She has spoken at universities, corporate organizations, and entrepreneurial forums, leaving audiences energized with practical strategies and the courage to act.
-                            Her mission is simple: to help entrepreneurs go beyond hustle culture and create businesses that truly last.
+                            Her mission is simple: to help entrepreneurs go beyond the hustle culture and create businesses that truly last.
                         </motion.p>
 
 

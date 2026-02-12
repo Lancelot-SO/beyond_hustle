@@ -73,7 +73,7 @@ const Navbar = () => {
                         </Link>
                     </div>
                     <div className="lg:text-right tablet:text-right text-center text-xs uppercase tracking-widest text-gray-600">
-                        Get your go beyond hustle. Build boldly. Lead internationally.
+                        Get your go beyond the hustle. Build boldly. Lead internationally.
                     </div>
                 </div>
 
