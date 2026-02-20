@@ -4,24 +4,38 @@ import { useAuth } from '../context/AuthContext';
 import { Loader2 } from 'lucide-react';
 import img1 from '../assets/hero/img1.png';
 
-const Login = () => {
+const Register = () => {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordConfirmation, setPasswordConfirmation] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const { login } = useAuth();
+    const { register } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
+
+        if (password !== passwordConfirmation) {
+            setError('Passwords do not match.');
+            return;
+        }
+
+        if (password.length < 8) {
+            setError('Password must be at least 8 characters.');
+            return;
+        }
+
         setIsLoading(true);
 
         try {
-            await login(email, password);
+            await register(firstName, lastName, email, password, passwordConfirmation);
             navigate('/dashboard', { replace: true });
         } catch (err) {
-            setError(err.message || 'Login failed. Please check your credentials.');
+            setError(err.message || 'Registration failed. Please try again.');
         } finally {
             setIsLoading(false);
         }
@@ -29,15 +43,15 @@ const Login = () => {
 
     return (
         <div className="flex min-h-screen bg-white">
-            {/* Left Side: Login Form */}
+            {/* Left Side: Register Form */}
             <div className="w-full lg:w-1/2 flex items-center justify-center p-8 sm:p-12 lg:p-16">
                 <div className="w-full max-w-md space-y-8">
                     <div className="text-center lg:text-left">
                         <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
-                            Welcome Back
+                            Create Account
                         </h2>
                         <p className="mt-2 text-sm text-gray-600">
-                            Please enter your details to sign in
+                            Fill in your details to get started
                         </p>
                     </div>
 
@@ -52,6 +66,38 @@ const Login = () => {
 
                     <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                         <div className="space-y-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
+                                        First Name
+                                    </label>
+                                    <input
+                                        id="firstName"
+                                        name="firstName"
+                                        type="text"
+                                        required
+                                        value={firstName}
+                                        onChange={(e) => setFirstName(e.target.value)}
+                                        className="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#D95B24] focus:border-transparent transition duration-200"
+                                        placeholder="John"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+                                        Last Name
+                                    </label>
+                                    <input
+                                        id="lastName"
+                                        name="lastName"
+                                        type="text"
+                                        required
+                                        value={lastName}
+                                        onChange={(e) => setLastName(e.target.value)}
+                                        className="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#D95B24] focus:border-transparent transition duration-200"
+                                        placeholder="Doe"
+                                    />
+                                </div>
+                            </div>
                             <div>
                                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                                     Email Address
@@ -76,7 +122,7 @@ const Login = () => {
                                     id="password"
                                     name="password"
                                     type="password"
-                                    autoComplete="current-password"
+                                    autoComplete="new-password"
                                     required
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
@@ -84,25 +130,21 @@ const Login = () => {
                                     placeholder="••••••••"
                                 />
                             </div>
-                        </div>
-
-                        <div className="flex items-center justify-between">
-                            <div className="flex items-center">
-                                <input
-                                    id="remember-me"
-                                    name="remember-me"
-                                    type="checkbox"
-                                    className="h-4 w-4 text-[#D95B24] focus:ring-[#D95B24] border-gray-300 rounded cursor-pointer"
-                                />
-                                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700 cursor-pointer">
-                                    Remember me
+                            <div>
+                                <label htmlFor="password_confirmation" className="block text-sm font-medium text-gray-700">
+                                    Confirm Password
                                 </label>
-                            </div>
-
-                            <div className="text-sm">
-                                <a href="#" className="font-medium text-[#D95B24] hover:text-[#b84d1f] transition-colors">
-                                    Forgot password?
-                                </a>
+                                <input
+                                    id="password_confirmation"
+                                    name="password_confirmation"
+                                    type="password"
+                                    autoComplete="new-password"
+                                    required
+                                    value={passwordConfirmation}
+                                    onChange={(e) => setPasswordConfirmation(e.target.value)}
+                                    className="mt-1 block w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#D95B24] focus:border-transparent transition duration-200"
+                                    placeholder="••••••••"
+                                />
                             </div>
                         </div>
 
@@ -115,21 +157,21 @@ const Login = () => {
                                 {isLoading ? (
                                     <>
                                         <Loader2 className="w-5 h-5 animate-spin" />
-                                        Signing in...
+                                        Creating account...
                                     </>
                                 ) : (
-                                    'Sign in'
+                                    'Create Account'
                                 )}
                             </button>
                         </div>
                     </form>
 
-                    {/* <p className="mt-8 text-center text-sm text-gray-600">
-                        Don't have an account?{' '}
-                        <Link to="/register" className="font-semibold text-[#D95B24] hover:text-[#b84d1f] transition-colors">
-                            Create an account
+                    <p className="mt-8 text-center text-sm text-gray-600">
+                        Already have an account?{' '}
+                        <Link to="/login" className="font-semibold text-[#D95B24] hover:text-[#b84d1f] transition-colors">
+                            Sign in
                         </Link>
-                    </p> */}
+                    </p>
                 </div>
             </div>
 
@@ -155,4 +197,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;

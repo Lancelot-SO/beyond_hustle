@@ -2,10 +2,17 @@ import React from 'react';
 import { Search, Bell, Menu } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { useSearch } from '../../context/SearchContext';
 
 const TopBar = ({ toggleSidebar }) => {
+    const { user } = useAuth();
+    const { searchQuery, setSearchQuery } = useSearch();
+    const displayName = user?.name || 'Admin';
+    const initial = displayName.charAt(0).toUpperCase();
+
     return (
-        <header className="bg-white shadow-sm h-16 flex items-center justify-between px-6 sticky top-0 z-10">
+        <header className="bg-white shadow-sm h-14 sm:h-16 flex items-center justify-between px-3 sm:px-4 md:px-6 sticky top-0 z-10">
             <div className="flex items-center gap-4">
                 <button
                     onClick={toggleSidebar}
@@ -20,6 +27,8 @@ const TopBar = ({ toggleSidebar }) => {
                     <input
                         type="text"
                         placeholder="Search..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                         className="pl-10 pr-4 py-2 border rounded-full bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#D95B24] focus:bg-white transition-all w-64"
                     />
                 </div>
@@ -37,11 +46,11 @@ const TopBar = ({ toggleSidebar }) => {
                         className="flex items-center gap-3 p-1 px-2 rounded-lg hover:bg-gray-50 transition-colors group"
                     >
                         <div className="text-right hidden sm:block">
-                            <p className="text-sm font-semibold text-gray-800 group-hover:text-[#D95B24] transition-colors">Dr. Boahemaa</p>
+                            <p className="text-sm font-semibold text-gray-800 group-hover:text-[#D95B24] transition-colors">{displayName}</p>
                             <p className="text-xs text-gray-500">Admin</p>
                         </div>
                         <div className="h-10 w-10 rounded-full bg-[#D95B24] flex items-center justify-center text-white font-bold text-lg shadow-sm group-hover:shadow-md transition-all">
-                            D
+                            {initial}
                         </div>
                     </Link>
                 </div>

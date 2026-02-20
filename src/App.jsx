@@ -26,7 +26,12 @@ import Application from './Components/Application'
 import PromoPopup from './Components/PromoPopup'
 import AnalyticsTracker from './Components/AnalyticsTracker'
 import Login from './Pages/Login'
+// import Register from './Pages/Register'
+import { AuthProvider } from './context/AuthContext'
+import ProtectedRoute from './Components/ProtectedRoute'
 import { useState, useEffect } from 'react'
+
+import { SearchProvider } from './context/SearchContext';
 
 function App() {
   const [showPromo, setShowPromo] = useState(false);
@@ -49,34 +54,39 @@ function App() {
   return (
     <div>
       <PromoPopup isOpen={showPromo} onClose={handleClosePromo} />
-      <BrowserRouter>
-        <AnalyticsTracker />
-        <Routes>
-          <Route element={<MainLayout />}>
-            <Route path='/' element={<Home />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/books' element={<Book />} />
-            <Route path='/gallery' element={<Gallery />} />
-            <Route path='/events' element={<Events />} />
-            <Route path='/webinars' element={<Webinar />} />
-            <Route path='/podcast' element={<Podcast />} />
-            <Route path='/launch' element={<BookLunch />} />
-            <Route path='/podcastphotos' element={<PodcastHeader />} />
-            <Route path='/excerpts' element={<Excerpt />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:id" element={<BlogDetails />} />
-            <Route path="/paystack" element={<PaystackForm />} />
-            <Route path="/main-book" element={<MainBook />} />
-            <Route path='/coaching' element={<Coaching />} />
-            <Route path='/webinar-register' element={<WebinarRegister />} />
-            <Route path='/mobile-app' element={<MobileApp />} />
-            <Route path='/application' element={<Application />} />
-          </Route>
-          <Route path='/login' element={<Login />} />
-          <Route path='/dashboard/*' element={<Dashboard />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <SearchProvider>
+          <BrowserRouter>
+            <AnalyticsTracker />
+            <Routes>
+              <Route element={<MainLayout />}>
+                <Route path='/' element={<Home />} />
+                <Route path='/about' element={<About />} />
+                <Route path='/contact' element={<Contact />} />
+                <Route path='/books' element={<Book />} />
+                <Route path='/gallery' element={<Gallery />} />
+                <Route path='/events' element={<Events />} />
+                <Route path='/webinars' element={<Webinar />} />
+                <Route path='/podcast' element={<Podcast />} />
+                <Route path='/launch' element={<BookLunch />} />
+                <Route path='/podcastphotos' element={<PodcastHeader />} />
+                <Route path='/excerpts' element={<Excerpt />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/blog/:id" element={<BlogDetails />} />
+                <Route path="/paystack" element={<PaystackForm />} />
+                <Route path="/main-book" element={<MainBook />} />
+                <Route path='/coaching' element={<Coaching />} />
+                <Route path='/webinar-register' element={<WebinarRegister />} />
+                <Route path='/mobile-app' element={<MobileApp />} />
+                <Route path='/application' element={<Application />} />
+              </Route>
+              <Route path='/login' element={<Login />} />
+              {/*<Route path='/register' element={<Register />} />*/}
+              <Route path='/dashboard/*' element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            </Routes>
+          </BrowserRouter>
+        </SearchProvider>
+      </AuthProvider>
     </div>
   )
 }

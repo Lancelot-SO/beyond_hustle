@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import {
     LayoutDashboard,
     BookOpen,
@@ -12,10 +13,18 @@ import {
 import PropTypes from 'prop-types';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
+    const { logout } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate('/login', { replace: true });
+    };
+
     const links = [
         { title: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
-        { title: 'Workbook', path: '/dashboard/workbook', icon: BookOpen },
-        { title: 'Main Book', path: '/dashboard/main-book', icon: Book },
+        // { title: 'Workbook', path: '/dashboard/workbook', icon: BookOpen },
+        // { title: 'Main Book', path: '/dashboard/main-book', icon: Book },
         { title: 'Business Pitches', path: '/dashboard/business-pitches', icon: Users },
         { title: 'Analytics', path: '/dashboard/analytics', icon: BarChart2 },
     ];
@@ -57,7 +66,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
                     {/* Logout Button */}
                     <div className="p-4 border-t border-gray-700">
-                        <button className="flex items-center w-full p-3 text-gray-300 rounded-lg hover:bg-red-500/20 hover:text-red-500 transition-colors duration-200">
+                        <button onClick={handleLogout} className="flex items-center w-full p-3 text-gray-300 rounded-lg hover:bg-red-500/20 hover:text-red-500 transition-colors duration-200">
                             <LogOut className="w-5 h-5 mr-3" />
                             <span className="font-medium">Logout</span>
                         </button>

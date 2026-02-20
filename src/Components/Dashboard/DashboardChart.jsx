@@ -10,22 +10,31 @@ import {
 } from 'recharts';
 import PropTypes from 'prop-types';
 
-const DashboardChart = ({ title, data }) => {
+const DashboardChart = ({ title, data, period, onPeriodChange, loading }) => {
     return (
-        <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 h-full">
-            <div className="mb-6 flex justify-between items-center">
+        <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-4 sm:p-6 h-full">
+            <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                 <div>
                     <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
                     <p className="text-sm text-gray-500">Overview of performance</p>
                 </div>
-                <select className="bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-[#D95B24] focus:border-[#D95B24] block p-2">
-                    <option>Last 7 days</option>
-                    <option>Last 30 days</option>
-                    <option>This Year</option>
+                <select
+                    value={period}
+                    onChange={(e) => onPeriodChange && onPeriodChange(e.target.value)}
+                    className="bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-[#D95B24] focus:border-[#D95B24] block p-2"
+                >
+                    <option value="week">Last 7 days</option>
+                    <option value="month">Last 30 days</option>
+                    <option value="year">This Year</option>
                 </select>
             </div>
 
-            <div className="h-[300px] w-full">
+            <div className="h-[220px] sm:h-[300px] w-full relative">
+                {loading && (
+                    <div className="absolute inset-0 bg-white/50 backdrop-blur-[1px] flex items-center justify-center z-10 rounded-xl">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#D95B24]"></div>
+                    </div>
+                )}
                 <ResponsiveContainer width="100%" height="100%">
                     <AreaChart
                         data={data}
@@ -84,6 +93,9 @@ const DashboardChart = ({ title, data }) => {
 DashboardChart.propTypes = {
     title: PropTypes.string.isRequired,
     data: PropTypes.arrayOf(PropTypes.object).isRequired,
+    period: PropTypes.string,
+    onPeriodChange: PropTypes.func,
+    loading: PropTypes.bool,
 };
 
 export default DashboardChart;

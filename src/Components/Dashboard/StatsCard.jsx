@@ -4,7 +4,7 @@ import { Info } from 'lucide-react';
 
 const StatsCard = ({ title, value, icon: Icon, color, description }) => {
     return (
-        <div className={`relative overflow-visible rounded-2xl p-6 bg-white border border-gray-100 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group`}>
+        <div className={`relative overflow-visible rounded-2xl p-4 sm:p-6 bg-white border border-gray-100 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 group`}>
             {/* Background Circle Decoration - Subtle */}
             <div className={`absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-5 group-hover:opacity-10 transition-opacity duration-300 ${color}`}></div>
 
@@ -30,7 +30,7 @@ const StatsCard = ({ title, value, icon: Icon, color, description }) => {
                     </div>
                 </div>
 
-                <h3 className="text-3xl font-bold text-gray-900 tracking-tight">{value}</h3>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 tracking-tight">{value}</h3>
             </div>
 
             {/* Decorative gradient line at the bottom */}
