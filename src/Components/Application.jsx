@@ -103,7 +103,14 @@ const Application = () => {
                             </div>
                             <div>
                                 <label className={label}>Phone Number {required}</label>
-                                <input name="phone" required className={input} />
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    required
+                                    pattern="[0-9]{10}"
+                                    title="Please enter a 10-digit phone number (e.g., 0244123456)"
+                                    className={input}
+                                />
                             </div>
                         </div>
 
@@ -174,6 +181,8 @@ const Application = () => {
                                         name={`receipt_codes_${i + 1}`}
                                         maxLength={11}
                                         required
+                                        pattern="BTHBP[0-9]{6}"
+                                        title="Please enter a valid receipt code starting with BTHBP followed by 6 digits (e.g., BTHBP123456)"
                                         placeholder={`Receipt Code ${i + 1}`}
                                         className={input}
                                     />
@@ -183,7 +192,17 @@ const Application = () => {
 
                         <button
                             type="button"
-                            onClick={() => setStep(2)}
+                            onClick={(e) => {
+                                const step1Inputs = e.currentTarget.closest('.space-y-6').querySelectorAll('input, select');
+                                let isValid = true;
+                                step1Inputs.forEach(input => {
+                                    if (!input.checkValidity()) {
+                                        input.reportValidity();
+                                        isValid = false;
+                                    }
+                                });
+                                if (isValid) setStep(2);
+                            }}
                             className="w-full bg-[#D95B24] text-white py-3 rounded-xl font-semibold"
                         >
                             Next
@@ -193,7 +212,7 @@ const Application = () => {
                     <div className={step === 2 ? "space-y-6" : "hidden"}>
                         <div>
                             <label className={label}>In 150 words or less, describe your business idea {required}</label>
-                            <textarea name="business_description" required className={textarea} />
+                            <textarea name="business_description" className={textarea} />
                         </div>
 
                         <div>

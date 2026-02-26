@@ -120,6 +120,8 @@ const Navbar = () => {
                             </li>
 
                             <li className="flex items-center gap-3">
+                                {/* Desktop Nav Actions */}
+
                                 <button
                                     onClick={() => setIsShopOpen(true)}
                                     className="border border-[#D95B24] text-[#D95B24] px-4 py-2 hover:bg-[#D95B24]/10 transition-colors"
@@ -205,7 +207,6 @@ const Navbar = () => {
                                 Speaking & Events
                             </Link>
                         </li>
-
                         <li className="pt-4 flex flex-col gap-3">
                             <button
                                 onClick={() => {
