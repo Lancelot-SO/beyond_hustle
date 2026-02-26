@@ -10,9 +10,9 @@ import {
 } from 'recharts';
 import PropTypes from 'prop-types';
 
-const DashboardChart = ({ title, data, period, onPeriodChange, loading }) => {
+const DashboardChart = ({ title, data, period, onPeriodChange, loading, statistics }) => {
     return (
-        <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-4 sm:p-6 h-full">
+        <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-4 sm:p-6 h-full flex flex-col">
             <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                 <div>
                     <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
@@ -29,7 +29,7 @@ const DashboardChart = ({ title, data, period, onPeriodChange, loading }) => {
                 </select>
             </div>
 
-            <div className="h-[220px] sm:h-[300px] w-full relative">
+            <div className="h-[220px] sm:h-[300px] w-full relative flex-shrink-0">
                 {loading && (
                     <div className="absolute inset-0 bg-white/50 backdrop-blur-[1px] flex items-center justify-center z-10 rounded-xl">
                         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#D95B24]"></div>
@@ -86,6 +86,56 @@ const DashboardChart = ({ title, data, period, onPeriodChange, loading }) => {
                     </AreaChart>
                 </ResponsiveContainer>
             </div>
+
+            {/* Traffic Statistics Section */}
+            {statistics && !loading && (
+                <div className="mt-6 pt-6 border-t border-gray-100 flex-1">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        {/* Total Visits */}
+                        <div className="bg-gray-50 rounded-lg p-4 border border-gray-100">
+                            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Total Visits</p>
+                            <p className="text-2xl font-bold text-gray-900">{statistics.totalVisits.toLocaleString()}</p>
+                            <p className="text-xs text-gray-400 mt-1">Selected period</p>
+                        </div>
+
+                        {/* Average Visits Per Day */}
+                        <div className="bg-gray-50 rounded-lg p-4 border border-gray-100">
+                            <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Avg. Per Day</p>
+                            <p className="text-2xl font-bold text-gray-900">{parseFloat(statistics.avgVisitsPerDay).toLocaleString()}</p>
+                            <p className="text-xs text-gray-400 mt-1">Daily average</p>
+                        </div>
+
+                        {/* Highest Traffic Day */}
+                        <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                            <p className="text-xs font-semibold text-green-700 uppercase tracking-wide mb-1">Peak Day</p>
+                            <p className="text-xl font-bold text-green-900">{statistics.highestDay.value.toLocaleString()}</p>
+                            <p className="text-xs text-green-600 mt-1">{statistics.highestDay.name}</p>
+                        </div>
+
+                        {/* Lowest Traffic Day */}
+                        <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                            <p className="text-xs font-semibold text-orange-700 uppercase tracking-wide mb-1">Lowest Day</p>
+                            <p className="text-xl font-bold text-orange-900">{statistics.lowestDay.value.toLocaleString()}</p>
+                            <p className="text-xs text-orange-600 mt-1">{statistics.lowestDay.name}</p>
+                        </div>
+
+                        {/* Percentage Change */}
+                        {statistics.percentageChange && (
+                            <div className={`rounded-lg p-4 border ${statistics.percentageChange.isIncrease ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'} col-span-2 md:col-span-1`}>
+                                <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: statistics.percentageChange.isIncrease ? '#065f46' : '#991b1b' }}>
+                                    {statistics.percentageChange.isIncrease ? 'Increase' : 'Decrease'}
+                                </p>
+                                <p className={`text-2xl font-bold ${statistics.percentageChange.isIncrease ? 'text-green-900' : 'text-red-900'}`}>
+                                    {statistics.percentageChange.value}%
+                                </p>
+                                <p className={`text-xs mt-1 ${statistics.percentageChange.isIncrease ? 'text-green-600' : 'text-red-600'}`}>
+                                    vs previous period
+                                </p>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
@@ -96,6 +146,22 @@ DashboardChart.propTypes = {
     period: PropTypes.string,
     onPeriodChange: PropTypes.func,
     loading: PropTypes.bool,
+    statistics: PropTypes.shape({
+        totalVisits: PropTypes.number,
+        avgVisitsPerDay: PropTypes.string,
+        highestDay: PropTypes.shape({
+            name: PropTypes.string,
+            value: PropTypes.number
+        }),
+        lowestDay: PropTypes.shape({
+            name: PropTypes.string,
+            value: PropTypes.number
+        }),
+        percentageChange: PropTypes.shape({
+            value: PropTypes.string,
+            isIncrease: PropTypes.bool
+        })
+    })
 };
 
 export default DashboardChart;
