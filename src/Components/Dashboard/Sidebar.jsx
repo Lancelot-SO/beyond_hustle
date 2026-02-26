@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import {
     LayoutDashboard,
@@ -8,17 +8,35 @@ import {
     BarChart2,
     LogOut,
     Menu,
-    Users
+    Users,
+    UserCircle
 } from 'lucide-react';
 import PropTypes from 'prop-types';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
     const { logout } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleLogout = () => {
         logout();
         navigate('/login', { replace: true });
+    };
+
+    // Custom function to determine if a link is active
+    const isLinkActive = (linkPath) => {
+        const currentPath = location.pathname;
+        
+        // Exact match for base dashboard route
+        // Only active when pathname is exactly /dashboard or /dashboard/
+        if (linkPath === '/dashboard') {
+            return currentPath === '/dashboard' || currentPath === '/dashboard/';
+        }
+        
+        // For nested routes, check if current path matches exactly or is a sub-path
+        // Example: /dashboard/analytics should match /dashboard/analytics exactly
+        // or /dashboard/analytics/something (for future nested routes)
+        return currentPath === linkPath || currentPath.startsWith(linkPath + '/');
     };
 
     const links = [
@@ -27,6 +45,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         // { title: 'Main Book', path: '/dashboard/main-book', icon: Book },
         { title: 'Business Pitches', path: '/dashboard/business-pitches', icon: Users },
         { title: 'Analytics', path: '/dashboard/analytics', icon: BarChart2 },
+        { title: 'Profile', path: '/dashboard/profile', icon: UserCircle },
     ];
 
     return (
@@ -47,21 +66,23 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
                     {/* Navigation Links */}
                     <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-                        {links.map((link) => (
-                            <NavLink
-                                key={link.title}
-                                to={link.path}
-                                className={({ isActive }) =>
-                                    `flex items-center p-3 rounded-lg transition-colors duration-200 ${isActive
-                                        ? 'bg-[#D95B24] text-white'
-                                        : 'text-gray-300 hover:bg-white/10 hover:text-white'
-                                    }`
-                                }
-                            >
-                                <link.icon className="w-5 h-5 mr-3" />
-                                <span className="font-medium">{link.title}</span>
-                            </NavLink>
-                        ))}
+                        {links.map((link) => {
+                            const isActive = isLinkActive(link.path);
+                            return (
+                                <NavLink
+                                    key={link.title}
+                                    to={link.path}
+                                    className={`flex items-center p-3 rounded-lg transition-colors duration-200 ${
+                                        isActive
+                                            ? 'bg-[#D95B24] text-white'
+                                            : 'text-gray-300 hover:bg-white/10 hover:text-white'
+                                    }`}
+                                >
+                                    <link.icon className="w-5 h-5 mr-3" />
+                                    <span className="font-medium">{link.title}</span>
+                                </NavLink>
+                            );
+                        })}
                     </nav>
 
                     {/* Logout Button */}

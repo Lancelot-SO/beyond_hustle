@@ -73,24 +73,24 @@ const CustomTooltip = ({ active, payload, label, total, valueLabel }) => {
 /* ─── Gradient Bar Shape ─────────────────────────────────────────────────── */
 const GradientBar = (props) => {
     const { x, y, width, height, index, fill } = props;
-    if (!height || height <= 0) return null;
-    const r = Math.min(8, width / 2);
+    if (!width || width <= 0) return null;
+    const r = Math.min(8, height / 2);
     const id = `gb-${index}`;
     return (
         <g>
             <defs>
-                <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
+                <linearGradient id={id} x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0%" stopColor={fill} stopOpacity={1} />
                     <stop offset="100%" stopColor={fill} stopOpacity={0.55} />
                 </linearGradient>
             </defs>
             {/* glow */}
-            <rect x={x} y={y + height * 0.3} width={width} height={height * 0.7 + 6}
+            <rect x={x + width * 0.3} y={y} width={width * 0.7 + 6} height={height}
                 rx={r} ry={r} fill={fill} opacity={0.18}
                 style={{ filter: 'blur(6px)' }} />
             {/* bar */}
             <path
-                d={`M${x + r},${y} h${width - 2 * r} a${r},${r} 0 0 1 ${r},${r} v${height - r} h${-width} v${-(height - r)} a${r},${r} 0 0 1 ${r},${-r}z`}
+                d={`M${x},${y + r} v${height - 2 * r} a${r},${r} 0 0 0 ${r},${r} h${width - 2 * r} a${r},${r} 0 0 0 ${r},${-r} v${-(height - 2 * r)} a${r},${r} 0 0 0 ${-r},${-r} h${-(width - 2 * r)} a${r},${r} 0 0 0 ${-r},${r}z`}
                 fill={`url(#${id})`}
             />
         </g>
@@ -155,46 +155,49 @@ const DashboardBarChart = ({ title = 'Page Distribution Analysis', data = [], lo
                 </div>
             ) : (
                 <>
-                    {/* Y-axis label */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px', marginLeft: '48px' }}>
+                    {/* X-axis label (now at bottom for horizontal bars) */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px', justifyContent: 'center' }}>
                         <div style={{ width: '10px', height: '2px', background: '#CBD5E1', borderRadius: '2px' }} />
                         <span style={{ fontSize: '10px', fontWeight: 700, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                             Number of {valueLabel}
                         </span>
                     </div>
 
-                    <div style={{ width: '100%', height: '300px' }}>
+                    <div style={{ width: '100%', height: `${Math.max(300, data.length * 50 + 60)}px` }}>
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart
                                 data={data}
-                                margin={{ top: 20, right: 20, left: 0, bottom: 40 }}
-                                barCategoryGap="30%"
+                                layout="vertical"
+                                margin={{ top: 20, right: 60, left: 100, bottom: 20 }}
+                                barCategoryGap="20%"
                             >
                                 <CartesianGrid
-                                    vertical={false}
+                                    horizontal={false}
                                     stroke="#F1F5F9"
                                     strokeDasharray="0"
                                     strokeWidth={1}
                                 />
                                 <XAxis
-                                    dataKey="name"
-                                    axisLine={false}
-                                    tickLine={false}
-                                    interval={0}
-                                    tick={({ x, y, payload }) => (
-                                        <text x={x} y={y} dy={14} textAnchor="middle"
-                                            fill="#64748B" fontSize={10} fontWeight={600}
-                                            style={{ textTransform: 'capitalize' }}>
-                                            {abbrev(payload.value)}
-                                        </text>
-                                    )}
-                                />
-                                <YAxis
+                                    type="number"
                                     axisLine={false}
                                     tickLine={false}
                                     tick={{ fill: '#94A3B8', fontSize: 10, fontWeight: 600 }}
                                     tickFormatter={fmtY}
-                                    width={44}
+                                    width={80}
+                                />
+                                <YAxis
+                                    type="category"
+                                    dataKey="name"
+                                    axisLine={false}
+                                    tickLine={false}
+                                    width={90}
+                                    tick={({ x, y, payload }) => (
+                                        <text x={x} y={y} dx={-8} textAnchor="end"
+                                            fill="#64748B" fontSize={11} fontWeight={600}
+                                            style={{ textTransform: 'capitalize' }}>
+                                            {payload.value}
+                                        </text>
+                                    )}
                                 />
                                 <Tooltip
                                     content={<CustomTooltip total={total} valueLabel={valueLabel} />}
@@ -210,7 +213,7 @@ const DashboardBarChart = ({ title = 'Page Distribution Analysis', data = [], lo
                                 >
                                     <LabelList
                                         dataKey="value"
-                                        position="top"
+                                        position="right"
                                         formatter={fmtY}
                                         style={{ fontSize: '10px', fontWeight: 800, fill: '#475569' }}
                                     />
@@ -222,9 +225,9 @@ const DashboardBarChart = ({ title = 'Page Distribution Analysis', data = [], lo
                         </ResponsiveContainer>
                     </div>
 
-                    {/* X-axis label */}
-                    <p style={{ textAlign: 'center', margin: '-8px 0 20px', fontSize: '10px', fontWeight: 700, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                        Page Names
+                    {/* Y-axis label (now on left for horizontal bars) */}
+                    <p style={{ textAlign: 'left', margin: '8px 0 20px', fontSize: '10px', fontWeight: 700, color: '#94A3B8', textTransform: 'uppercase', letterSpacing: '0.08em', paddingLeft: '100px' }}>
+                        Pages
                     </p>
 
                     {/* ── Color Legend ── */}
