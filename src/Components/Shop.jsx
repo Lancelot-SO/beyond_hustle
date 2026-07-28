@@ -2,6 +2,9 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import bookImage from "../assets/about/hustle.png";
+import workbookImage from "../assets/contact/hustlebook.png";
+import artworkImage from "../assets/excerpts/bh1.png";
 
 const Shop = ({ isOpen, onClose, workbookTo = "/paystack", mainBookTo = "/main-book", artworkTo = "/excerpts" }) => {
 
@@ -11,7 +14,7 @@ const Shop = ({ isOpen, onClose, workbookTo = "/paystack", mainBookTo = "/main-b
             name: 'Beyond The Hustle Book',
             category: 'Book',
             price: 'GHS 250',
-            image: '/src/assets/hero/book1.png', // Assuming paths based on context
+            image: bookImage,
             description: 'Go beyond the hustle. Build boldly. Lead internationally.',
             link: mainBookTo
         },
@@ -20,7 +23,7 @@ const Shop = ({ isOpen, onClose, workbookTo = "/paystack", mainBookTo = "/main-b
             name: 'BTH Work Book',
             category: 'Workbook',
             price: 'GHS 150',
-            image: '/src/assets/hero/book2.png',
+            image: workbookImage,
             description: 'Practical exercises to help you implement the BTH principles.',
             link: workbookTo
         },
@@ -29,7 +32,7 @@ const Shop = ({ isOpen, onClose, workbookTo = "/paystack", mainBookTo = "/main-b
             name: 'BTH Art Work',
             category: 'Artwork',
             price: 'GHS 100',
-            image: '/src/assets/hero/art.png',
+            image: artworkImage,
             description: 'Beautifully crafted artwork inspired by the BTH principles.',
             link: artworkTo
         }
