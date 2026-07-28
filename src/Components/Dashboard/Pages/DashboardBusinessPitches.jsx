@@ -4,6 +4,7 @@ import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { useAuth } from '../../../context/AuthContext';
+import { API_BASE, API_ORIGIN } from '../../../lib/apiConfig';
 
 const DashboardBusinessPitches = () => {
     const { token } = useAuth();
@@ -22,7 +23,7 @@ const DashboardBusinessPitches = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch('https://api.drboahemaantim.com/api/dashboard/business-pitches', {
+            const response = await fetch(`${API_BASE}/dashboard/business-pitches`, {
                 headers: {
                     'Accept': 'application/json',
                     'Authorization': `Bearer ${token}`
@@ -53,8 +54,8 @@ const DashboardBusinessPitches = () => {
                         ? (pitch.national_id.startsWith('http')
                             ? pitch.national_id
                             : (pitch.national_id.startsWith('national-ids/')
-                                ? `https://api.drboahemaantim.com/storage/${pitch.national_id}`
-                                : `https://api.drboahemaantim.com/storage/national-ids/${pitch.national_id}`))
+                                ? `${API_ORIGIN}/storage/${pitch.national_id}`
+                                : `${API_ORIGIN}/storage/national-ids/${pitch.national_id}`))
                         : null,
                     teamSize: pitch?.team || 'N/A',
                     businessStage: pitch?.business_stage || 'Not Specified',
@@ -125,7 +126,7 @@ const DashboardBusinessPitches = () => {
         setStatusMessage(null);
         try {
             const response = await fetch(
-                `https://api.drboahemaantim.com/api/dashboard/business-pitches/${pitchId}/update-status`,
+                `${API_BASE}/dashboard/business-pitches/${pitchId}/update-status`,
                 {
                     method: 'POST',
                     headers: {
@@ -162,7 +163,7 @@ const DashboardBusinessPitches = () => {
         if (!window.confirm('Are you sure you want to delete this pitch? This action cannot be undone.')) return;
         try {
             const response = await fetch(
-                `https://api.drboahemaantim.com/api/dashboard/business-pitches/${pitchId}`,
+                `${API_BASE}/dashboard/business-pitches/${pitchId}`,
                 {
                     method: 'DELETE',
                     headers: {

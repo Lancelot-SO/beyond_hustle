@@ -12,8 +12,13 @@ import pod7 from "../../assets/podcast/pod7.png"
 import pod8 from "../../assets/podcast/pod8.png"
 import pod9 from "../../assets/podcast/pod9.png"
 import PropTypes from 'prop-types'
+import { useContent } from '../../lib/useContent'
+import { storageUrl } from '../../lib/cmsClient'
+import { useScrollToHash } from '../../lib/useScrollToHash'
 
-const episodes = [
+// Static fallback content: used until the CMS API responds, and kept if it
+// fails, so the page never renders empty.
+const fallbackEpisodes = [
     {
         id: 1,
         imageSrc: pod1,
@@ -103,12 +108,28 @@ export default function MainPodcast() {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [currentEpisode, setCurrentEpisode] = useState({ url: null, title: '' })
 
+    const apiEpisodes = useContent('podcast-episodes', null)
+    useScrollToHash('episodes')
+
+    const episodes = useMemo(() => {
+        if (!apiEpisodes) return fallbackEpisodes
+        return apiEpisodes.map((ep, index) => ({
+            id: ep.id,
+            title: ep.title,
+            spotifyEmbedUrl: ep.spotify_embed_url,
+            // Uploaded thumbnail wins; otherwise reuse the bundled artwork
+            // that matches this slot, if there is one.
+            imageSrc: storageUrl(ep.image_path) || fallbackEpisodes[index]?.imageSrc || null,
+            alt: ep.title,
+        }))
+    }, [apiEpisodes])
+
     const filtered = useMemo(() => {
         if (!searchQuery) return episodes
         return episodes.filter((e) =>
             e.title.toLowerCase().includes(searchQuery.toLowerCase())
         )
-    }, [searchQuery])
+    }, [episodes, searchQuery])
 
     const loadMore = () =>
         setVisibleEpisodes((v) => Math.min(v + 3, filtered.length))
@@ -128,7 +149,7 @@ export default function MainPodcast() {
     }
 
     return (
-        <div className="min-h-screen bg-[#FBF8F4] p-4 md:p-8 lg:p-12">
+        <div id="episodes" className="min-h-screen bg-[#FBF8F4] p-4 md:p-8 lg:p-12 scroll-mt-[110px]">
             <div className="flex items-center justify-center my-8">
                 <div className="flex-grow border-t border-[#D4C7B7] mx-4" />
                 <h1 className="text-3xl font-playfair text-[#333333] whitespace-nowrap">
@@ -161,13 +182,19 @@ export default function MainPodcast() {
                         transition={{ delay: index * 0.15, duration: 0.5 }}
                         className="flex flex-col items-start h-[677px]"
                     >
-                        <img
-                            src={ep.imageSrc}
-                            alt={ep.alt}
-                            className="w-full h-[479px] object-cover rounded-lg mb-4"
-                            loading='lazy'
+                        {ep.imageSrc ? (
+                            <img
+                                src={ep.imageSrc}
+                                alt={ep.alt}
+                                className="w-full h-[479px] object-cover rounded-lg mb-4"
+                                loading='lazy'
 
-                        />
+                            />
+                        ) : (
+                            <div className="w-full h-[479px] rounded-lg mb-4 bg-gradient-to-br from-[#1C2237] to-[#D95B24] flex items-center justify-center">
+                                <Play className="w-16 h-16 text-white/70" />
+                            </div>
+                        )}
                         <h2 className="text-lg font-semibold text-[#D95B24] mb-2">
                             {ep.title}
                         </h2>

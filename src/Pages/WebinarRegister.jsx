@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FaRegShareSquare } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { API_BASE } from "../lib/apiConfig";
 
 const WebinarRegister = () => {
     const [formData, setFormData] = useState({
@@ -41,7 +42,7 @@ const WebinarRegister = () => {
 
         try {
             const response = await fetch(
-                "https://api.drboahemaantim.com/api/webinar-registrations",
+                `${API_BASE}/webinar-registrations`,
                 {
                     method: "POST",
                     headers: {

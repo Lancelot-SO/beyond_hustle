@@ -3,6 +3,7 @@ import DashboardChart from '../DashboardChart';
 import DashboardBarChart from '../DashboardBarChart';
 import { Info, Loader2 } from 'lucide-react';
 import { useAuth } from '../../../context/AuthContext';
+import { API_BASE } from '../../../lib/apiConfig';
 
 const DashboardAnalytics = () => {
     const { token } = useAuth();
@@ -23,7 +24,7 @@ const DashboardAnalytics = () => {
         if (!token) return;
         setLoading(true);
         try {
-            const currentResponse = await fetch(`https://api.drboahemaantim.com/api/dashboard/site-visits?period=${selectedPeriod}`, {
+            const currentResponse = await fetch(`${API_BASE}/dashboard/site-visits?period=${selectedPeriod}`, {
                 headers: {
                     'Accept': 'application/json',
                     'Authorization': `Bearer ${token}`
@@ -66,7 +67,7 @@ const DashboardAnalytics = () => {
         if (!token) return;
         setSummaryLoading(true);
         try {
-            const response = await fetch('https://api.drboahemaantim.com/api/dashboard/visits-summary', {
+            const response = await fetch(`${API_BASE}/dashboard/visits-summary`, {
                 headers: {
                     'Accept': 'application/json',
                     'Authorization': `Bearer ${token}`
@@ -199,7 +200,7 @@ const DashboardAnalytics = () => {
         if (!token) return;
         setVisitsLoading(true);
         try {
-            const response = await fetch('https://api.drboahemaantim.com/api/dashboard/visits-per-page', {
+            const response = await fetch(`${API_BASE}/dashboard/visits-per-page`, {
                 headers: {
                     'Accept': 'application/json',
                     'Authorization': `Bearer ${token}`
@@ -231,10 +232,10 @@ const DashboardAnalytics = () => {
         setEngagementLoading(true);
         try {
             const [bounceRes, sessionsRes] = await Promise.all([
-                fetch(`https://api.drboahemaantim.com/api/dashboard/bounce-rate?period=${selectedPeriod}`, {
+                fetch(`${API_BASE}/dashboard/bounce-rate?period=${selectedPeriod}`, {
                     headers: { 'Accept': 'application/json', 'Authorization': `Bearer ${token}` }
                 }),
-                fetch(`https://api.drboahemaantim.com/api/dashboard/new-sessions-percentage?period=${selectedPeriod}`, {
+                fetch(`${API_BASE}/dashboard/new-sessions-percentage?period=${selectedPeriod}`, {
                     headers: { 'Accept': 'application/json', 'Authorization': `Bearer ${token}` }
                 })
             ]);

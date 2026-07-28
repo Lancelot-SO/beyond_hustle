@@ -5,6 +5,7 @@ import React, { useMemo, useState } from "react";
 import PaystackPop from "@paystack/inline-js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { API_ORIGIN } from "../../lib/apiConfig";
 
 // --------------------- ASSETS (first 16 real images) --------------------- //
 import bh1 from "../../assets/excerpts/bh1.png";
@@ -59,7 +60,7 @@ import bh49 from "../../assets/excerpts/bh49.png";
 
 
 // --------------------------- CONFIG --------------------------- //
-const API_BASE = "https://api.drboahemaantim.com";
+const API_BASE = API_ORIGIN;
 const ORDERS_ENDPOINT = `${API_BASE}/api/orders`;
 const CONFIRM_ENDPOINT = `${API_BASE}/api/paystack/confirm`;
 

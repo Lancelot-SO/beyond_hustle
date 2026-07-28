@@ -9,7 +9,11 @@ import {
     LogOut,
     Menu,
     Users,
-    UserCircle
+    UserCircle,
+    Mic,
+    CalendarDays,
+    GraduationCap,
+    Images
 } from 'lucide-react';
 import PropTypes from 'prop-types';
 
@@ -48,6 +52,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         { title: 'Profile', path: '/dashboard/profile', icon: UserCircle },
     ];
 
+    const contentLinks = [
+        { title: 'Podcast Episodes', path: '/dashboard/podcast', icon: Mic },
+        { title: 'Talks & Events', path: '/dashboard/events', icon: CalendarDays },
+        { title: 'Coaching Program', path: '/dashboard/coaching', icon: GraduationCap },
+        { title: 'Media & Webinars', path: '/dashboard/media', icon: Images },
+    ];
+
     return (
         <>
             {/* Mobile Overlay */}
@@ -67,6 +78,28 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                     {/* Navigation Links */}
                     <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
                         {links.map((link) => {
+                            const isActive = isLinkActive(link.path);
+                            return (
+                                <NavLink
+                                    key={link.title}
+                                    to={link.path}
+                                    className={`flex items-center p-3 rounded-lg transition-colors duration-200 ${
+                                        isActive
+                                            ? 'bg-[#D95B24] text-white'
+                                            : 'text-gray-300 hover:bg-white/10 hover:text-white'
+                                    }`}
+                                >
+                                    <link.icon className="w-5 h-5 mr-3" />
+                                    <span className="font-medium">{link.title}</span>
+                                </NavLink>
+                            );
+                        })}
+
+                        {/* Website Content (CMS) */}
+                        <p className="px-3 pt-6 pb-1 text-xs font-bold uppercase tracking-widest text-gray-500">
+                            Website Content
+                        </p>
+                        {contentLinks.map((link) => {
                             const isActive = isLinkActive(link.path);
                             return (
                                 <NavLink

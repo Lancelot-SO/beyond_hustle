@@ -1,11 +1,40 @@
-/* eslint-disable no-unused-vars */
-import { useState } from "react"
+import React, { useState } from "react"
 import { motion } from "framer-motion"
 import { CheckCircle, Calendar, Phone, MessageCircle, GraduationCap, Briefcase } from "lucide-react"
 import RegistrationModal from "../Components/RegistrationModal"
+import { useContent } from "../lib/useContent"
+
+// Static fallback values, shown until the CMS responds (or if it is unreachable).
+const DEFAULTS = {
+    headline: 'EARN EXTRA INCOME OF OVER GHS10K A MONTH!',
+    registration_fee: 'GHS 250',
+    tuition_fee: 'GHS 2,500',
+    cohort_label: 'Next Cohort Begins Sept 17, 2025',
+    tuition_mode: 'Hybrid (Virtual & In-Person)',
+    contact_phone: '0244978933',
+}
+
+// Renders the headline with any "GHS..." amount highlighted in brand orange.
+const renderHeadline = (text) =>
+    text.split(' ').map((word, i) => (
+        <React.Fragment key={i}>
+            {word.toUpperCase().includes('GHS')
+                ? <span className="text-[#D95B24]">{word}</span>
+                : word}
+            {' '}
+        </React.Fragment>
+    ))
 
 export default function HomePage() {
     const [isModalOpen, setIsModalOpen] = useState(false)
+
+    const apiSettings = useContent('coaching', null)
+    const settings = {
+        ...DEFAULTS,
+        ...Object.fromEntries(
+            Object.entries(apiSettings || {}).filter(([, value]) => value !== null && value !== '')
+        ),
+    }
 
     const fadeInUp = {
         initial: { y: 60, opacity: 0 },
@@ -73,8 +102,7 @@ export default function HomePage() {
                         className="text-4xl md:text-6xl font-bold text-white mb-4"
                         variants={fadeInUp}
                     >
-                        EARN EXTRA INCOME OF OVER <br /><span className="text-[#D95B24]">GHS10K</span>{" "}
-                        <span className="text-white">A MONTH!</span>
+                        {renderHeadline(settings.headline)}
                     </motion.h1>
                     <motion.p
                         className="text-xl md:text-2xl text-white mb-4"
@@ -169,11 +197,11 @@ export default function HomePage() {
                                 <div className="space-y-4">
                                     <div className="flex justify-between items-center">
                                         <span>Registration</span>
-                                        <span className="font-semibold text-[#D95B24]">GHS 250</span>
+                                        <span className="font-semibold text-[#D95B24]">{settings.registration_fee}</span>
                                     </div>
                                     <div className="flex justify-between items-center">
                                         <span>Tuition</span>
-                                        <span className="font-semibold text-[#D95B24]">GHS 2,500</span>
+                                        <span className="font-semibold text-[#D95B24]">{settings.tuition_fee}</span>
                                     </div>
                                 </div>
                             </div>
@@ -193,10 +221,10 @@ export default function HomePage() {
                     >
                         <div className="bg-[#D95B24] text-white max-w-4xl mx-auto rounded-lg shadow-lg p-8 text-center">
                             <h3 className="text-2xl font-bold mb-4">Mode of Tuition</h3>
-                            <p className="text-xl mb-6">Hybrid (Virtual & In-Person)</p>
+                            <p className="text-xl mb-6">{settings.tuition_mode}</p>
                             <div className="flex items-center justify-center gap-2 mb-6">
                                 <Calendar className="w-5 h-5" />
-                                <p className="text-lg">Next Cohort Begins Sept 17, 2025</p>
+                                <p className="text-lg">{settings.cohort_label}</p>
                             </div>
                         </div>
                     </motion.div>
@@ -222,8 +250,8 @@ export default function HomePage() {
                             <div className="flex items-center gap-2 text-lg">
                                 <Phone className="w-5 h-5 text-[#D95B24]" />
                                 <span className="text-white">Call or WhatsApp</span>
-                                <a href="tel:0244978933" className="font-bold text-[#D95B24] hover:underline">
-                                    0244978933
+                                <a href={`tel:${settings.contact_phone}`} className="font-bold text-[#D95B24] hover:underline">
+                                    {settings.contact_phone}
                                 </a>
                             </div>
                             <span className="hidden sm:inline text-gray-400">|</span>

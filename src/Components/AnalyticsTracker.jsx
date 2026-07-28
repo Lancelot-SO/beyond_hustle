@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { API_BASE } from "../lib/apiConfig";
 
 /**
  * AnalyticsTracker component
@@ -19,7 +20,7 @@ export default function AnalyticsTracker() {
             })();
 
         // Track the page view event
-        fetch("https://api.drboahemaantim.com/api/analytics/track", {
+        fetch(`${API_BASE}/analytics/track`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

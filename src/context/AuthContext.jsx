@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE } from '../lib/apiConfig';
 
 const AuthContext = createContext(null);
 
@@ -8,8 +9,6 @@ export const useAuth = () => {
     if (!context) throw new Error('useAuth must be used within an AuthProvider');
     return context;
 };
-
-const API_BASE = 'https://api.drboahemaantim.com/api';
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);

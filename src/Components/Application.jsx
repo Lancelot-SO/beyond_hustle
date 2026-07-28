@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import application from "../assets/application.jpeg";
+import { API_BASE } from "../lib/apiConfig";
 
 const Application = () => {
     const [teamCount, setTeamCount] = useState(1);
@@ -51,7 +52,7 @@ const Application = () => {
 
         try {
             const response = await fetch(
-                "https://api.drboahemaantim.com/api/business-pitch",
+                `${API_BASE}/business-pitch`,
                 { method: "POST", body: formData }
             );
 

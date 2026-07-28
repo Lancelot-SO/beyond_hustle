@@ -6,8 +6,14 @@ import PropTypes from "prop-types";
 import t1 from "../../assets/events/past1.png";
 import t2 from "../../assets/events/past2.png";
 import t3 from "../../assets/events/past3.png";
+import { useContent } from "../../lib/useContent";
+import { storageUrl } from "../../lib/cmsClient";
+import { useScrollToHash } from "../../lib/useScrollToHash";
 
-const talks = [
+const STOCK_IMAGES = [t1, t2, t3];
+
+// Static fallback shown until the CMS responds (or if it is unreachable).
+const fallbackTalks = [
     {
         n: 1,
         title: "Beyond the Hustle: Building Businesses That Endure",
@@ -171,13 +177,28 @@ export default function PastEvents() {
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState(null);
 
+    const apiEvents = useContent("events", null);
+    useScrollToHash("signature-talks");
+
+    const talks = apiEvents
+        ? apiEvents.map((event, index) => ({
+            n: index + 1,
+            title: event.title,
+            blurb: event.blurb || "",
+            type: event.type || "",
+            // Uploaded banner wins; otherwise cycle the bundled stock images
+            // the way the static page always has.
+            image: storageUrl(event.image_path) || STOCK_IMAGES[index % STOCK_IMAGES.length],
+        }))
+        : fallbackTalks;
+
     const onRequest = (t) => {
         setSelected(t);
         setOpen(true);
     };
 
     return (
-        <section className="bg-white py-14 md:py-20">
+        <section id="signature-talks" className="bg-white py-14 md:py-20 scroll-mt-[110px]">
             <div className="mx-auto w-full max-w-7xl px-4 md:px-8">
                 {/* Heading */}
                 <div className="mb-10 text-center md:mb-14">

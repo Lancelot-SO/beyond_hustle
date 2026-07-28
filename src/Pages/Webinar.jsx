@@ -11,6 +11,7 @@ import MailContact from '../Components/MailContact'
 const Webinar = () => {
     // Scroll to top when component mounts
     useEffect(() => {
+        if (window.location.hash) return;
         window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     }, []);
     useEffect(() => {

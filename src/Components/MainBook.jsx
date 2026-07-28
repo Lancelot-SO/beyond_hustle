@@ -4,6 +4,7 @@ import hustle from "../assets/about/hustle.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PropTypes from "prop-types";
+import { API_BASE } from "../lib/apiConfig";
 
 /**
  * OPTION 2 (Legacy Inline, reference-only):
@@ -12,8 +13,8 @@ import PropTypes from "prop-types";
  * 3) POST /api/paystack/workbook/confirm -> { ok:true, status:'paid', download_url, expires_at }
  */
 
-const API_ORDERS_URL = "https://api.drboahemaantim.com/api/books/order";
-const API_CONFIRM_URL = "https://api.drboahemaantim.com/api/books/confirm";
+const API_ORDERS_URL = `${API_BASE}/books/order`;
+const API_CONFIRM_URL = `${API_BASE}/books/confirm`;
 
 export default function MainBook({
     productId = "bth-book-001",

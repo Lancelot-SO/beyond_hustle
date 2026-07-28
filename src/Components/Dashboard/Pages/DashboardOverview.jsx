@@ -5,6 +5,7 @@ import DashboardPieChart from '../DashboardPieChart';
 import DashboardChart from '../DashboardChart';
 import { BookOpen, Book, Users, Eye, Loader2, AlertCircle } from 'lucide-react';
 import { useAuth } from '../../../context/AuthContext';
+import { API_BASE } from '../../../lib/apiConfig';
 
 const DashboardOverview = () => {
     const { token } = useAuth();
@@ -23,7 +24,7 @@ const DashboardOverview = () => {
         if (!token) return;
         setTrafficLoading(true);
         try {
-            const response = await fetch(`https://api.drboahemaantim.com/api/dashboard/site-visits?period=${selectedPeriod}`, {
+            const response = await fetch(`${API_BASE}/dashboard/site-visits?period=${selectedPeriod}`, {
                 headers: {
                     'Accept': 'application/json',
                     'Authorization': `Bearer ${token}`
@@ -56,7 +57,7 @@ const DashboardOverview = () => {
 
         const fetchDashboardData = async () => {
             try {
-                const response = await fetch('https://api.drboahemaantim.com/api/dashboard/overview-numbers', {
+                const response = await fetch(`${API_BASE}/dashboard/overview-numbers`, {
                     headers: {
                         'Accept': 'application/json',
                         'Authorization': `Bearer ${token}`
@@ -79,7 +80,7 @@ const DashboardOverview = () => {
         const fetchSalesDistribution = async () => {
             setSalesLoading(true);
             try {
-                const response = await fetch('https://api.drboahemaantim.com/api/dashboard/workbook-sales-per-month', {
+                const response = await fetch(`${API_BASE}/dashboard/workbook-sales-per-month`, {
                     headers: {
                         'Accept': 'application/json',
                         'Authorization': `Bearer ${token}`
@@ -104,7 +105,7 @@ const DashboardOverview = () => {
         const fetchBookSalesPercentage = async () => {
             setPieLoading(true);
             try {
-                const response = await fetch('https://api.drboahemaantim.com/api/dashboard/book-sales-percentage', {
+                const response = await fetch(`${API_BASE}/dashboard/book-sales-percentage`, {
                     headers: {
                         'Accept': 'application/json',
                         'Authorization': `Bearer ${token}`

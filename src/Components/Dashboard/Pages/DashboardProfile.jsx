@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../../context/AuthContext';
+import { API_BASE } from '../../../lib/apiConfig';
 
 const DashboardProfile = () => {
     const { user, token, updateUser } = useAuth();
@@ -20,7 +21,7 @@ const DashboardProfile = () => {
         setMessage({ type: '', text: '' });
 
         try {
-            const response = await fetch(`https://api.drboahemaantim.com/api/dashboard/users/${user.id}`, {
+            const response = await fetch(`${API_BASE}/dashboard/users/${user.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

@@ -14,11 +14,15 @@ import gallery5 from "../assets/gallery/gallery5.png"
 
 import { Link } from 'react-router-dom'
 import BottomSection from '../Components/herosection/BottomSection'
+import { useContent } from '../lib/useContent'
+import { storageUrl } from '../lib/cmsClient'
+import { useScrollToHash } from '../lib/useScrollToHash'
 
 const MotionLink = motion(Link)
 
 
-const items = [
+// Static fallback shown until the CMS responds (or if it is unreachable).
+const fallbackItems = [
     { title: 'Book Launch', image: gallery1, link: '/launch' },
     { title: 'Speaking & Event', image: gallery2, link: '/events' },
     { title: 'Webinar', image: gallery3, link: '/webinars' },
@@ -42,8 +46,24 @@ const itemVariants = {
 
 
 export default function Gallery() {
-    // Scroll to top when component mounts
+    const apiItems = useContent('gallery', null)
+
+    const items = apiItems
+        ? apiItems.map((item, index) => ({
+            title: item.title,
+            link: item.link || '#',
+            span: item.is_wide ? 2 : undefined,
+            // Uploaded image wins; otherwise reuse the bundled image that
+            // matches this slot, if there is one.
+            image: storageUrl(item.image_path) || fallbackItems[index]?.image || null,
+        }))
+        : fallbackItems
+
+    useScrollToHash('gallery-grid')
+
+    // Scroll to top when component mounts (unless a section anchor is targeted)
     useEffect(() => {
+        if (window.location.hash) return;
         window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     }, []);
     useEffect(() => {
@@ -92,7 +112,7 @@ export default function Gallery() {
                 </div>
             </div>
 
-            <section className="py-16 bg-[#ffffff]">
+            <section id="gallery-grid" className="py-16 bg-[#ffffff] scroll-mt-[110px]">
                 <div className=" mx-auto px-4 lg:px-14 4xl:px-32">
                     {/* Title with flanking lines */}
                     <div className="flex items-center justify-center mb-12">
@@ -118,11 +138,15 @@ export default function Gallery() {
                                 variants={itemVariants}
                                 whileHover={{ scale: 1.03 }}
                             >
-                                <img
-                                    src={item.image}
-                                    alt={item.title}
-                                    className="w-full h-full object-cover"
-                                />
+                                {item.image ? (
+                                    <img
+                                        src={item.image}
+                                        alt={item.title}
+                                        className="w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <div className="w-full h-full bg-gradient-to-br from-[#1C2237] to-[#D95B24]" />
+                                )}
                                 <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
                                     <span className="bg-[#D95B24] text-white px-6 py-2 font-semibold">
                                         {item.title}

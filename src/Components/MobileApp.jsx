@@ -4,6 +4,7 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import mobilebg from "../assets/mobilebg.jpg"
 import { toast, ToastContainer } from "react-toastify";
+import { API_BASE } from "../lib/apiConfig";
 
 const MobileApp = () => {
     const [loading, setLoading] = useState(false);
@@ -21,7 +22,7 @@ const MobileApp = () => {
 
         try {
             const response = await fetch(
-                "https://api.drboahemaantim.com/api/mobile-app-support/submit",
+                `${API_BASE}/mobile-app-support/submit`,
                 {
                     method: "POST",
                     body: formData,
